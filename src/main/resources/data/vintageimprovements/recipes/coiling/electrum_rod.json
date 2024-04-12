@@ -12,8 +12,13 @@
 		}
 	],
   "processingTime": 120,
-	"conditions": [ {
-		"type": "forge:mod_loaded",
-		"modid": "createaddition"
-    }]
+  "conditions": [
+	{
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/electrum"
+      }
+    }
+  ]
 }

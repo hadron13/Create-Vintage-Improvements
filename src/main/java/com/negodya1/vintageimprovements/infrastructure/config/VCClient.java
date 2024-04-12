@@ -7,6 +7,11 @@ public class VCClient extends ConfigBase {
 	public final ConfigGroup client = group(0, "client",
 			Comments.client);
 
+	public final ConfigBool forceCompatItemsIntoCreativeTab = b(false, "forceCompatItemsIntoCreativeTab", Comments.forceCompatItemsIntoCreativeTab);
+
+	public final ConfigGroup configButton = group(1, "configButton",
+			Comments.configButton);
+
 	public final ConfigInt mainMenuConfigButtonRow = i(1, 0, 4, "mainMenuConfigButtonRow",
 			Comments.mainMenuConfigButtonRow);
 	public final ConfigInt mainMenuConfigButtonOffsetX = i(-4, Integer.MIN_VALUE, Integer.MAX_VALUE, "mainMenuConfigButtonOffsetX",
@@ -23,6 +28,7 @@ public class VCClient extends ConfigBase {
 
 	private static class Comments {
 		static String client = "Client-only settings - If you're looking for general settings, look inside your worlds serverconfig folder!";
+
 		static String[] mainMenuConfigButtonRow = new String[]{
 				"Choose the menu row that the Vintage Improvements config button appears on in the main menu",
 				"Set to 0 to disable the button altogether"
@@ -39,5 +45,8 @@ public class VCClient extends ConfigBase {
 				"Offset the Vintage Improvements config button in the in-game menu by this many pixels on the X axis",
 				"The sign (-/+) of this value determines what side of the row the button appears on (left/right)"
 		};
+		static String forceCompatItemsIntoCreativeTab = "If enabled, compat items with not loaded mod still appears in the creative tab";
+		static String configButton = "Position of Create: Vintage Improvements config button in the main menu & pause menu";
+
 	}
 }

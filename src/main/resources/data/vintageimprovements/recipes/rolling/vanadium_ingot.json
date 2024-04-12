@@ -1,0 +1,14 @@
+{
+  "type":"createaddition:rolling",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/vanadium"
+    }
+  ],
+  "results": [
+    {
+      "item": "vintageimprovements:vanadium_rod",
+		"count": 2
+    }
+  ]
+}

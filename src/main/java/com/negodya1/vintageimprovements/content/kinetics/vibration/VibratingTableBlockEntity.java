@@ -1,7 +1,9 @@
 package com.negodya1.vintageimprovements.content.kinetics.vibration;
 
+import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.VintageRecipes;
 import com.negodya1.vintageimprovements.VintageRecipesList;
+import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.HelveBlock;
 import com.negodya1.vintageimprovements.infrastructure.config.VintageConfig;
 import com.simibubi.create.AllSoundEvents;
 import com.simibubi.create.content.kinetics.base.IRotate;
@@ -260,7 +262,6 @@ public class VibratingTableBlockEntity extends KineticBlockEntity {
 	}
 
 	private void process() {
-
 		RecipeWrapper inventoryIn = new RecipeWrapper(inputInv);
 
 		if (lastRecipe == null || !lastRecipe.matches(inventoryIn, level)) {
@@ -336,16 +337,52 @@ public class VibratingTableBlockEntity extends KineticBlockEntity {
 			if (!found) return;
 		}
 
-		ItemStack stackInSlot = inputInv.getStackInSlot(0);
-		stackInSlot.shrink(1);
-		inputInv.setStackInSlot(0, stackInSlot);
-		lastRecipe.rollResults()
-				.forEach(stack -> ItemHandlerHelper.insertItemStacked(outputInv, stack, false));
+		if (lastRecipeIsAssembly) {
+			VibratingRecipe.apply(this, lastRecipe);
+			lastRecipe = null;
+		}
+		else {
+			ItemStack stackInSlot = inputInv.getStackInSlot(0);
+			stackInSlot.shrink(1);
+			inputInv.setStackInSlot(0, stackInSlot);
 
-		if (lastRecipeIsAssembly) lastRecipe = null;
+			lastRecipe.rollResults()
+					.forEach(stack -> ItemHandlerHelper.insertItemStacked(outputInv, stack, false));
+		}
 
 		sendData();
 		setChanged();
+	}
+
+	public boolean acceptOutputs(List<ItemStack> outputItems, boolean simulate) {
+		outputInv.allowInsertion();
+		boolean acceptOutputsInner = acceptOutputsInner(outputItems, simulate);
+		outputInv.forbidInsertion();
+		return acceptOutputsInner;
+	}
+
+	private boolean acceptOutputsInner(List<ItemStack> outputItems, boolean simulate) {
+		BlockState blockState = getBlockState();
+		if (!(blockState.getBlock() instanceof VibratingTableBlock))
+			return false;
+
+		IItemHandler targetInv = outputInv;
+
+		if (targetInv == null && !outputItems.isEmpty())
+			return false;
+		if (!acceptItemOutputsIntoHelve(outputItems, simulate, targetInv))
+			return false;
+
+		return true;
+	}
+
+	private boolean acceptItemOutputsIntoHelve(List<ItemStack> outputItems, boolean simulate, IItemHandler targetInv) {
+		for (ItemStack itemStack : outputItems) {
+			if (!ItemHandlerHelper.insertItemStacked(targetInv, itemStack.copy(), simulate)
+					.isEmpty())
+				return false;
+		}
+		return true;
 	}
 
 	public int getProcessingSpeed() {
