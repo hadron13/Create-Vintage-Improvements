@@ -3,7 +3,9 @@ package com.negodya1.vintageimprovements.compat.jei.category.assemblies;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.negodya1.vintageimprovements.compat.jei.category.animations.AnimatedVacuumChamber;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
+import com.simibubi.create.compat.jei.category.animations.AnimatedBlazeBurner;
 import com.simibubi.create.compat.jei.category.sequencedAssembly.SequencedAssemblySubCategory;
+import com.simibubi.create.content.processing.recipe.HeatCondition;
 import com.simibubi.create.content.processing.sequenced.SequencedRecipe;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
 import mezz.jei.api.forge.ForgeTypes;
@@ -18,6 +20,7 @@ import static com.simibubi.create.compat.jei.category.CreateRecipeCategory.getRe
 public class AssemblyPressurizing extends SequencedAssemblySubCategory {
 
     AnimatedVacuumChamber vacuum;
+    private final AnimatedBlazeBurner heater = new AnimatedBlazeBurner();
 
     public AssemblyPressurizing() {
         super(25);
@@ -52,6 +55,11 @@ public class AssemblyPressurizing extends SequencedAssemblySubCategory {
         ms.pushPose();
         ms.translate(-4, 31, 0);
         ms.scale(.6f, .6f, .6f);
+
+        HeatCondition requiredHeat = recipe.getRecipe().getRequiredHeat();
+        if (requiredHeat != HeatCondition.NONE)
+            heater.withHeat(requiredHeat.visualizeAsBlazeBurner())
+                    .draw(graphics, getWidth() / 2, 51);
         vacuum.draw(graphics, getWidth() / 2, 30, true);
         ms.popPose();
     }

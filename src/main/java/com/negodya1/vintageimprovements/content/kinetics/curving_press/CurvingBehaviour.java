@@ -46,13 +46,9 @@ public class CurvingBehaviour extends BeltProcessingBehaviour {
 
 	public interface CurvingBehaviourSpecifics {
 		public boolean tryProcessOnBelt(TransportedItemStack input, List<ItemStack> outputList, boolean simulate);
-
 		public boolean tryProcessInWorld(ItemEntity itemEntity, boolean simulate);
-
 		public boolean canProcessInBulk();
-
 		public int getParticleAmount();
-
 		public float getKineticSpeed();
 	}
 

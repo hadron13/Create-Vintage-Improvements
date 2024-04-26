@@ -158,9 +158,9 @@ public class VacuumizingCategory extends BasinCategory {
 		super.draw(recipe, iRecipeSlotsView, graphics, mouseX, mouseY);
 
 		if (recipe instanceof VacuumizingRecipe vrecipe) {
-			if (vrecipe.getSecondaryFluidResults() >= 0)
+			if (vrecipe.getSecondaryFluidResults() >= 0 && vrecipe.getFluidResults().size() > 0)
 				VintageGuiTextures.JEI_UP_TO_RIGHT_ARROW.render(graphics, 120, 2);
-			if (vrecipe.getSecondaryFluidInputs() >= 0)
+			if (vrecipe.getSecondaryFluidInputs() >= 0 && vrecipe.getFluidIngredients().size() > 0)
 				AllGuiTextures.JEI_ARROW.render(graphics, 45, 18);
 		}
 

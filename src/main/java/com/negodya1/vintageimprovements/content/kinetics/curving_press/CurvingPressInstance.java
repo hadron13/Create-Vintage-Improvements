@@ -15,12 +15,12 @@ import com.simibubi.create.foundation.utility.AnimationTickHolder;
 
 public class CurvingPressInstance extends ShaftInstance<CurvingPressBlockEntity> implements DynamicInstance {
 
-	private final OrientedData pressHead;
+	//private final OrientedData pressHead;
 
 	public CurvingPressInstance(MaterialManager materialManager, CurvingPressBlockEntity blockEntity) {
 		super(materialManager, blockEntity);
 
-		pressHead = materialManager.defaultSolid()
+		/*pressHead = materialManager.defaultSolid()
 				.material(Materials.ORIENTED)
 				.getModel(VintagePartialModels.CURVING_HEAD, blockState)
 				.createInstance();
@@ -30,15 +30,15 @@ public class CurvingPressInstance extends ShaftInstance<CurvingPressBlockEntity>
 
 		pressHead.setRotation(q);
 
-		transformModels();
+		transformModels();*/
 	}
 
 	@Override
 	public void beginFrame() {
-		transformModels();
+		//transformModels();
 	}
 
-	private void transformModels() {
+	/*private void transformModels() {
 		float renderedHeadOffset = getRenderedHeadOffset(blockEntity);
 
 		pressHead.setPosition(getInstancePosition())
@@ -62,5 +62,5 @@ public class CurvingPressInstance extends ShaftInstance<CurvingPressBlockEntity>
 	public void remove() {
 		super.remove();
 		pressHead.delete();
-	}
+	}*/
 }

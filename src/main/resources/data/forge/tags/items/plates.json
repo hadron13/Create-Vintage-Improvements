@@ -34,6 +34,10 @@
 	"vintageimprovements:uranium_sheet",
 	"vintageimprovements:vanadium_sheet",
 	"vintageimprovements:netherite_sheet",
-	"vintageimprovements:nethersteel_sheet"
+	"vintageimprovements:nethersteel_sheet",
+	"vintageimprovements:andesite_sheet",
+	"vintageimprovements:zinc_sheet",
+	"vintageimprovements:shadow_steel_sheet",
+	"vintageimprovements:refined_radiance_sheet"
   ]
 }

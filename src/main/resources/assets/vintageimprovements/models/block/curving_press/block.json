@@ -6,7 +6,7 @@
 		"gearbox_top": "create:block/gearbox_top",
 		"gearbox": "create:block/gearbox",
 		"mechanical_press_top": "create:block/mechanical_press_top",
-		"mechanical_press_bottom": "create:block/mechanical_press_bottom"
+		"mechanical_press_bottom": "vintageimprovements:block/curving_press_bottom"
 	},
 	"elements": [
 		{

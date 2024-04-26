@@ -1,8 +1,11 @@
 package com.negodya1.vintageimprovements.infrastructure.ponder.scenes;
 
+import com.negodya1.vintageimprovements.VintageItems;
+import com.negodya1.vintageimprovements.content.kinetics.centrifuge.CentrifugeBlockEntity;
 import com.negodya1.vintageimprovements.content.kinetics.curving_press.CurvingBehaviour;
 import com.negodya1.vintageimprovements.content.kinetics.curving_press.CurvingPressBlockEntity;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.VibratingTableBlockEntity;
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.kinetics.press.MechanicalPressBlockEntity;
 import com.simibubi.create.foundation.ponder.*;
@@ -49,6 +52,57 @@ public class CurvingPressScenes {
 		scene.idle(10);
 
 		Vec3 pressSide = util.vector.blockSurface(pressPos, Direction.WEST);
+		scene.overlay.showText(60)
+				.pointAt(pressSide)
+				.placeNearTarget()
+				.attachKeyFrame()
+				.text("Before work you must install any Curving Head to Curving Press");
+		scene.idle(50);
+
+		ItemStack head = new ItemStack(VintageItems.W_SHAPED_CURVING_HEAD.asItem());
+
+		scene.overlay.showControls(
+				new InputWindowElement(util.vector.blockSurface(pressPos, Direction.NORTH), Pointing.RIGHT).rightClick()
+						.withItem(head), 8);
+		scene.idle(8);
+		scene.world.modifyBlockEntity(pressPos, CurvingPressBlockEntity.class,
+				ms -> ms.mode = 3);
+		scene.idle(12);
+
+		scene.overlay.showText(60)
+				.pointAt(pressSide)
+				.placeNearTarget()
+				.attachKeyFrame()
+				.text("Different heads provides different recipes");
+		scene.idle(70);
+
+		scene.overlay.showText(60)
+				.pointAt(pressSide)
+				.placeNearTarget()
+				.attachKeyFrame()
+				.text("To remove head, you must right-click with a Wrench");
+		scene.idle(50);
+
+		ItemStack wrench = new ItemStack(AllItems.WRENCH.asItem());
+
+		scene.overlay.showControls(
+				new InputWindowElement(util.vector.blockSurface(pressPos, Direction.NORTH), Pointing.RIGHT).rightClick()
+						.withItem(wrench), 8);
+		scene.idle(8);
+		scene.world.modifyBlockEntity(pressPos, CurvingPressBlockEntity.class,
+				ms -> ms.mode = 0);
+		scene.idle(24);
+
+		head = new ItemStack(VintageItems.CONVEX_CURVING_HEAD.asItem());
+
+		scene.overlay.showControls(
+				new InputWindowElement(util.vector.blockSurface(pressPos, Direction.NORTH), Pointing.RIGHT).rightClick()
+						.withItem(head), 8);
+		scene.idle(8);
+		scene.world.modifyBlockEntity(pressPos, CurvingPressBlockEntity.class,
+				ms -> ms.mode = 1);
+		scene.idle(24);
+
 		scene.overlay.showText(60)
 				.pointAt(pressSide)
 				.placeNearTarget()

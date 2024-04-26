@@ -1,0 +1,19 @@
+{
+  "type":"createaddition:rolling",
+  "ingredients": [
+    {
+      "tag": "forge:plates/andesite"
+    }
+  ],
+  "results": [
+    {
+      "item": "vintageimprovements:andesite_wire",
+		"count": 2
+    }
+  ],
+  "conditions": [ {
+		"type": "forge:mod_loaded",
+		"modid": "createaddition"
+    }
+  ]
+}

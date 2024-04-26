@@ -16,6 +16,7 @@ import com.simibubi.create.content.kinetics.base.IRotate;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
 import com.simibubi.create.content.processing.basin.BasinOperatingBlockEntity;
 import com.simibubi.create.content.processing.basin.BasinRecipe;
+import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipe;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
@@ -250,6 +251,9 @@ public class VacuumChamberBlockEntity extends BasinOperatingBlockEntity {
 								VintageRecipes.PRESSURIZING.getType(), PressurizingRecipe.class);
 				if (assemblyRecipe.isPresent() && basin.get().getFilter().test(assemblyRecipe.get()
 						.getResultItem(RegistryAccess.EMPTY))) {
+					if (!assemblyRecipe.get().getRequiredHeat().testBlazeBurner(BlazeBurnerBlock.getHeatLevelOf(level.getBlockState(getBlockPos().below(3)))))
+						return getRecipes();
+
 					for (Ingredient cur : assemblyRecipe.get().getIngredients()) {
 						boolean find = false;
 
@@ -280,6 +284,9 @@ public class VacuumChamberBlockEntity extends BasinOperatingBlockEntity {
 								VintageRecipes.VACUUMIZING.getType(), VacuumizingRecipe.class);
 				if (assemblyRecipe.isPresent() && basin.get().getFilter().test(assemblyRecipe.get()
 						.getResultItem(RegistryAccess.EMPTY))) {
+					if (!assemblyRecipe.get().getRequiredHeat().testBlazeBurner(BlazeBurnerBlock.getHeatLevelOf(level.getBlockState(getBlockPos().below(3)))))
+						return getRecipes();
+
 					for (Ingredient cur : assemblyRecipe.get().getIngredients()) {
 						boolean find = false;
 

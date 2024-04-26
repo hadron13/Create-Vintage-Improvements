@@ -11,7 +11,8 @@ license="${mod_license}"
     displayURL="https://github.com/Negodya1/Create-Vintage-Improvements"
     issueTrackerURL="https://github.com/Negodya1/Create-Vintage-Improvements/issues"
     #logoFile="examplemod.png"
-    credits="Catchmons - zh_cn localization"
+    credits='''Catchmons & Junnaturefox - zh_cn localization
+padin - en_us localization editing'''
     authors="${mod_authors}"
     #displayTest="MATCH_VERSION"
 

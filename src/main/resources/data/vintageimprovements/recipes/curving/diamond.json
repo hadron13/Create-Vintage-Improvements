@@ -1,0 +1,14 @@
+{
+	"type": "vintageimprovements:curving",
+	"itemAsHead": "minecraft:nether_star",
+	"ingredients": [
+		{
+		  "tag": "forge:gems/diamond"
+		}
+	],
+	"results": [
+		{
+		  "item": "minecraft:emerald"
+		}
+	]
+}

@@ -221,7 +221,7 @@ public class VacuumizingRecipe extends BasinRecipe implements IAssemblyRecipe {
 
 					NonNullList<FluidStack> fss = basinRecipe.getFluidResults();
 
-					if (basinRecipe.secondaryFluidResults >= 0 && basinRecipe.secondaryFluidResults <= fss.size())
+					if (basinRecipe.secondaryFluidResults >= 0 && basinRecipe.secondaryFluidResults + 1 <= fss.size())
 						recipeSecondaryOutputFluids.add(fss.get(basinRecipe.secondaryFluidResults));
 					for (int i = 0; i < basinRecipe.secondaryFluidResults; i++)
 						recipeOutputFluids.add(fss.get(i));

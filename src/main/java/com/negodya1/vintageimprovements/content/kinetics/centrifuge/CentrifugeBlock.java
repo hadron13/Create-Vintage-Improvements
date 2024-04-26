@@ -124,8 +124,6 @@ public class CentrifugeBlock extends KineticBlock implements IBE<CentrifugeBlock
 						1f + Create.RANDOM.nextFloat());
 			return InteractionResult.SUCCESS;
 		});
-
-
 	}
 
 	@Override

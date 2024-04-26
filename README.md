@@ -11,21 +11,45 @@
 
 # About
 
-Vintage Improvements is [Create](https://modrinth.com/mod/create) addon which adds new Kinetics Machines, metal rods, wires & springs to compat with [Ad Astra](https://modrinth.com/mod/ad-astra) & [Create Crafts & Addtitions](https://modrinth.com/mod/createaddition)
+Vintage Improvements is [Create](https://modrinth.com/mod/create) addon which adds new Kinetics Machines, metal rods, wires, sheets & springs
 
 # Content
 
 <details>
+<summary>Compats</summary>
+
+Rods, wires, springs & sheets can be made from materials, that other mods provide. List of supported mods:
+- [Ad Astra](https://modrinth.com/mod/ad-astra)
+- [Create Crafts & Addtitions](https://modrinth.com/mod/createaddition)
+- [Create: The Factory Must Grow](https://modrinth.com/mod/create-tfmg)
+- [Mekanism](https://modrinth.com/mod/mekanism)
+- [Tinker's Construct](https://modrinth.com/mod/tinkers-construct)
+- [Thermal Expansion](https://modrinth.com/mod/thermal-foundation)
+- [Destroy](https://modrinth.com/mod/destroy)
+- [Twilight Forest](https://www.curseforge.com/minecraft/mc-mods/the-twilight-forest)
+- [Create Big Cannons](https://modrinth.com/mod/create-big-cannons)
+
+</details>
+
+
+<details>
+<summary>Sheets</summary>
+
+Sheets can ba mede with pressing ingots
+
+![Sheets List](https://cdn.modrinth.com/data/S27aYArf/images/2c3178cbd42c7429ba2695e6713e78a26ad5befb.png)
+
+
+</details>
+
+
+<details>
 <summary>Rods</summary>
 
-Rods can be made from plates:
-- Steel
-- Calorite (Ad Astra)
-- Ostrum (Ad Astra)
-- Desh (Ad Astra)
+Rods can be made from plates.
 
 ![Workbench Craft](https://cdn.modrinth.com/data/S27aYArf/images/9b813c2a44185e1b0d691f4fec6a18a605c6ed1c.png)
-![Rods List](https://cdn.modrinth.com/data/Cn37AHDY/images/f8bc893cc6ba73a355492f5aeda07d144af2a09f.png)
+![Rods List](https://cdn.modrinth.com/data/S27aYArf/images/ecea4c24bb885d957d8ec35c89ccab01fdc9af20.png)
 
 If Create Crafts & Addtitions installed, this craft will be replaced by rolling with Rolling Mill.
 
@@ -38,14 +62,10 @@ This rods can be used in custom recipes in mod packs.
 <details>
 <summary>Wires</summary>
 
-Wires can be made from plates:
-- Steel
-- Calorite (Ad Astra)
-- Ostrum (Ad Astra)
-- Desh (Ad Astra)
+Wires can be made from rods.
 
 ![Workbench Craft](https://cdn.modrinth.com/data/Cn37AHDY/images/95ed215f1b0b193a979a188e88b1130c59ad8829.png)
-![Wires List](https://cdn.modrinth.com/data/Cn37AHDY/images/0d87e37f3d179753eb5fee426ffe7c4dda2f1f81.png)
+![Wires List](https://cdn.modrinth.com/data/S27aYArf/images/5267cd4dce6c45c87c27eb9bd1c520264bf4997f.png)
 
 If Create Crafts & Addtitions installed, this craft will be replaced by rolling with Rolling Mill.
 
@@ -82,17 +102,10 @@ Spring Coiling Machine craft
 ![Coiling Wheel](https://cdn.modrinth.com/data/Cn37AHDY/images/24e33647ac56515a4cd57c459e48c820f0a9be82.png)
 ![Spring Coiling Machine](https://cdn.modrinth.com/data/Cn37AHDY/images/38f5c354370006bdac29a22d1a899f15d58c8d97.png)
 
-Grinder provides **coiling** recipes. You can craft springs & small springs made by:
+Grinder provides **coiling** recipes.
 
-- Iron
-- Gold
-- Copper
-- Steel
-- Calorite (Ad Astra)
-- Ostrum (Ad Astra)
-- Desh (Ad Astra)
-
-![Springs List](https://cdn.modrinth.com/data/Cn37AHDY/images/d87e7ba3c8aafa9d4bc5a7bb080541deb16db110.png)
+![Springs List](https://cdn.modrinth.com/data/S27aYArf/images/3b854dc6cd08721afd8e888478b60fad506a139a.png)
+![Small Springs List](https://cdn.modrinth.com/data/S27aYArf/images/81634f2a2415adf8ae30a25419b759e5fbf97507.png)
 ![Coiling Example](https://cdn.modrinth.com/data/Cn37AHDY/images/060799a4b9c1c4acd5d78364f68c9d0f63b87e75.png)
 
 </details>
@@ -153,15 +166,19 @@ Centrifuge needs 4 Basins intsalled to work and provides **centrifugation** reci
 
 Curving Press craft
 
-![Curving Press craft](https://cdn.modrinth.com/data/S27aYArf/images/e5b55f4751dd1332fdfe911766f0696466fc3a1a.png)
+![Curving Press craft](https://cdn.modrinth.com/data/S27aYArf/images/41477ad700bb5e4ffd19232a86206dbba4005fc9.png)
 
-Curving Press provides **curving** recipes
+Curving Press provides **curving** recipes. Before work you must install one of Curving Heads. Different heads provides different recipes
 
-![Curving Example](https://cdn.modrinth.com/data/S27aYArf/images/107265dc559b22063b49f60f0fcdecb3c24deb28.png)
+![Curving Head Recipes](https://cdn.modrinth.com/data/S27aYArf/images/485e06e4263531375954f717441ea53073050614.png)
+
+You also can add custom heads, just add "vintageimprovements:curving_heads" tag to item
+
+![Curving Example](https://cdn.modrinth.com/data/S27aYArf/images/f8d8d26cac5c57886b149fdd7a99adb1eba371cb.png)
 
 In the config you can turn on automatic recognition of bucket-like recipes for Curving Press (enabled by default)
 
-![Auto Curving Example](https://cdn.modrinth.com/data/S27aYArf/images/5b2e2a31d08fc7410d56179ea9092eb6bd2c5bbe.png)
+![Auto Curving Example](https://cdn.modrinth.com/data/S27aYArf/images/adece40ff73fc4263069df0224b237cac896abde.png)
 
 </details>
 
@@ -265,8 +282,12 @@ On [GitHub issues page](https://github.com/Negodya1/Create-Vintage-Improvements/
 
 You can fork [GitHub repository](https://github.com/Negodya1/Create-Vintage-Improvements) and then pull request your translation
 
+> KubeJS support?
+
+After version 0.2 release (about 2 major updates)
+
 # Translations
 
-- en_us
+- en_us (edited by **padin**)
 - ru_ru
-- zh_cn by **Catchmons**
+- zh_cn by **Catchmons & Junnaturefox**

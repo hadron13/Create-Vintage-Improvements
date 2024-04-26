@@ -31,7 +31,12 @@ public class VintagePartialModels {
 		GRINDER_BELT_INACTIVE_OBSIDIAN = block("belt_grinder/belt_inactive_obsidian"),
 		GRINDER_BELT_REVERSED_OBSIDIAN = block("belt_grinder/belt_reversed_obsidian"),
 		VACUUM_CHAMBER_ARROWS = block("vacuum_chamber/arrows"),
-		HELVE_HAMMER = block("helve_hammer/head");
+		HELVE_HAMMER = block("helve_hammer/head"),
+		CURVING_POLE = block("curving_press/pole"),
+		CURVING_HEAD_2 = block("curving_press/head_2"),
+		CURVING_HEAD_3 = block("curving_press/head_3"),
+		CURVING_HEAD_4 = block("curving_press/head_4"),
+		CURVING_HEAD_5 = block("curving_press/head_5");
 
 	private static PartialModel block(String path) {
 		return new PartialModel(VintageImprovements.asResource("block/" + path));

@@ -36,6 +36,10 @@
 	"vintageimprovements:uranium_rod",
 	"vintageimprovements:vanadium_rod",
 	"vintageimprovements:netherite_rod",
-	"vintageimprovements:nethersteel_rod"
+	"vintageimprovements:nethersteel_rod",
+	"vintageimprovements:andesite_rod",
+	"vintageimprovements:zinc_rod",
+	"vintageimprovements:shadow_steel_rod",
+	"vintageimprovements:refined_radiance_rod"
   ]
 }

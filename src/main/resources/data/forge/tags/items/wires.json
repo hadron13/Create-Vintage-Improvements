@@ -37,6 +37,10 @@
 	"vintageimprovements:steel_wire",
 	"vintageimprovements:tin_wire",
 	"vintageimprovements:uranium_wire",
-	"vintageimprovements:vanadium_wire"
+	"vintageimprovements:vanadium_wire",
+	"vintageimprovements:andesite_wire",
+	"vintageimprovements:zinc_wire",
+	"vintageimprovements:shadow_steel_wire",
+	"vintageimprovements:refined_radiance_wire"
   ]
 }

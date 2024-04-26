@@ -43,6 +43,10 @@
 	"vintageimprovements:uranium_spring",
 	"vintageimprovements:vanadium_spring",
 	"vintageimprovements:netherite_spring",
-	"vintageimprovements:nethersteel_spring"
+	"vintageimprovements:nethersteel_spring",
+	"vintageimprovements:andesite_spring",
+	"vintageimprovements:zinc_spring",
+	"vintageimprovements:shadow_steel_spring",
+	"vintageimprovements:refined_radiance_spring"
   ]
 }

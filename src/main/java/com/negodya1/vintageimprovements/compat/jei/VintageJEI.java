@@ -179,6 +179,18 @@ public class VintageJEI implements IModPlugin {
 						&& r.getIngredients().size() == 6
 						&& r.canCraftInDimensions(3, 2)
 						&& CurvingPressBlockEntity.canCurve(r) && !AllRecipeTypes.shouldIgnoreInAutomation(r))
+				.addAllRecipesIf(r -> r instanceof CraftingRecipe && r instanceof IShapedRecipe<?>
+						&& r.getIngredients().size() == 6
+						&& r.canCraftInDimensions(3, 2)
+						&& CurvingPressBlockEntity.canCurve(r, 2) && !AllRecipeTypes.shouldIgnoreInAutomation(r))
+				.addAllRecipesIf(r -> r instanceof CraftingRecipe && r instanceof IShapedRecipe<?>
+						&& r.getIngredients().size() == 4
+						&& r.canCraftInDimensions(2, 2)
+						&& CurvingPressBlockEntity.canCurve(r, 3) && !AllRecipeTypes.shouldIgnoreInAutomation(r))
+				.addAllRecipesIf(r -> r instanceof CraftingRecipe && r instanceof IShapedRecipe<?>
+						&& r.getIngredients().size() == 4
+						&& r.canCraftInDimensions(2, 2)
+						&& CurvingPressBlockEntity.canCurve(r, 4) && !AllRecipeTypes.shouldIgnoreInAutomation(r))
 				.catalyst(VintageBlocks.CURVING_PRESS::get)
 				.doubleItemIcon(VintageBlocks.CURVING_PRESS.get(), AllItems.IRON_SHEET)
 				.emptyBackground(177, 70)
