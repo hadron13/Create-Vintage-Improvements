@@ -62,7 +62,7 @@ public class CurvingPressRenderer extends KineticBlockEntityRenderer<CurvingPres
 					ms.translate(0.5, -renderedHeadOffset + 0.5f / 16, 0.5);
 					ms.mulPose(Axis.XP.rotationDegrees(90));
 					ms.scale(0.625f, 0.625f, 0.625f);
-					if (be.itemAsHead != null) itemRenderer.renderStatic(be.itemAsHead, ItemDisplayContext.FIXED, light, overlay, ms, buffer, be.getLevel(), 0);
+					if (be.itemAsHead != null) itemRenderer.renderStatic(be.itemAsHead.getItem(0), ItemDisplayContext.FIXED, light, overlay, ms, buffer, be.getLevel(), 0);
 					ms.popPose();
 				}
 				default -> partialModel = VintagePartialModels.CURVING_HEAD;
@@ -72,6 +72,13 @@ public class CurvingPressRenderer extends KineticBlockEntityRenderer<CurvingPres
 					blockState.getValue(HORIZONTAL_FACING));
 			headRender.translate(0, -renderedHeadOffset, 0)
 					.light(light)
+					.renderInto(ms, buffer.getBuffer(RenderType.solid()));
+		}
+
+		if (be.redstoneModule) {
+			SuperByteBuffer redstone = CachedBufferer.partialFacing(VintagePartialModels.REDSTONE_MODULE_CURVING_PRESS, blockState,
+					blockState.getValue(HORIZONTAL_FACING));
+			redstone.light(light)
 					.renderInto(ms, buffer.getBuffer(RenderType.solid()));
 		}
 	}

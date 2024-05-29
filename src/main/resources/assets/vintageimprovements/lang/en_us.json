@@ -346,6 +346,11 @@
     "vintageimprovements.ponder.curving_press.text_6": "When items are provided by a belt...",
     "vintageimprovements.ponder.curving_press.text_7": "The Press will hold and process them automatically",
 	
+	"vintageimprovements.ponder.curving_redstone.header": "Curving Press Comparator interaction",
+    "vintageimprovements.ponder.curving_redstone.text_1": "Curving Press can produce Comparator signal",
+    "vintageimprovements.ponder.curving_redstone.text_2": "You must install Redstone Module into the Curving Press",
+    "vintageimprovements.ponder.curving_redstone.text_3": "Curving Press will produce a level 15 redstone signal as long as it has an installed head",
+	
 	"vintageimprovements.ponder.helve_hammer.header": "Processing Items with the Helve Hammer",
 	"vintageimprovements.ponder.helve_hammer.text_1": "The Helve Hammer has two operating modes",
 	"vintageimprovements.ponder.helve_hammer.text_2": "The mode depends on block under Hammer",
@@ -384,6 +389,8 @@
 	
 	"vintageimprovements.jei.text.hammer_blows": "Hammer Blows:",
 	
+	"vintageimprovements.jei.text.curving_head_damage": "Head Damage",
+	
 	"vintageimprovements.gui.goggles.low": "Low",
 	"vintageimprovements.gui.goggles.medium": "Medium",
 	"vintageimprovements.gui.goggles.high": "High",
@@ -403,6 +410,7 @@
 	"vintageimprovements.gui.goggles.hammer_blows": "Hammer blows remaining:",
 	
 	"vintageimprovements.gui.goggles.curving_head": "Head: ",
+	"vintageimprovements.gui.goggles.durability": "Head's Durability",
 	
 	"vintageimprovements.item_description.machine_rpm_requirements": "This machine has a minimum RPM requirement:",
 	

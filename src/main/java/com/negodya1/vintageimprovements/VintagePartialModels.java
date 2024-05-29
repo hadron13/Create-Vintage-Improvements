@@ -3,10 +3,11 @@ package com.negodya1.vintageimprovements;
 import com.jozufozu.flywheel.core.PartialModel;
 import com.simibubi.create.Create;
 
+import java.util.Map;
+
 public class VintagePartialModels {
 
 	public static final PartialModel
-
 		GRINDER_BELT_ACTIVE = block("belt_grinder/belt_active"),
 		GRINDER_BELT_INACTIVE = block("belt_grinder/belt_inactive"),
 		GRINDER_BELT_REVERSED = block("belt_grinder/belt_reversed"),
@@ -36,7 +37,9 @@ public class VintagePartialModels {
 		CURVING_HEAD_2 = block("curving_press/head_2"),
 		CURVING_HEAD_3 = block("curving_press/head_3"),
 		CURVING_HEAD_4 = block("curving_press/head_4"),
-		CURVING_HEAD_5 = block("curving_press/head_5");
+		CURVING_HEAD_5 = block("curving_press/head_5"),
+		REDSTONE_MODULE_CENTRIFUGE = block("centrifuge/redstone"),
+		REDSTONE_MODULE_CURVING_PRESS = block("curving_press/redstone");
 
 	private static PartialModel block(String path) {
 		return new PartialModel(VintageImprovements.asResource("block/" + path));

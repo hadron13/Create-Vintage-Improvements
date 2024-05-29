@@ -251,11 +251,11 @@
 	"item.vintageimprovements.concave_curving_head.tooltip.behaviour1": "█░█",
 	"item.vintageimprovements.w_shaped_curving_head": "W形封头",
 	"item.vintageimprovements.w_shaped_curving_head.tooltip.summary": "可安装到冲压机以生产r状的配方",
-	"item.vintageimprovements.w_shaped_curving_head.tooltip.condition1": " ██ or ██",
+	"item.vintageimprovements.w_shaped_curving_head.tooltip.condition1": " ██ 或  ██",
 	"item.vintageimprovements.w_shaped_curving_head.tooltip.behaviour1": "█░     ░█",
 	"item.vintageimprovements.v_shaped_curving_head": "V形封头",
 	"item.vintageimprovements.v_shaped_curving_head.tooltip.summary": "可安装到冲压机以生产L状的配方",
-	"item.vintageimprovements.v_shaped_curving_head.tooltip.condition1": " █░ 或 ░█",
+	"item.vintageimprovements.v_shaped_curving_head.tooltip.condition1": " █░ 或  ░█",
 	"item.vintageimprovements.v_shaped_curving_head.tooltip.behaviour1": "██     ██",
 
 	"block.vintageimprovements.belt_grinder": "砂带磨床",
@@ -345,6 +345,11 @@
 	"vintageimprovements.ponder.curving_press.text_5": "输入的物品可以投放或放置在冲压机下方的置物台上",
 	"vintageimprovements.ponder.curving_press.text_6": "当物品放在传送带上时……",
 	"vintageimprovements.ponder.curving_press.text_7": "冲压机会自动截停并处理这些物品",
+	
+	"vintageimprovements.ponder.curving_redstone.header": "Curving Press Comparator interaction", //
+    "vintageimprovements.ponder.curving_redstone.text_1": "Curving Press can produce Comparator signal", //
+    "vintageimprovements.ponder.curving_redstone.text_2": "You must install Redstone Module into the Curving Press", //
+    "vintageimprovements.ponder.curving_redstone.text_3": "Curving Press will produce a level 15 redstone signal as long as it has an installed head", //
 
 	"vintageimprovements.ponder.helve_hammer.header": "用杠杆锤处理物品",
 	"vintageimprovements.ponder.helve_hammer.text_1": "杠杆锤有两种工作模式",
@@ -383,6 +388,8 @@
 	"vintageimprovements.jei.text.secondary_fluid_ingredient": "此流体是次要原料,必须注入压缩机内部才能开始合成",
 
 	"vintageimprovements.jei.text.hammer_blows": "锤击次数:",
+	
+	"vintageimprovements.jei.text.curving_head_damage": "Head Damage", //
 
 	"vintageimprovements.gui.goggles.low": "低",
 	"vintageimprovements.gui.goggles.medium": "中",
@@ -402,7 +409,8 @@
 	"vintageimprovements.gui.goggles.no_operating_block": "在锤子下方放置铁砧或锻造台,以开始工作",
 	"vintageimprovements.gui.goggles.hammer_blows": "剩余锤击次数:",
 	
-	"vintageimprovements.gui.goggles.curving_head": "Head: ",
+	"vintageimprovements.gui.goggles.curving_head": "Head: ", //
+	"vintageimprovements.gui.goggles.durability": "Head's Durability", //
 
 	"vintageimprovements.item_description.machine_rpm_requirements": "该机器需要的最低RPM为:",
 

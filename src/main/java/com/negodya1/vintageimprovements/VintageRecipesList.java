@@ -1,12 +1,16 @@
 package com.negodya1.vintageimprovements;
 
+import com.negodya1.vintageimprovements.content.kinetics.curving_press.CurvingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.grinder.PolishingRecipe;
 import com.simibubi.create.content.equipment.sandPaper.SandPaperPolishingRecipe;
 import com.simibubi.create.foundation.utility.VecHelper;
 import mezz.jei.api.constants.RecipeTypes;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,12 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VintageRecipesList {
-    static List<CraftingRecipe> unpacking;
     static List<CraftingRecipe> curving;
     static List<CraftingRecipe> curving2;
     static List<CraftingRecipe> curving3;
     static List<CraftingRecipe> curving4;
 
+    static List<CraftingRecipe> unpacking;
     static List<PolishingRecipe> polishing;
     static List<SmithingRecipe> smithing;
 

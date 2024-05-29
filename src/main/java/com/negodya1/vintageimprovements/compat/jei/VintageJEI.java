@@ -126,7 +126,7 @@ public class VintageJEI implements IModPlugin {
 				.addTypedRecipes(VintageRecipes.CURVING::getType)
 				.catalyst(VintageBlocks.CURVING_PRESS::get)
 				.itemIcon(VintageBlocks.CURVING_PRESS.get())
-				.emptyBackground(177, 70)
+				.emptyBackground(177, 85)
 				.build("curving", CurvingCategory::new));
 
 		ALL.add(builder(HammeringRecipe.class)
@@ -193,7 +193,7 @@ public class VintageJEI implements IModPlugin {
 						&& CurvingPressBlockEntity.canCurve(r, 4) && !AllRecipeTypes.shouldIgnoreInAutomation(r))
 				.catalyst(VintageBlocks.CURVING_PRESS::get)
 				.doubleItemIcon(VintageBlocks.CURVING_PRESS.get(), AllItems.IRON_SHEET)
-				.emptyBackground(177, 70)
+				.emptyBackground(177, 85)
 				.build("auto_curving", AutoCurvingCategory::new));
 
 		ALL.forEach(registration::addRecipeCategories);

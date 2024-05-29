@@ -20,7 +20,11 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
+
+import static net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
+import static net.minecraft.world.level.block.LeverBlock.POWERED;
 
 public class CurvingPressScenes {
 
@@ -182,5 +186,78 @@ public class CurvingPressScenes {
 		scene.idle(15);
 		scene.world.stallBeltItem(ingot2, false);
 
+	}
+
+	public static void redstone(SceneBuilder scene, SceneBuildingUtil util) {
+		scene.title("curving_redstone", "Curving Press Comparator interaction");
+		scene.configureBasePlate(0, 0, 5);
+		scene.world.showSection(util.select.layer(0), Direction.UP);
+
+		BlockPos centrifuge = util.grid.at(2, 3, 2);
+		Selection centrifugeSelect = util.select.position(2, 3, 2);
+		scene.world.setKineticSpeed(centrifugeSelect, 0);
+
+		scene.world.showSection(util.select.fromTo(0, 1, 0, 4, 3, 4), Direction.DOWN);
+		scene.idle(10);
+		Vec3 centrifugeTop = util.vector.topOf(centrifuge);
+		scene.overlay.showText(40)
+				.attachKeyFrame()
+				.text("Curving Press can produce Comparator signal")
+				.pointAt(centrifugeTop)
+				.placeNearTarget();
+		scene.idle(50);
+
+		scene.overlay.showText(50)
+				.attachKeyFrame()
+				.text("You must install Redstone Module into the Curving Press")
+				.pointAt(centrifugeTop)
+				.placeNearTarget();
+		scene.idle(10);
+
+		ItemStack module = new ItemStack(VintageItems.REDSTONE_MODULE.get());
+
+		scene.overlay.showControls(
+				new InputWindowElement(util.vector.blockSurface(centrifuge, Direction.NORTH), Pointing.RIGHT).rightClick()
+						.withItem(module), 30);
+		scene.world.modifyBlockEntity(centrifuge, CurvingPressBlockEntity.class,
+				ms -> ms.addRedstoneApp(module.copy()));
+		scene.idle(50);
+
+		ItemStack itemStack = new ItemStack(VintageItems.CONCAVE_CURVING_HEAD);
+
+		scene.overlay.showControls(
+				new InputWindowElement(util.vector.blockSurface(centrifuge, Direction.NORTH), Pointing.RIGHT).rightClick()
+						.withItem(itemStack), 8);
+		scene.world.modifyBlockEntity(centrifuge, CurvingPressBlockEntity.class,
+				ms -> ms.mode = 2);
+		scene.world.replaceBlocks(util.select.position(1,3,2), Blocks.COMPARATOR.defaultBlockState().setValue(POWERED, true).setValue(FACING, Direction.EAST), false);
+		scene.idle(30);
+
+		scene.overlay.showText(60)
+				.attachKeyFrame()
+				.text("Curving Press will produce a level 15 redstone signal as long as it has an installed head")
+				.pointAt(new Vec3(1,3.5,2))
+				.placeNearTarget();
+		scene.idle(70);
+
+		scene.overlay.showControls(
+				new InputWindowElement(util.vector.blockSurface(centrifuge, Direction.NORTH), Pointing.RIGHT).rightClick()
+						.withItem(AllItems.WRENCH.asStack()), 8);
+		scene.world.modifyBlockEntity(centrifuge, CurvingPressBlockEntity.class,
+				ms -> ms.mode = 0);
+		scene.world.replaceBlocks(util.select.position(1,3,2), Blocks.COMPARATOR.defaultBlockState().setValue(POWERED, false).setValue(FACING, Direction.EAST), false);
+		scene.idle(30);
+
+		scene.overlay.showControls(
+				new InputWindowElement(util.vector.blockSurface(centrifuge, Direction.NORTH), Pointing.RIGHT).rightClick()
+						.withItem(itemStack), 8);
+		scene.world.modifyBlockEntity(centrifuge, CurvingPressBlockEntity.class,
+				ms -> ms.mode = 2);
+		scene.world.replaceBlocks(util.select.position(1,3,2), Blocks.COMPARATOR.defaultBlockState().setValue(POWERED, true).setValue(FACING, Direction.EAST), false);
+		scene.idle(30);
+
+		scene.markAsFinished();
+		scene.idle(25);
+		scene.world.modifyEntities(ItemEntity.class, Entity::discard);
 	}
 }

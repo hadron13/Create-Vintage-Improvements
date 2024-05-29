@@ -242,6 +242,7 @@ public class CoilingBlockEntity extends KineticBlockEntity {
 		inventory.clear();
 		level.updateNeighbourForOutputSignal(worldPosition, getBlockState().getBlock());
 		inventory.remainingTime = -1;
+		setChanged();
 		sendData();
 	}
 

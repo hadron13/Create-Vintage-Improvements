@@ -5,6 +5,7 @@ import com.negodya1.vintageimprovements.VintageItems;
 import com.negodya1.vintageimprovements.compat.jei.category.animations.AnimatedCurvingPress;
 import com.negodya1.vintageimprovements.content.kinetics.curving_press.CurvingPressBlockEntity;
 import com.negodya1.vintageimprovements.content.kinetics.curving_press.CurvingRecipe;
+import com.negodya1.vintageimprovements.infrastructure.config.VintageConfig;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
 import com.simibubi.create.foundation.gui.AllGuiTextures;
@@ -12,8 +13,10 @@ import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 
@@ -89,6 +92,12 @@ public class AutoCurvingCategory extends CreateRecipeCategory<CraftingRecipe> {
 		AllGuiTextures.JEI_DOWN_ARROW.render(graphics, 23, 32);
 
 		press.draw(graphics, getBackground().getWidth() / 2 - 17, 22, getRecipeMode(recipe));
+
+		if (VintageConfig.server().recipes.damageHeadAfterAutoCurvingRecipe.get() > 0)
+			graphics.drawString(Minecraft.getInstance().font,
+					Component.translatable(VintageImprovements.MODID + ".jei.text.curving_head_damage").append( ": "
+							+ VintageConfig.server().recipes.damageHeadAfterAutoCurvingRecipe.get()),
+					40, 75, 0xFFFFFF);
 	}
 
 }

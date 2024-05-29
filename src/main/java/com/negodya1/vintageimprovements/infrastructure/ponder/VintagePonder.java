@@ -36,7 +36,11 @@ public class VintagePonder {
         HELPER.forComponents(VintageBlocks.CURVING_PRESS)
                 .addStoryBoard("curving_press/processing", CurvingPressScenes::processing, AllPonderTags.KINETIC_APPLIANCES);
 
+        HELPER.forComponents(VintageBlocks.CURVING_PRESS)
+                .addStoryBoard("curving_press/redstone", CurvingPressScenes::redstone, AllPonderTags.KINETIC_APPLIANCES);
+
         HELPER.addStoryBoard(VintageItems.REDSTONE_MODULE, "centrifuge/redstone", CentrifugeScenes::redstone, AllPonderTags.REDSTONE);
+        HELPER.addStoryBoard(VintageItems.REDSTONE_MODULE, "curving_press/redstone", CurvingPressScenes::redstone, AllPonderTags.REDSTONE);
 
         HELPER.forComponents(VintageBlocks.HELVE)
                 .addStoryBoard("helve_hammer/processing", HelveScenes::processing, AllPonderTags.KINETIC_APPLIANCES);

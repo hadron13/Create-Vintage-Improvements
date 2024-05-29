@@ -346,6 +346,11 @@
 	"vintageimprovements.ponder.curving_press.text_6": "Когда предметы подаются на конвейере...",
 	"vintageimprovements.ponder.curving_press.text_7": "...пресс будет задерживать и сгибать их автоматически",
 	
+	"vintageimprovements.ponder.curving_redstone.header": "Взаимодействии гибочного пресса с компаратором",
+    "vintageimprovements.ponder.curving_redstone.text_1": "Гибочный пресс может вырабатывать сигнал для компаратора",
+    "vintageimprovements.ponder.curving_redstone.text_2": "Вам нужно установить на гибочный пресс редстоун модуль",
+    "vintageimprovements.ponder.curving_redstone.text_3": "Пока у пресса есть насадка он будет вырабатывать сигнал силой 15",
+	
 	"vintageimprovements.ponder.helve_hammer.header": "Обработкой предметов рычажным молотом",
 	"vintageimprovements.ponder.helve_hammer.text_1": "Рычажный молот имеет два режима работы",
 	"vintageimprovements.ponder.helve_hammer.text_2": "Режим зависит от блока под молотом",
@@ -384,6 +389,8 @@
 	
 	"vintageimprovements.jei.text.hammer_blows": "Ударов молотом:",
 	
+	"vintageimprovements.jei.text.curving_head_damage": "Урон насадке",
+	
 	"vintageimprovements.gui.goggles.low": "Низкая",
 	"vintageimprovements.gui.goggles.medium": "Средняя",
 	"vintageimprovements.gui.goggles.high": "Высокая",
@@ -402,7 +409,8 @@
 	"vintageimprovements.gui.goggles.no_operating_block": "Для работы установите под молот наковальню или стол кузнеца",
 	"vintageimprovements.gui.goggles.hammer_blows": "Осталось ударов молотом:",
 	
-	"vintageimprovements.gui.goggles.curving_head": "Насадка: ",
+	"vintageimprovements.gui.goggles.curving_head": "Насадка: ",,
+	"vintageimprovements.gui.goggles.durability": "Прочность насадки",
 	
 	"vintageimprovements.item_description.machine_rpm_requirements": "Эта машина имеет требования к минимальным об/мин:",
 	

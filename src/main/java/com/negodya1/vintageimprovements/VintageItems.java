@@ -231,10 +231,18 @@ public class VintageItems {
 					.properties(p -> p.rarity(Rarity.UNCOMMON))
 					.register();
 
-	public static final ItemEntry<Item> CONVEX_CURVING_HEAD = ingredient("convex_curving_head");
-	public static final ItemEntry<Item> CONCAVE_CURVING_HEAD = ingredient("concave_curving_head");
-	public static final ItemEntry<Item> W_SHAPED_CURVING_HEAD = ingredient("w_shaped_curving_head");
-	public static final ItemEntry<Item> V_SHAPED_CURVING_HEAD = ingredient("v_shaped_curving_head");
+	public static final ItemEntry<Item> CONVEX_CURVING_HEAD = MY_REGISTRATE.item("convex_curving_head", Item::new)
+			.properties(p -> p.durability(1000))
+			.register();
+	public static final ItemEntry<Item> CONCAVE_CURVING_HEAD = MY_REGISTRATE.item("concave_curving_head", Item::new)
+			.properties(p -> p.durability(1000))
+			.register();
+	public static final ItemEntry<Item> W_SHAPED_CURVING_HEAD = MY_REGISTRATE.item("w_shaped_curving_head", Item::new)
+			.properties(p -> p.durability(1000))
+			.register();
+	public static final ItemEntry<Item> V_SHAPED_CURVING_HEAD = MY_REGISTRATE.item("v_shaped_curving_head", Item::new)
+			.properties(p -> p.durability(1000))
+			.register();
 
 	private static ItemEntry<Item> ingredient(String name) {
 		return MY_REGISTRATE.item(name, Item::new)

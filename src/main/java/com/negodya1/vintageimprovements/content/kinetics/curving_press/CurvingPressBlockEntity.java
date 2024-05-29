@@ -2,12 +2,16 @@ package com.negodya1.vintageimprovements.content.kinetics.curving_press;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.VintageItems;
 import com.negodya1.vintageimprovements.VintageRecipes;
 import com.negodya1.vintageimprovements.VintageRecipesList;
 import com.negodya1.vintageimprovements.foundation.utility.VintageLang;
+import com.negodya1.vintageimprovements.infrastructure.config.VCRecipes;
+import com.negodya1.vintageimprovements.infrastructure.config.VCServer;
 import com.negodya1.vintageimprovements.infrastructure.config.VintageConfig;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllRecipeTypes;
@@ -26,6 +30,8 @@ import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour
 import com.simibubi.create.foundation.item.ItemHelper;
 import com.simibubi.create.foundation.item.SmartInventory;
 import com.simibubi.create.foundation.recipe.RecipeApplier;
+import com.simibubi.create.foundation.recipe.RecipeConditions;
+import com.simibubi.create.foundation.recipe.RecipeFinder;
 import com.simibubi.create.foundation.utility.Components;
 import com.simibubi.create.foundation.utility.Lang;
 import com.simibubi.create.foundation.utility.LangBuilder;
@@ -36,12 +42,15 @@ import com.negodya1.vintageimprovements.content.kinetics.curving_press.CurvingBe
 import com.negodya1.vintageimprovements.content.kinetics.curving_press.CurvingBehaviour.CurvingBehaviourSpecifics;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.Optionull;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
@@ -62,17 +71,21 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class CurvingPressBlockEntity extends KineticBlockEntity implements CurvingBehaviourSpecifics {
 
-	private static final Object compressingRecipesKey = new Object();
+	private static final Object curvingRecipesKey = new Object();
 
 	public int mode;
-	public ItemStack itemAsHead;
+	public SmartInventory itemAsHead;
+	public int durability;
+	boolean redstoneModule;
 
 	public CurvingBehaviour pressingBehaviour;
 
 	public CurvingPressBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
 		mode = 0;
-		itemAsHead = ItemStack.EMPTY;
+		durability = 0;
+		itemAsHead = new SmartInventory(1, this);
+		redstoneModule = false;
 	}
 
 	@Override
@@ -88,8 +101,35 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 		behaviours.add(pressingBehaviour);
 	}
 
-	public void onItemPressed(ItemStack result) {
+	public boolean addRedstoneApp(ItemStack items) {
+		if (redstoneModule) return false;
+		if (items.getItem() != VintageItems.REDSTONE_MODULE.get()) return false;
+		redstoneModule = true;
+		return true;
+	}
 
+	public void onItemPressed(ItemStack result, int damage) {
+		if (damage < 0) damage = VintageConfig.server().recipes.damageHeadAfterAutoCurvingRecipe.get();
+		if (damage < 0) damage = 0;
+
+		if (damage > 0) {
+			if (mode < 5 && mode > 0) {
+				durability -= damage;
+				if (durability <= 0)
+					mode = 0;
+			}
+			if (mode == 5 && itemAsHead.getItem(0).isDamageableItem()) {
+				itemAsHead.getItem(0).hurt(damage, level.random.fork(), null );
+				if (itemAsHead.getItem(0).getDamageValue() >= itemAsHead.getItem(0).getMaxDamage()) {
+					itemAsHead.getItem(0).shrink(1);
+					mode = 0;
+				}
+				else durability = itemAsHead.getItem(0).getDamageValue();
+			}
+		}
+
+		setChanged();
+		sendData();
 	}
 
 	@Override
@@ -98,17 +138,30 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 		if (mode > 0) {
 			SmartInventory headInv = new SmartInventory(1, this);
 
-			switch (mode) {
-				case 2 -> ItemHandlerHelper.insertItemStacked(headInv, new ItemStack(VintageItems.CONCAVE_CURVING_HEAD.get()), false);
-				case 3 -> ItemHandlerHelper.insertItemStacked(headInv, new ItemStack(VintageItems.W_SHAPED_CURVING_HEAD.get()), false);
-				case 4 -> ItemHandlerHelper.insertItemStacked(headInv, new ItemStack(VintageItems.V_SHAPED_CURVING_HEAD.get()), false);
-				case 5 -> {
-					if (!itemAsHead.isEmpty()) ItemHandlerHelper.insertItemStacked(headInv, itemAsHead, false);
-					else ItemHandlerHelper.insertItemStacked(headInv, ItemStack.EMPTY, false);
+			if (mode < 5) {
+				ItemStack stack;
+
+				switch (mode) {
+					case 2 -> stack = new ItemStack(VintageItems.CONCAVE_CURVING_HEAD.get());
+					case 3 -> stack = new ItemStack(VintageItems.W_SHAPED_CURVING_HEAD.get());
+					case 4 -> stack = new ItemStack(VintageItems.V_SHAPED_CURVING_HEAD.get());
+					default -> stack = new ItemStack(VintageItems.CONVEX_CURVING_HEAD.get());
 				}
-				default -> ItemHandlerHelper.insertItemStacked(headInv, new ItemStack(VintageItems.CONVEX_CURVING_HEAD.get()), false);
+
+				stack.setDamageValue(1000 - durability);
+				ItemHandlerHelper.insertItemStacked(headInv, stack, false);
+			}
+			else {
+				if (!itemAsHead.isEmpty()) ItemHandlerHelper.insertItemStacked(headInv, itemAsHead.getItem(0), false);
+				else ItemHandlerHelper.insertItemStacked(headInv, ItemStack.EMPTY, false);
 			}
 
+			ItemHelper.dropContents(level, worldPosition, headInv);
+		}
+
+		if (redstoneModule) {
+			SmartInventory headInv = new SmartInventory(1, this);
+			ItemHandlerHelper.insertItemStacked(headInv, VintageItems.REDSTONE_MODULE.asStack(), false);
 			ItemHelper.dropContents(level, worldPosition, headInv);
 		}
 	}
@@ -120,16 +173,24 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 	@Override
 	protected void write(CompoundTag compound, boolean clientPacket) {
 		compound.putInt("HeadMode", mode);
+		compound.putInt("Durability", durability);
 		if (!itemAsHead.isEmpty())
-			compound.putString("ItemAsHead", itemAsHead.getItem().toString());
+			compound.put("ItemAsHead", itemAsHead.serializeNBT());
+		compound.putBoolean("Redstone", redstoneModule);
 		super.write(compound, clientPacket);
 	}
 
 	@Override
 	protected void read(CompoundTag compound, boolean clientPacket) {
 		mode = compound.getInt("HeadMode");
-		if (compound.contains("ItemAsHead")) itemAsHead = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(compound.getString("ItemAsHead"))));
-		else itemAsHead = ItemStack.EMPTY;
+		durability = compound.getInt("Durability");
+		if (compound.contains("ItemAsHead")) {
+			itemAsHead.deserializeNBT(compound.getCompound("ItemAsHead"));
+			if (itemAsHead.getItem(0).isDamageableItem())
+				itemAsHead.getItem(0).setDamageValue(durability);
+		}
+		else itemAsHead.clearContent();
+		redstoneModule = compound.getBoolean("Redstone");
 		super.read(compound, clientPacket);
 	}
 
@@ -268,6 +329,7 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 
 				if (item.getCount() == 1) {
 					itemEntity.setItem(new ItemStack(recipe.getResultItem(RegistryAccess.EMPTY).copy().getItem()));
+					onItemPressed(itemEntity.getItem(), VintageConfig.server().recipes.damageHeadAfterAutoCurvingRecipe.get());
 				} else {
 					if (itemCreated.isEmpty())
 						itemCreated = recipe.getResultItem(RegistryAccess.EMPTY).copy();
@@ -278,6 +340,9 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 					level.addFreshEntity(created);
 					item.shrink(1);
 				}
+
+				if (!itemCreated.isEmpty())
+					onItemPressed(itemCreated, VintageConfig.server().recipes.damageHeadAfterAutoCurvingRecipe.get());
 			}
 			else {
 				ItemStack itemCreated = ItemStack.EMPTY;
@@ -285,6 +350,7 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 
 				if (item.getCount() == 3) {
 					itemEntity.setItem(new ItemStack(recipe.getResultItem(RegistryAccess.EMPTY).copy().getItem()));
+					onItemPressed(itemEntity.getItem(), VintageConfig.server().recipes.damageHeadAfterAutoCurvingRecipe.get());
 				} else {
 					if (itemCreated.isEmpty())
 						itemCreated = recipe.getResultItem(RegistryAccess.EMPTY).copy();
@@ -295,6 +361,9 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 					level.addFreshEntity(created);
 					item.shrink(3);
 				}
+
+				if (!itemCreated.isEmpty())
+					onItemPressed(itemCreated, VintageConfig.server().recipes.damageHeadAfterAutoCurvingRecipe.get());
 			}
 
 			return true;
@@ -332,6 +401,12 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 
 			outputList.add(new ItemStack(recipe.getResultItem(RegistryAccess.EMPTY).copy().getItem()));
 			pressingBehaviour.particleItems.add(item);
+			for (ItemStack created : outputList) {
+				if (!created.isEmpty()) {
+					onItemPressed(created, VintageConfig.server().recipes.damageHeadAfterAutoCurvingRecipe.get());
+					break;
+				}
+			}
 			return true;
 		}
 
@@ -348,33 +423,29 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 			return false;
 		if (mode == 5) {
 			if (itemAsHead.isEmpty()) return false;
-			if (!itemAsHead.is(recipe.get().itemAsHead)) return false;
+			if (!itemAsHead.getItem(0).is(recipe.get().itemAsHead)) return false;
 		}
+		if (itemEntity.getItem().getCount() < recipe.get().getIngredients().size()) return false;
+
 		if (simulate)
 			return true;
 
 		ItemStack itemCreated = ItemStack.EMPTY;
-		pressingBehaviour.particleItems.add(item);
-		if (canProcessInBulk() || item.getCount() == 1) {
-			RecipeApplier.applyRecipeOn(itemEntity, recipe.get());
-			itemCreated = itemEntity.getItem()
-				.copy();
-		} else {
-			for (ItemStack result : RecipeApplier.applyRecipeOn(level, ItemHandlerHelper.copyStackWithSize(item, 1),
+		pressingBehaviour.particleItems.add(item.copy());
+		for (ItemStack result : RecipeApplier.applyRecipeOn(level, ItemHandlerHelper.copyStackWithSize(item, 1),
 				recipe.get())) {
-				if (itemCreated.isEmpty())
-					itemCreated = result.copy();
-				ItemEntity created =
+			if (itemCreated.isEmpty())
+				itemCreated = result.copy();
+			ItemEntity created =
 					new ItemEntity(level, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), result);
-				created.setDefaultPickUpDelay();
-				created.setDeltaMovement(VecHelper.offsetRandomly(Vec3.ZERO, level.random, .05f));
-				level.addFreshEntity(created);
-			}
-			item.shrink(1);
+			created.setDefaultPickUpDelay();
+			created.setDeltaMovement(VecHelper.offsetRandomly(Vec3.ZERO, level.random, .05f));
+			level.addFreshEntity(created);
 		}
+		item.shrink(recipe.get().getIngredients().size());
 
 		if (!itemCreated.isEmpty())
-			onItemPressed(itemCreated);
+			onItemPressed(itemCreated, recipe.get().headDamage);
 		return true;
 	}
 
@@ -387,17 +458,20 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 			return false;
 		if (mode == 5) {
 			if (itemAsHead.isEmpty()) return false;
-			if (!itemAsHead.is(recipe.get().itemAsHead)) return false;
+			if (!itemAsHead.getItem(0).is(recipe.get().itemAsHead)) return false;
 		}
+		if (input.stack.getCount() < recipe.get().getIngredients().size()) return false;
+
 		if (simulate)
 			return true;
 		pressingBehaviour.particleItems.add(input.stack);
 		List<ItemStack> outputs = RecipeApplier.applyRecipeOn(level,
-			canProcessInBulk() ? input.stack : ItemHandlerHelper.copyStackWithSize(input.stack, 1), recipe.get());
+			ItemHandlerHelper.copyStackWithSize(input.stack, 1), recipe.get());
+		input.stack.shrink(recipe.get().getIngredients().size() - 1);
 
 		for (ItemStack created : outputs) {
 			if (!created.isEmpty()) {
-				onItemPressed(created);
+				onItemPressed(created, recipe.get().headDamage);
 				break;
 			}
 		}
@@ -416,7 +490,28 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 
 		pressingInv.setItem(0, item);
 		assemblyRecipe = VintageRecipes.CURVING.find(pressingInv, level);
-		if (assemblyRecipe.isPresent()) return assemblyRecipe;
+
+		if (assemblyRecipe.isPresent())
+			if (mode == assemblyRecipe.get().getMode()) return assemblyRecipe;
+
+		Predicate<Recipe<?>> types = RecipeConditions.isOfType(VintageRecipes.CURVING.getType());
+
+		List<Recipe<?>> startedSearch = RecipeFinder.get(curvingRecipesKey, level, types);
+		startedSearch = startedSearch.stream()
+				.filter(RecipeConditions.firstIngredientMatches(item))
+				.filter(r -> !VintageRecipes.shouldIgnoreInAutomation(r))
+				.filter(r -> {if (r instanceof CurvingRecipe curvingRecipe)
+						if (mode == curvingRecipe.mode) {
+							if (mode == 5)
+								return itemAsHead.getItem(0).is(curvingRecipe.getItemAsHead());
+							return true;}
+					return false;})
+				.collect(Collectors.toList());
+
+		for (Recipe recipe : startedSearch) {
+			if (recipe instanceof CurvingRecipe curvingRecipe)
+				return Optional.ofNullable(curvingRecipe);
+		}
 
 		return VintageRecipes.CURVING.find(pressingInv, level);
 	}
@@ -428,7 +523,7 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 
 	@Override
 	public boolean canProcessInBulk() {
-		return AllConfigs.server().recipes.bulkPressing.get();
+		return false;
 	}
 
 	@Override
@@ -450,13 +545,34 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 			case 4 -> VintageLang.translate("gui.goggles.curving_head").add(Component.translatable(VintageItems.V_SHAPED_CURVING_HEAD.get().getDescriptionId()).withStyle(ChatFormatting.YELLOW))
 					.forGoggles(tooltip);
 			case 5 -> {
-				if (!itemAsHead.isEmpty()) VintageLang.translate("gui.goggles.curving_head").add(Component.translatable(itemAsHead.getDescriptionId()).withStyle(ChatFormatting.LIGHT_PURPLE))
+				if (!itemAsHead.isEmpty()) VintageLang.translate("gui.goggles.curving_head").add(Component.translatable(itemAsHead.getItem(0).getDescriptionId()).withStyle(ChatFormatting.LIGHT_PURPLE))
 						.forGoggles(tooltip);
 			}
 			default -> VintageLang.translate("gui.goggles.curving_head").add(Component.translatable(VintageItems.CONVEX_CURVING_HEAD.get().getDescriptionId()).withStyle(ChatFormatting.GREEN))
 					.forGoggles(tooltip);
 		}
 
+		if (mode == 5) {
+			if (itemAsHead.getItem(0).isDamageableItem())
+				VintageLang.translate("gui.goggles.durability")
+						.add(Component.literal(": " + (itemAsHead.getItem(0).getMaxDamage() - durability)))
+						.forGoggles(tooltip);
+		}
+		else
+			VintageLang.translate("gui.goggles.durability")
+					.add(Component.literal(": " + durability))
+					.forGoggles(tooltip);
+
+		if (redstoneModule) {
+			VintageLang.translate("gui.goggles.redstone_module")
+					.style(ChatFormatting.DARK_PURPLE).forGoggles(tooltip);
+		}
+
 		return true;
+	}
+
+	public int getAnalogSignal() {
+		if (!redstoneModule) return 0;
+		return (mode > 0 ? 15 : 0);
 	}
 }

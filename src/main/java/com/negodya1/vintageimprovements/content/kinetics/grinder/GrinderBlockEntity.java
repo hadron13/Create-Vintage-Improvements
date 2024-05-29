@@ -271,6 +271,7 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 		inventory.clear();
 		level.updateNeighbourForOutputSignal(worldPosition, getBlockState().getBlock());
 		inventory.remainingTime = -1;
+		setChanged();
 		sendData();
 	}
 

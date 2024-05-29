@@ -3,6 +3,7 @@ package com.negodya1.vintageimprovements.content.kinetics.curving_press;
 import com.negodya1.vintageimprovements.VintageBlockEntity;
 import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.VintageItems;
+import com.negodya1.vintageimprovements.content.kinetics.centrifuge.CentrifugeStructuralBlockEntity;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllShapes;
@@ -97,54 +98,72 @@ public class CurvingPressBlock extends HorizontalKineticBlock implements IBE<Cur
 		return onBlockEntityUse(worldIn, pos, be -> {
 			if (be.mode == 0) {
 
-				be.itemAsHead = ItemStack.EMPTY;
+				be.itemAsHead.clearContent();
 
 				if (heldItem.is(VintageItems.CONVEX_CURVING_HEAD.get())) {
 					be.mode = 1;
+					be.durability = heldItem.getMaxDamage() - heldItem.getDamageValue();
 					if (!player.isCreative())
 						player.getItemInHand(handIn).shrink(1);
 					if (worldIn.isClientSide())
 						AllSoundEvents.WRENCH_ROTATE.playAt(worldIn, pos, 3, 1,true);
+					be.setChanged();
 					return InteractionResult.SUCCESS;
 				}
 
 				if (heldItem.is(VintageItems.CONCAVE_CURVING_HEAD.get())) {
 					be.mode = 2;
+					be.durability = heldItem.getMaxDamage() - heldItem.getDamageValue();
 					if (!player.isCreative())
 						player.getItemInHand(handIn).shrink(1);
 					if (worldIn.isClientSide())
 						AllSoundEvents.WRENCH_ROTATE.playAt(worldIn, pos, 3, 1,true);
+					be.setChanged();
 					return InteractionResult.SUCCESS;
 				}
 
 				if (heldItem.is(VintageItems.W_SHAPED_CURVING_HEAD.get())) {
 					be.mode = 3;
+					be.durability = heldItem.getMaxDamage() - heldItem.getDamageValue();
 					if (!player.isCreative())
 						player.getItemInHand(handIn).shrink(1);
 					if (worldIn.isClientSide())
 						AllSoundEvents.WRENCH_ROTATE.playAt(worldIn, pos, 3, 1,true);
+					be.setChanged();
 					return InteractionResult.SUCCESS;
 				}
 
 				if (heldItem.is(VintageItems.V_SHAPED_CURVING_HEAD.get())) {
 					be.mode = 4;
+					be.durability = heldItem.getMaxDamage() - heldItem.getDamageValue();
 					if (!player.isCreative())
 						player.getItemInHand(handIn).shrink(1);
 					if (worldIn.isClientSide())
 						AllSoundEvents.WRENCH_ROTATE.playAt(worldIn, pos, 3, 1,true);
+					be.setChanged();
+					return InteractionResult.SUCCESS;
+				}
+
+				if (heldItem.is(VintageItems.REDSTONE_MODULE.get())) {
+					be.redstoneModule = true;
+					be.setChanged();
 					return InteractionResult.SUCCESS;
 				}
 
 				if (heldItem.is(headTag)) {
 					be.mode = 5;
-					be.itemAsHead = new ItemStack(heldItem.getItem());
+					be.durability = heldItem.getDamageValue();
+					if (heldItem.isStackable())
+						be.itemAsHead.setItem(0, new ItemStack(heldItem.copy().getItem()));
+					else
+						be.itemAsHead.setItem(0, heldItem.copy());
 					if (!player.isCreative())
 						player.getItemInHand(handIn).shrink(1);
 					if (worldIn.isClientSide())
 						AllSoundEvents.WRENCH_ROTATE.playAt(worldIn, pos, 3, 1,true);
+					be.setChanged();
 					return InteractionResult.SUCCESS;
 				}
-
 			}
 			else {
 				if (heldItem.is(AllItems.WRENCH.asItem())) {
@@ -155,13 +174,14 @@ public class CurvingPressBlock extends HorizontalKineticBlock implements IBE<Cur
 						case 3 -> stack = new ItemStack(VintageItems.W_SHAPED_CURVING_HEAD.get());
 						case 4 -> stack = new ItemStack(VintageItems.V_SHAPED_CURVING_HEAD.get());
 						case 5 -> {
-							if (be.itemAsHead != null) stack = be.itemAsHead.copy();
+							if (be.itemAsHead != null) stack = be.itemAsHead.getItem(0).copy();
 							else stack = ItemStack.EMPTY;
-							be.itemAsHead = ItemStack.EMPTY;
+							be.itemAsHead.clearContent();
 						}
 						default -> stack = new ItemStack(VintageItems.CONVEX_CURVING_HEAD.get());
 					}
-
+					if (be.mode < 5)
+						stack.setDamageValue(1000 - be.durability);
 					player.getInventory()
 							.placeItemBackInInventory(stack);
 
@@ -170,12 +190,28 @@ public class CurvingPressBlock extends HorizontalKineticBlock implements IBE<Cur
 					if (worldIn.isClientSide())
 						AllSoundEvents.WRENCH_ROTATE.playAt(worldIn, pos, 3, 1,true);
 
+					be.setChanged();
+					return InteractionResult.SUCCESS;
+				}
+				else if (heldItem.is(VintageItems.REDSTONE_MODULE.get())) {
+					be.redstoneModule = true;
+					be.setChanged();
 					return InteractionResult.SUCCESS;
 				}
 			}
 
 			return InteractionResult.PASS;
 		});
+	}
+
+	@Override
+	public boolean hasAnalogOutputSignal(BlockState state) {
+		return true;
+	}
+
+	@Override
+	public int getAnalogOutputSignal(BlockState blockState, Level worldIn, BlockPos pos) {
+		return getBlockEntityOptional(worldIn, pos).map(CurvingPressBlockEntity::getAnalogSignal).orElse(0);
 	}
 
 }

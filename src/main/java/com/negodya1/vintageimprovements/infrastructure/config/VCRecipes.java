@@ -31,6 +31,8 @@ public class VCRecipes extends ConfigBase {
 			Comments.curvingPress);
 	public final ConfigBool allowAutoCurvingRecipes =
 			b(true, "allowAutoCurvingRecipes", Comments.allowAutoCurvingRecipes);
+	public final ConfigInt damageHeadAfterAutoCurvingRecipe =
+			i(0, 0, 1000, "damageHeadAfterAutoCurvingRecipe", Comments.damageHeadAfterAutoCurvingRecipe);
 
 	public final ConfigGroup helveHammer = group(1, "helveHammer",
 			Comments.helveHammer);
@@ -59,8 +61,8 @@ public class VCRecipes extends ConfigBase {
 		static String helveHammer = "Helve Hammer settings";
 		static String damageAnvilAfterHammeringRecipe = "Helve Hammer will damage Anvil after finishing recipe";
 		static String chanceToDamageAnvilAfterHammeringRecipe = "Chance of Anvil damaging after finishing recipe";
-
 		static String recipes = "Recipes configs";
+		static String damageHeadAfterAutoCurvingRecipe = "Amount of damage, that curving heads will get after auto recipe";
 	}
 
 }
