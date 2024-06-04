@@ -69,7 +69,7 @@ public class VintageImprovements {
     public static final RegistryObject<Item> CALORITE_ROD = ITEMS.register("calorite_rod", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> OSTRUM_ROD = ITEMS.register("ostrum_rod", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DESH_ROD = ITEMS.register("desh_rod", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> NETHERITE_ROD = ITEMS.register("netherite_rod", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> NETHERITE_ROD = ITEMS.register("netherite_rod", () -> new Item(new Item.Properties().fireResistant()));
     public static final RegistryObject<Item> NETHERSTEEL_ROD = ITEMS.register("nethersteel_rod", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> IRONWOOD_ROD = ITEMS.register("ironwood_rod", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> KNIGHTMETAL_ROD = ITEMS.register("knightmetal_rod", () -> new Item(new Item.Properties()));
@@ -89,10 +89,12 @@ public class VintageImprovements {
     public static final RegistryObject<Item> QUEENS_SLIME_WIRE = ITEMS.register("queens_slime_wire", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SLIMESTEEL_WIRE = ITEMS.register("slimesteel_wire", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> VANADIUM_WIRE = ITEMS.register("vanadium_wire", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> FIERY_WIRE = ITEMS.register("fiery_wire", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> FIERY_WIRE = ITEMS.register("fiery_wire", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
     public static final RegistryObject<Item> ANDESITE_WIRE = ITEMS.register("andesite_wire", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ZINC_WIRE = ITEMS.register("zinc_wire", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SHADOW_STEEL_WIRE = ITEMS.register("shadow_steel_wire", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> NETHERSTEEL_WIRE = ITEMS.register("nethersteel_wire", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> NETHERITE_WIRE = ITEMS.register("netherite_wire", () -> new Item(new Item.Properties().fireResistant()));
 
     public static final RegistryObject<Item> CALORITE_SPRING = ITEMS.register("calorite_spring", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> OSTRUM_SPRING = ITEMS.register("ostrum_spring", () -> new Item(new Item.Properties()));
@@ -101,7 +103,7 @@ public class VintageImprovements {
     public static final RegistryObject<Item> GOLDEN_SPRING = ITEMS.register("golden_spring", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> COPPER_SPRING = ITEMS.register("copper_spring", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BRASS_SPRING = ITEMS.register("brass_spring", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> NETHERITE_SPRING = ITEMS.register("netherite_spring", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> NETHERITE_SPRING = ITEMS.register("netherite_spring", () -> new Item(new Item.Properties().fireResistant()));
     public static final RegistryObject<Item> NETHERSTEEL_SPRING = ITEMS.register("nethersteel_spring", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BLAZE_SPRING = ITEMS.register("blaze_spring", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> IRONWOOD_SPRING = ITEMS.register("ironwood_spring", () -> new Item(new Item.Properties()));
@@ -125,10 +127,13 @@ public class VintageImprovements {
     public static final RegistryObject<Item> SMALL_QUEENS_SLIME_SPRING = ITEMS.register("small_queens_slime_spring", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SMALL_SLIMESTEEL_SPRING = ITEMS.register("small_slimesteel_spring", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SMALL_VANADIUM_SPRING = ITEMS.register("small_vanadium_spring", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> SMALL_FIERY_SPRING = ITEMS.register("small_fiery_spring", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> SMALL_FIERY_SPRING = ITEMS.register("small_fiery_spring", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
     public static final RegistryObject<Item> SMALL_ANDESITE_SPRING = ITEMS.register("small_andesite_spring", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SMALL_ZINC_SPRING = ITEMS.register("small_zinc_spring", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SMALL_SHADOW_STEEL_SPRING = ITEMS.register("small_shadow_steel_spring", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> SMALL_NETHERSTEEL_SPRING = ITEMS.register("small_nethersteel_spring", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SMALL_NETHERITE_SPRING = ITEMS.register("small_netherite_spring", () -> new Item(new Item.Properties().fireResistant()));
+
 
     public static final RegistryObject<Item> GRINDER_BELT = ITEMS.register("grinder_belt", () -> new Item(new Item.Properties()));
 
@@ -139,14 +144,14 @@ public class VintageImprovements {
     public static final RegistryObject<Item> VANADIUM_INGOT = ITEMS.register("vanadium_ingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> VANADIUM_NUGGET = ITEMS.register("vanadium_nugget", () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> NETHERITE_SHEET = ITEMS.register("netherite_sheet", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> NETHERITE_SHEET = ITEMS.register("netherite_sheet", () -> new Item(new Item.Properties().fireResistant()));
     public static final RegistryObject<Item> NETHERSTEEL_SHEET = ITEMS.register("nethersteel_sheet", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> IRONWOOD_SHEET = ITEMS.register("ironwood_sheet", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> KNIGHTMETAL_SHEET = ITEMS.register("knightmetal_sheet", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> QUEENS_SLIME_SHEET = ITEMS.register("queens_slime_sheet", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SLIMESTEEL_SHEET = ITEMS.register("slimesteel_sheet", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> VANADIUM_SHEET = ITEMS.register("vanadium_sheet", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> FIERY_SHEET = ITEMS.register("fiery_sheet", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> FIERY_SHEET = ITEMS.register("fiery_sheet", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
     public static final RegistryObject<Item> ANDESITE_SHEET = ITEMS.register("andesite_sheet", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ZINC_SHEET = ITEMS.register("zinc_sheet", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SHADOW_STEEL_SHEET = ITEMS.register("shadow_steel_sheet", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
@@ -157,7 +162,6 @@ public class VintageImprovements {
             .title(Component.translatable("itemGroup." + MODID))
             .icon(() -> VintageBlocks.BELT_GRINDER.get().asItem().getDefaultInstance())
             .displayItems((parameters, output) -> {
-
                 boolean forceItems = VintageConfig.client().forceCompatItemsIntoCreativeTab.get();
                 boolean adAstraLoaded = ModList.get().isLoaded("ad_astra");
                 boolean twilightForestLoaded = ModList.get().isLoaded("twilightforest");
@@ -391,6 +395,9 @@ public class VintageImprovements {
                         output.accept(VintageItems.LUMIUM_WIRE);
                     if (!VintageItems.MANYULLYN_WIRE.get().shouldHide() || forceItems)
                         output.accept(VintageItems.MANYULLYN_WIRE);
+                    output.accept(NETHERITE_WIRE.get());
+                    if (bigCannonsLoaded || forceItems)
+                        output.accept(NETHERSTEEL_WIRE.get());
                     if (!VintageItems.NICKEL_WIRE.get().shouldHide() || forceItems)
                         output.accept(VintageItems.NICKEL_WIRE);
                     if (!VintageItems.OSMIUM_WIRE.get().shouldHide() || forceItems)
@@ -565,6 +572,9 @@ public class VintageImprovements {
                         output.accept(VintageItems.SMALL_LUMIUM_SPRING);
                     if (!VintageItems.SMALL_MANYULLYN_SPRING.get().shouldHide() || forceItems)
                         output.accept(VintageItems.SMALL_MANYULLYN_SPRING);
+                    output.accept(SMALL_NETHERITE_SPRING.get());
+                    if (bigCannonsLoaded || forceItems)
+                        output.accept(SMALL_NETHERSTEEL_SPRING.get());
                     if (!VintageItems.SMALL_NICKEL_SPRING.get().shouldHide() || forceItems)
                         output.accept(VintageItems.SMALL_NICKEL_SPRING);
                     if (!VintageItems.SMALL_OSMIUM_SPRING.get().shouldHide() || forceItems)

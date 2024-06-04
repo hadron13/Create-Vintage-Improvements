@@ -62,6 +62,8 @@
 	"item.vintageimprovements.lead_wire": "Свинцовый провод",
 	"item.vintageimprovements.lumium_wire": "Люмиевый провод",
 	"item.vintageimprovements.manyullyn_wire": "Маньюлиновый провод",
+	"item.vintageimprovements.netherite_wire": "Незеритовый провод",
+	"item.vintageimprovements.nethersteel_wire": "Провод из незер-стали",
 	"item.vintageimprovements.nickel_wire": "Никелевый провод",
 	"item.vintageimprovements.osmium_wire": "Осмиевый провод",
 	"item.vintageimprovements.ostrum_wire": "Острумовый провод",
@@ -156,6 +158,8 @@
 	"item.vintageimprovements.small_lead_spring": "Малая свинцовая пружина",
 	"item.vintageimprovements.small_lumium_spring": "Малая люмиевая пружина",
 	"item.vintageimprovements.small_manyullyn_spring": "Малая маньюлиновая пружина",
+	"item.vintageimprovements.small_netherite_spring": "Малая незеритовая пружина",
+	"item.vintageimprovements.small_nethersteel_spring": "Малая пружина из незер-стали",
 	"item.vintageimprovements.small_nickel_spring": "Малая никелевая пружина",
 	"item.vintageimprovements.small_osmium_spring": "Малая осмиевая пружина",
 	"item.vintageimprovements.small_ostrum_spring": "Малая острумовая пружина",
@@ -295,6 +299,9 @@
 	"vintageimprovements.recipe.hammering": "Ковка",
 	"vintageimprovements.recipe.auto_smithing": "Автоматический стол кузнеца",
 	
+	"vintageimprovements.recipe.assembly.with": "вместе с",
+	"vintageimprovements.recipe.assembly.and": "и",
+	
 	"vintageimprovements.ponder.belt_grinder_processing.header": "Обработкой предметов на ленточном гриндере",
 	"vintageimprovements.ponder.belt_grinder_processing.text_1": "Ленточные гриндеры могут обрабатывать множество предметов",
 	"vintageimprovements.ponder.belt_grinder_processing.text_2": "Обработанные предметы всегда движутся против подаваемого на гриндер вращения",
@@ -409,7 +416,7 @@
 	"vintageimprovements.gui.goggles.no_operating_block": "Для работы установите под молот наковальню или стол кузнеца",
 	"vintageimprovements.gui.goggles.hammer_blows": "Осталось ударов молотом:",
 	
-	"vintageimprovements.gui.goggles.curving_head": "Насадка: ",,
+	"vintageimprovements.gui.goggles.curving_head": "Насадка: ",
 	"vintageimprovements.gui.goggles.durability": "Прочность насадки",
 	
 	"vintageimprovements.item_description.machine_rpm_requirements": "Эта машина имеет требования к минимальным об/мин:",

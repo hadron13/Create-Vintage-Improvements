@@ -19,6 +19,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Items;
 
 import static com.simibubi.create.compat.jei.category.CreateRecipeCategory.getRenderedSlot;
 
@@ -44,6 +45,12 @@ public class AssemblyHammering extends SequencedAssemblySubCategory {
             offset++;
         }
 
+        if (recipe.getRecipe() instanceof HammeringRecipe hammeringRecipe)
+            if (!hammeringRecipe.getAnvilBlock().getDefaultInstance().is(Items.AIR))
+                builder.addSlot(RecipeIngredientRole.INPUT, x + 4, 15 + offset * 16)
+                        .setBackground(getRenderedSlot(), -1, -1)
+                        .addItemStack(hammeringRecipe.getAnvilBlock().getDefaultInstance());
+
         for (FluidIngredient fluidIngredient : recipe.getRecipe().getFluidIngredients()) {
             builder
                     .addSlot(RecipeIngredientRole.INPUT, x + 4, 15 + offset * 16)
@@ -59,7 +66,14 @@ public class AssemblyHammering extends SequencedAssemblySubCategory {
         ms.pushPose();
         ms.translate(4, 38, 0);
         ms.scale(.5f, .5f, .5f);
-        helve.draw(graphics, getWidth() / 2, 30, true);
+
+        if (recipe.getRecipe() instanceof HammeringRecipe hammeringRecipe)
+            if (!hammeringRecipe.getAnvilBlock().getDefaultInstance().is(Items.AIR)) {
+                helve.draw(graphics, getWidth() / 2, 30,2);
+                helve.renderBlock(graphics, getWidth() / 2, 30, hammeringRecipe.getAnvilBlock());
+        }
+        else helve.draw(graphics, getWidth() / 2, 30, 1);
+
         ms.popPose();
 
         if (recipe.getRecipe() instanceof HammeringRecipe hammering && hammering.getHammerBlows() > 1) {

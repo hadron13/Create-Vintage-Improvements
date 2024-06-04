@@ -62,6 +62,8 @@
 	"item.vintageimprovements.lead_wire": "Lead Wire",
 	"item.vintageimprovements.lumium_wire": "Lumium Wire",
 	"item.vintageimprovements.manyullyn_wire": "Manyullyn Wire",
+	"item.vintageimprovements.netherite_wire": "Netherite Wire",
+	"item.vintageimprovements.nethersteel_wire": "Nethersteel Wire",
 	"item.vintageimprovements.nickel_wire": "Nickel Wire",
 	"item.vintageimprovements.osmium_wire": "Osmium Wire",
 	"item.vintageimprovements.ostrum_wire": "Ostrum Wire",
@@ -156,6 +158,8 @@
 	"item.vintageimprovements.small_lead_spring": "Small Lead Spring",
 	"item.vintageimprovements.small_lumium_spring": "Small Lumium Spring",
 	"item.vintageimprovements.small_manyullyn_spring": "Small Manyullyn Spring",
+	"item.vintageimprovements.small_netherite_spring": "Small Netherite Spring",
+	"item.vintageimprovements.small_nethersteel_spring": "Small Nethersteel Spring",
 	"item.vintageimprovements.small_nickel_spring": "Small Nickel Spring",
 	"item.vintageimprovements.small_osmium_spring": "Small Osmium Spring",
 	"item.vintageimprovements.small_ostrum_spring": "Small Ostrum Spring",
@@ -294,6 +298,9 @@
 	"vintageimprovements.recipe.assembly.hammering": "Process with Helve Hammer",
 	"vintageimprovements.recipe.hammering": "Hammering",
 	"vintageimprovements.recipe.auto_smithing": "Auto Smithing",
+	
+	"vintageimprovements.recipe.with": "with",
+	"vintageimprovements.recipe.and": "&",
 	
 	"vintageimprovements.ponder.belt_grinder_processing.header": "Processing Items on the Belt Grinder",
 	"vintageimprovements.ponder.belt_grinder_processing.text_1": "Belt Grinders can process a variety of items",

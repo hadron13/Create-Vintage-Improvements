@@ -172,13 +172,15 @@ Curving Press provides **curving** recipes. Before work you must install one of 
 
 ![Curving Head Recipes](https://cdn.modrinth.com/data/S27aYArf/images/485e06e4263531375954f717441ea53073050614.png)
 
-You also can add custom heads, just add "vintageimprovements:curving_heads" tag to item
+You also can create custom heads, just add "vintageimprovements:curving_heads" tag to item
 
 ![Curving Example](https://cdn.modrinth.com/data/S27aYArf/images/f8d8d26cac5c57886b149fdd7a99adb1eba371cb.png)
 
 In the config you can turn on automatic recognition of bucket-like recipes for Curving Press (enabled by default)
 
 ![Auto Curving Example](https://cdn.modrinth.com/data/S27aYArf/images/adece40ff73fc4263069df0224b237cac896abde.png)
+
+Some recipes cause damage to the curving heads, auto recipes damage can be customized via config
 
 </details>
 
@@ -190,7 +192,7 @@ Helve Hammer craft
 
 ![Helve Hammer](https://cdn.modrinth.com/data/S27aYArf/images/33b49c35e1373d36ebdf848c41b3a1c2cb4908d4.png)
 
-Helve Hammer works with Smithing Table or Anvil. With Anvil Helve Hammer provides **hammering** recipes
+Helve Hammer works with Smithing Table or Anvil. With Anvil (or blocks with "vintageimprovements:anvils" tag) Helve Hammer provides **hammering** recipes  
 
 ![Hammering Example](https://cdn.modrinth.com/data/S27aYArf/images/726b2018a7b64a65120c6dfa60e292905da943ab.png)
 
@@ -201,6 +203,8 @@ Netherite Sheet can be used in custom recipes in mod packs
 With Smithing Table Helve Hammer provides **auto smithing** recipes
 
 ![Auto Smithing](https://cdn.modrinth.com/data/S27aYArf/images/0d132c200790c95f5d726860d358a33a35c0d65b.png)
+
+Some recipes may require specific block instead of anvil, this block must have "vintageimprovements:custom_hammering_blocks" tag
 
 </details>
 
@@ -252,6 +256,16 @@ Copper Sulfate can be crafted by Pressurizing Copper Ingot with Water & Sulfuric
 
 </details>
 
+
+<details>
+<summary>Redstone Module</summary>
+
+![Redstone Module Recipe](https://cdn.modrinth.com/data/S27aYArf/images/96bf8223f5017940ca7cc126355ba40be3a87210.png)
+
+Redstone Module can be attached to Centrifuge or Curving Press to allow generation of a redstone signal by this blocks using a comparator
+
+</details>
+
 # Compats
 
 
@@ -284,10 +298,10 @@ You can fork [GitHub repository](https://github.com/Negodya1/Create-Vintage-Impr
 
 > KubeJS support?
 
-After version 0.2 release (about 2 major updates)
+After version 0.2 release (about 3 major updates)
 
 # Translations
 
 - en_us (edited by **padin**)
 - ru_ru
-- zh_cn by **Catchmons & Junnaturefox**
+- zh_cn by **Catchmons, Junnaturefox & Qi-Month**

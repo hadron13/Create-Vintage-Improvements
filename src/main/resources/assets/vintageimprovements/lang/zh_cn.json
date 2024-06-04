@@ -62,6 +62,8 @@
 	"item.vintageimprovements.lead_wire": "铅线",
 	"item.vintageimprovements.lumium_wire": "流明线",
 	"item.vintageimprovements.manyullyn_wire": "玛玉灵线",
+	"item.vintageimprovements.netherite_wire": "Netherite Wire", //
+	"item.vintageimprovements.nethersteel_wire": "Nethersteel Wire", //
 	"item.vintageimprovements.nickel_wire": "镍线",
 	"item.vintageimprovements.osmium_wire": "锇线",
 	"item.vintageimprovements.ostrum_wire": "紫金线",
@@ -156,6 +158,8 @@
 	"item.vintageimprovements.small_lead_spring": "铅小弹簧",
 	"item.vintageimprovements.small_lumium_spring": "流明小弹簧",
 	"item.vintageimprovements.small_manyullyn_spring": "玛玉灵小弹簧",
+	"item.vintageimprovements.small_netherite_spring": "Small Netherite Spring", //
+	"item.vintageimprovements.small_nethersteel_spring": "Small Nethersteel Spring", //
 	"item.vintageimprovements.small_nickel_spring": "镍小弹簧",
 	"item.vintageimprovements.small_osmium_spring": "锇小弹簧",
 	"item.vintageimprovements.small_ostrum_spring": "紫金小弹簧",
@@ -294,6 +298,9 @@
 	"vintageimprovements.recipe.assembly.hammering": "杠杆锤处理",
 	"vintageimprovements.recipe.hammering": "锤打",
 	"vintageimprovements.recipe.auto_smithing": "自动锻造",
+	
+	"vintageimprovements.recipe.with": "with", //
+	"vintageimprovements.recipe.and": "&", //
 
 	"vintageimprovements.ponder.belt_grinder_processing.header": "在砂带磨床上处理物品",
 	"vintageimprovements.ponder.belt_grinder_processing.text_1": "砂带磨床可以处理各种物品",

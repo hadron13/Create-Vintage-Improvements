@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Supplier;
 
+import com.negodya1.vintageimprovements.VintageImprovements;
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.simibubi.create.content.kinetics.BlockStressValues;
@@ -27,17 +28,11 @@ public class VintageConfig {
     private static VCCommon common;
     private static VCServer server;
 
-    public static VCClient client() {
-        return client;
-    }
+    public static VCClient client() {return client;}
 
-    public static VCCommon common() {
-        return common;
-    }
+    public static VCCommon common() {return common;}
 
-    public static VCServer server() {
-        return server;
-    }
+    public static VCServer server() {return server;}
 
     public static ConfigBase byType(ModConfig.Type type) {
         return CONFIGS.get(type);

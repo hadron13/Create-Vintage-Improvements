@@ -41,6 +41,8 @@
 	"vintageimprovements:andesite_wire",
 	"vintageimprovements:zinc_wire",
 	"vintageimprovements:shadow_steel_wire",
-	"vintageimprovements:refined_radiance_wire"
+	"vintageimprovements:refined_radiance_wire",
+	"vintageimprovements:netherite_wire",
+	"vintageimprovements:nethersteel_wire"
   ]
 }

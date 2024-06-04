@@ -492,7 +492,12 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 		assemblyRecipe = VintageRecipes.CURVING.find(pressingInv, level);
 
 		if (assemblyRecipe.isPresent())
-			if (mode == assemblyRecipe.get().getMode()) return assemblyRecipe;
+			if (mode == assemblyRecipe.get().getMode()) {
+				if (mode == 5) {
+					if (itemAsHead.getItem(0).is(assemblyRecipe.get().getItemAsHead())) return assemblyRecipe;
+				}
+				else return assemblyRecipe;
+			}
 
 		Predicate<Recipe<?>> types = RecipeConditions.isOfType(VintageRecipes.CURVING.getType());
 

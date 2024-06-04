@@ -34,13 +34,19 @@ import com.simibubi.create.foundation.utility.Lang;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -49,10 +55,22 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class HammeringRecipe extends ProcessingRecipe<SmartInventory> implements IAssemblyRecipe {
 
 	int hammerBlows;
+	Item anvilBlock;
+
+	public HammeringRecipe(ProcessingRecipeParams params) {
+		super(VintageRecipes.HAMMERING, params);
+		hammerBlows = 1;
+		anvilBlock = Blocks.AIR.asItem();
+	}
+
+	public Item getAnvilBlock() {
+		return anvilBlock;
+	}
 
 	public static boolean match(HelveBlockEntity centrifuge, Recipe<?> recipe) {
 		return apply(centrifuge, recipe, true);
@@ -68,6 +86,10 @@ public class HammeringRecipe extends ProcessingRecipe<SmartInventory> implements
 
 		if (availableItems == null)
 			return false;
+
+		if (recipe instanceof HammeringRecipe hammeringRecipe)
+			if (!centrifuge.anvilBlock.asItem().getDefaultInstance().is(hammeringRecipe.anvilBlock))
+				return false;
 
 		List<ItemStack> recipeOutputItems = new ArrayList<>();
 		List<Ingredient> ingredients = new LinkedList<>(recipe.getIngredients());
@@ -114,11 +136,6 @@ public class HammeringRecipe extends ProcessingRecipe<SmartInventory> implements
 		return true;
 	}
 
-	public HammeringRecipe(ProcessingRecipeParams params) {
-		super(VintageRecipes.HAMMERING, params);
-		hammerBlows = 1;
-	}
-
 	@Override
 	protected int getMaxInputCount() {
 		return 3;
@@ -148,7 +165,21 @@ public class HammeringRecipe extends ProcessingRecipe<SmartInventory> implements
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public Component getDescriptionForAssembly() {
-		return VintageLang.translateDirect("recipe.assembly.hammering");
+		MutableComponent result = VintageLang.translateDirect("recipe.assembly.hammering");
+		if (ingredients.size() > 1) {
+			if (ingredients.get(1).getItems().length > 0)
+				result.append(" ").append(VintageLang.translateDirect("recipe.assembly.with")).append(" ").append(ingredients.get(1).getItems()[0].getItem().getDescription());
+
+			if (ingredients.size() > 2) {
+				for (int i = 2; i < ingredients.size() - 1; i++)
+					if (ingredients.get(i).getItems().length > 0)
+						result.append(", ").append(ingredients.get(i).getItems()[0].getItem().getDescription());
+				if (ingredients.get(ingredients.size() - 1).getItems().length > 0)
+					result.append(" ").append(VintageLang.translateDirect("recipe.assembly.and").append(" ").append(ingredients.get(ingredients.size() - 1).getItems()[0].getItem().getDescription()));
+			}
+		}
+
+		return result;
 	}
 
 	@Override
@@ -165,21 +196,27 @@ public class HammeringRecipe extends ProcessingRecipe<SmartInventory> implements
 	public void readAdditional(JsonObject json) {
 		if (json.has("hammerBlows")) hammerBlows = json.get("hammerBlows").getAsInt();
 		else hammerBlows = 1;
+
+		if (json.has("anvilBlock")) anvilBlock = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(json.get("anvilBlock").getAsString())).asItem();
+		else anvilBlock = Items.AIR;
 	}
 
 	@Override
 	public void readAdditional(FriendlyByteBuf buffer) {
 		hammerBlows = buffer.readInt();
+		anvilBlock = buffer.readItem().getItem();
 	}
 
 	@Override
 	public void writeAdditional(JsonObject json) {
 		json.addProperty("hammerBlows", hammerBlows);
+		if (!anvilBlock.equals(Blocks.AIR)) json.addProperty("anvilBlock", anvilBlock.toString());
 	}
 
 	@Override
 	public void writeAdditional(FriendlyByteBuf buffer) {
 		buffer.writeInt(hammerBlows);
+		buffer.writeItem(new ItemStack(anvilBlock));
 	}
 
 	public int getHammerBlows() {
