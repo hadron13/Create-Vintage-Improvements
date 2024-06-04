@@ -16,6 +16,43 @@ public class AnimatedCurvingPress extends AnimatedKinetics {
 
 	public AnimatedCurvingPress() {}
 
+	public void draw(PoseStack matrixStack, int xOffset, int yOffset, int mode) {
+		draw(matrixStack, xOffset, yOffset);
+
+		matrixStack.pushPose();
+		matrixStack.translate(xOffset, yOffset, 200);
+		matrixStack.mulPose(Vector3f.XP.rotationDegrees(-15.5f));
+		matrixStack.mulPose(Vector3f.YP.rotationDegrees(22.5f));
+
+		int scale = 24;
+
+		switch (mode) {
+			case 2 -> blockElement(VintagePartialModels.CURVING_HEAD_2)
+					.atLocal(0, -getAnimatedHeadOffset(), 0)
+					.scale(scale)
+					.render(matrixStack);
+			case 3 -> blockElement(VintagePartialModels.CURVING_HEAD_3)
+					.atLocal(0, -getAnimatedHeadOffset(), 0)
+					.scale(scale)
+					.render(matrixStack);
+			case 4 -> blockElement(VintagePartialModels.CURVING_HEAD_4)
+					.atLocal(0, -getAnimatedHeadOffset(), 0)
+					.scale(scale)
+					.render(matrixStack);
+			case 5 -> blockElement(VintagePartialModels.CURVING_HEAD_5)
+					.atLocal(0, -getAnimatedHeadOffset(), 0)
+					.scale(scale)
+					.render(matrixStack);
+			default -> blockElement(VintagePartialModels.CURVING_HEAD)
+					.atLocal(0, -getAnimatedHeadOffset(), 0)
+					.scale(scale)
+					.render(matrixStack);
+		}
+
+		matrixStack.popPose();
+	}
+
+	@Override
 	public void draw(PoseStack matrixStack, int xOffset, int yOffset) {
 		matrixStack.pushPose();
 		matrixStack.translate(xOffset, yOffset, 200);
@@ -32,7 +69,7 @@ public class AnimatedCurvingPress extends AnimatedKinetics {
 				.scale(scale)
 				.render(matrixStack);
 
-		blockElement(VintagePartialModels.CURVING_HEAD)
+		blockElement(VintagePartialModels.CURVING_POLE)
 				.atLocal(0, -getAnimatedHeadOffset(), 0)
 				.scale(scale)
 				.render(matrixStack);

@@ -1,5 +1,6 @@
 {
 	"type":"vintageimprovements:coiling",
+	"springColor": "4D494D",
 	"ingredients": [ {
       "tag": "forge:rods/netherite"
     }

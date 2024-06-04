@@ -1,0 +1,22 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/hepatizon"
+    }
+  ],
+  "results": [
+    {
+      "item": "vintageimprovements:hepatizon_sheet"
+    }
+  ],
+  "conditions": [
+	{
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/hepatizon"
+      }
+    }
+  ]
+}

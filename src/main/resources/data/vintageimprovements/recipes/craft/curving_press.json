@@ -2,16 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "group": "curving_presses",
   "key": {
-	"I": {
-      "tag": "forge:ingots/iron"
+    "C": {
+      "item": "create:andesite_casing"
     },
-	"P": {
-      "item": "create:mechanical_press"
+    "I": {
+      "tag": "vintageimprovements:springs/iron"
+    },
+    "S": {
+      "item": "create:shaft"
     }
   },
   "pattern": [
-    "IPI",
-    " I "
+    " S ",
+    "ICI"
   ],
   "result": {
     "count": 1,

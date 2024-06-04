@@ -141,7 +141,7 @@ public class CoilingRenderer extends KineticBlockEntityRenderer<CoilingBlockEnti
 
 				superBuffer.translate(offset, 0, 0);
 
-				superBuffer.color(0xFFFFFF)
+				superBuffer.color(be.getSpringColor())
 						.light(light)
 						.renderInto(ms, buffer.getBuffer(RenderType.cutoutMipped()));
 				break;

@@ -112,6 +112,7 @@ public class VintageBlocks {
             MY_REGISTRATE.block("curving_press", CurvingPressBlock::new)
                     .initialProperties(SharedProperties::stone)
                     .properties(p -> p.noOcclusion().color(MaterialColor.PODZOL))
+                    .addLayer(() -> RenderType::cutoutMipped)
                     .transform(axeOrPickaxe())
                     .blockstate(BlockStateGen.horizontalBlockProvider(true))
                     .transform(BlockStressDefaults.setImpact(8.0))

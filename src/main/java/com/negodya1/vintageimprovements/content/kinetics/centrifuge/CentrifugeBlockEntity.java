@@ -33,6 +33,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -259,17 +260,37 @@ public class CentrifugeBlockEntity extends KineticBlockEntity implements IHaveGo
 		if (inputInv.getStackInSlot(0).isEmpty() && inputTank.isEmpty()) return;
 
 		if (lastRecipe == null || !CentrifugationRecipe.match(this, lastRecipe)) {
-			Optional<CentrifugationRecipe> assemblyRecipe = SequencedAssemblyRecipe.getRecipe(level, inputInv,
-					VintageRecipes.CENTRIFUGATION.getType(), CentrifugationRecipe.class);
 
-			if (assemblyRecipe.isPresent()) {
-				lastRecipe = assemblyRecipe.get();
-				timer = lastRecipe.getProcessingDuration();
-				if (timer == 0) timer = 100;
-				lastRecipeIsAssembly = true;
+			for (int i = 0; i < inputInv.getSlots(); i++) {
+				Optional<CentrifugationRecipe> assemblyRecipe = SequencedAssemblyRecipe.
+						getRecipe(level, inputInv.getStackInSlot(i),
+								VintageRecipes.CENTRIFUGATION.getType(), CentrifugationRecipe.class);
+				if (assemblyRecipe.isPresent()) {
+					boolean found = true;
 
-				sendData();
-				return;
+					for (Ingredient cur : assemblyRecipe.get().getIngredients()) {
+						boolean find = false;
+
+						for (ItemStack item : cur.getItems()) {
+							if (item.getCount() <= inputInv.countItem(item.getItem())) {
+								find = true;
+								break;
+							}
+						}
+
+						found = find;
+					}
+
+					if (found) {
+						lastRecipe = assemblyRecipe.get();
+						timer = lastRecipe.getProcessingDuration();
+						if (timer == 0) timer = 100;
+						lastRecipeIsAssembly = true;
+
+						sendData();
+						return;
+					}
+				}
 			}
 
 			lastRecipeIsAssembly = false;

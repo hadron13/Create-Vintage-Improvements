@@ -1,5 +1,7 @@
 {
   "values": [
-    "vintageimprovements:vanadium_ingot"
+    "vintageimprovements:vanadium_ingot",
+	"create:shadow_steel",
+	"create:refined_radiance"
   ]
 }

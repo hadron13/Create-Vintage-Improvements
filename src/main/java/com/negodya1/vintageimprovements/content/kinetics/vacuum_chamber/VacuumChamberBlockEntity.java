@@ -16,6 +16,7 @@ import com.simibubi.create.content.kinetics.base.IRotate;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
 import com.simibubi.create.content.processing.basin.BasinOperatingBlockEntity;
 import com.simibubi.create.content.processing.basin.BasinRecipe;
+import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipe;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
@@ -48,12 +49,12 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
@@ -184,13 +185,13 @@ public class VacuumChamberBlockEntity extends BasinOperatingBlockEntity {
 					Optional<BasinBlockEntity> basin = getBasin();
 					if (basin.isPresent()) {
 						Couple<SmartFluidTankBehaviour> tanks = basin.get()
-							.getTanks();
+								.getTanks();
 						if (!tanks.getFirst()
-							.isEmpty()
-							|| !tanks.getSecond()
+								.isEmpty()
+								|| !tanks.getSecond()
 								.isEmpty())
 							level.playSound(null, worldPosition, SoundEvents.BUBBLE_COLUMN_WHIRLPOOL_AMBIENT,
-								SoundSource.BLOCKS, .75f, speed < 65 ? .75f : 1.5f);
+									SoundSource.BLOCKS, .75f, speed < 65 ? .75f : 1.5f);
 					}
 
 				} else {
@@ -250,6 +251,9 @@ public class VacuumChamberBlockEntity extends BasinOperatingBlockEntity {
 								VintageRecipes.PRESSURIZING.getType(), PressurizingRecipe.class);
 				if (assemblyRecipe.isPresent() && basin.get().getFilter().test(assemblyRecipe.get()
 						.getResultItem())) {
+					if (!assemblyRecipe.get().getRequiredHeat().testBlazeBurner(BlazeBurnerBlock.getHeatLevelOf(level.getBlockState(getBlockPos().below(3)))))
+						return getRecipes();
+
 					for (Ingredient cur : assemblyRecipe.get().getIngredients()) {
 						boolean find = false;
 
@@ -280,6 +284,9 @@ public class VacuumChamberBlockEntity extends BasinOperatingBlockEntity {
 								VintageRecipes.VACUUMIZING.getType(), VacuumizingRecipe.class);
 				if (assemblyRecipe.isPresent() && basin.get().getFilter().test(assemblyRecipe.get()
 						.getResultItem())) {
+					if (!assemblyRecipe.get().getRequiredHeat().testBlazeBurner(BlazeBurnerBlock.getHeatLevelOf(level.getBlockState(getBlockPos().below(3)))))
+						return getRecipes();
+
 					for (Ingredient cur : assemblyRecipe.get().getIngredients()) {
 						boolean find = false;
 

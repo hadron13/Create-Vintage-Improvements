@@ -1,0 +1,10 @@
+{
+	"replace": false,
+  "values": [
+    "vintageimprovements:convex_curving_head",
+	"vintageimprovements:concave_curving_head",
+	"vintageimprovements:w_shaped_curving_head",
+	"vintageimprovements:v_shaped_curving_head",
+	"minecraft:nether_star"
+  ]
+}

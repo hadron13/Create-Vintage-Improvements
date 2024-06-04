@@ -18,6 +18,7 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Items;
 
 import static com.simibubi.create.compat.jei.category.CreateRecipeCategory.getRenderedSlot;
 
@@ -31,7 +32,7 @@ public class AssemblyHammering extends SequencedAssemblySubCategory {
     }
 
     public void setRecipe(IRecipeLayoutBuilder builder, SequencedRecipe<?> recipe, IFocusGroup focuses, int x) {
-        if (recipe.getRecipe().getIngredients().size() <= 1 && recipe.getRecipe().getFluidIngredients().isEmpty()) return;
+        if (recipe.getRecipe().getIngredients().size() <= 1) return;
 
         int offset = 0;
 
@@ -43,13 +44,11 @@ public class AssemblyHammering extends SequencedAssemblySubCategory {
             offset++;
         }
 
-        for (FluidIngredient fluidIngredient : recipe.getRecipe().getFluidIngredients()) {
-            builder
-                    .addSlot(RecipeIngredientRole.INPUT, x + 4, 15 + offset * 16)
-                    .setBackground(CreateRecipeCategory.getRenderedSlot(), -1, -1)
-                    .addIngredients(ForgeTypes.FLUID_STACK, CreateRecipeCategory.withImprovedVisibility(fluidIngredient.getMatchingFluidStacks()))
-                    .addTooltipCallback(CreateRecipeCategory.addFluidTooltip(fluidIngredient.getRequiredAmount()));
-        }
+        if (recipe.getRecipe() instanceof HammeringRecipe hammeringRecipe)
+            if (!hammeringRecipe.getAnvilBlock().getDefaultInstance().is(Items.AIR))
+                builder.addSlot(RecipeIngredientRole.INPUT, x + 4, 15 + offset * 16)
+                        .setBackground(getRenderedSlot(), -1, -1)
+                        .addItemStack(hammeringRecipe.getAnvilBlock().getDefaultInstance());
     }
 
     @Override
@@ -57,7 +56,14 @@ public class AssemblyHammering extends SequencedAssemblySubCategory {
         ms.pushPose();
         ms.translate(4, 38, 0);
         ms.scale(.5f, .5f, .5f);
-        helve.draw(ms, getWidth() / 2, 30, true);
+
+        if (recipe.getRecipe() instanceof HammeringRecipe hammeringRecipe)
+            if (!hammeringRecipe.getAnvilBlock().getDefaultInstance().is(Items.AIR)) {
+                helve.draw(ms, getWidth() / 2, 30,2);
+                helve.renderBlock(ms, getWidth() / 2, 30, hammeringRecipe.getAnvilBlock());
+            }
+            else helve.draw(ms, getWidth() / 2, 30, 1);
+
         ms.popPose();
 
         if (recipe.getRecipe() instanceof HammeringRecipe hammering && hammering.getHammerBlows() > 1) {

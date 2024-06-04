@@ -1,0 +1,19 @@
+{
+  "type":"createaddition:rolling",
+  "ingredients": [
+    {
+      "tag": "forge:plates/shadow_steel"
+    }
+  ],
+  "results": [
+    {
+      "item": "vintageimprovements:shadow_steel_wire",
+		"count": 2
+    }
+  ],
+  "conditions": [ {
+		"type": "forge:mod_loaded",
+		"modid": "createaddition"
+    }
+  ]
+}

@@ -85,6 +85,7 @@ public class CoilingBlockEntity extends KineticBlockEntity {
 	private FilteringBehaviour filtering;
 
 	private ItemStack playEvent;
+	private int springColor;
 
 	public CoilingBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
@@ -94,6 +95,11 @@ public class CoilingBlockEntity extends KineticBlockEntity {
 		recipeIndex = 0;
 		invProvider = LazyOptional.of(() -> inventory);
 		playEvent = ItemStack.EMPTY;
+		springColor = 0x9aa49d;
+	}
+
+	public int getSpringColor() {
+		return springColor;
 	}
 
 	@Override
@@ -108,6 +114,7 @@ public class CoilingBlockEntity extends KineticBlockEntity {
 	public void write(CompoundTag compound, boolean clientPacket) {
 		compound.put("Inventory", inventory.serializeNBT());
 		compound.putInt("RecipeIndex", recipeIndex);
+		compound.putInt("SpringColor", springColor);
 		super.write(compound, clientPacket);
 
 		if (!clientPacket || playEvent.isEmpty())
@@ -121,6 +128,7 @@ public class CoilingBlockEntity extends KineticBlockEntity {
 		super.read(compound, clientPacket);
 		inventory.deserializeNBT(compound.getCompound("Inventory"));
 		recipeIndex = compound.getInt("RecipeIndex");
+		springColor = compound.getInt("SpringColor");
 		if (compound.contains("PlayEvent"))
 			playEvent = ItemStack.of(compound.getCompound("PlayEvent"));
 	}
@@ -141,7 +149,7 @@ public class CoilingBlockEntity extends KineticBlockEntity {
 			spawnEventParticles(playEvent);
 			playEvent = ItemStack.EMPTY;
 
-			AllSoundEvents.MECHANICAL_PRESS_ACTIVATION.playAt(level, worldPosition, 3, 1, true);
+			AllSoundEvents.CRANKING.playAt(level, worldPosition, 3, 1, true);
 		}
 	}
 
@@ -250,6 +258,7 @@ public class CoilingBlockEntity extends KineticBlockEntity {
 		inventory.clear();
 		level.updateNeighbourForOutputSignal(worldPosition, getBlockState().getBlock());
 		inventory.remainingTime = -1;
+		setChanged();
 		sendData();
 	}
 
@@ -387,8 +396,9 @@ public class CoilingBlockEntity extends KineticBlockEntity {
 		}
 
 		Recipe<?> recipe = recipes.get(recipeIndex);
-		if (recipe instanceof CoilingRecipe) {
-			time = ((CoilingRecipe) recipe).getProcessingDuration();
+		if (recipe instanceof CoilingRecipe coilingRecipe) {
+			time = coilingRecipe.getProcessingDuration();
+			springColor = coilingRecipe.springColor;
 		}
 
 		inventory.remainingTime = time * Math.max(1, (inserted.getCount() / 5));

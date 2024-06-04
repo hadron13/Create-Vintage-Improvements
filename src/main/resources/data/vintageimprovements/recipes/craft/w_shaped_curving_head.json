@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "curving_heads",
+  "ingredients": [
+    {
+      "item": "vintageimprovements:concave_curving_head"
+    }
+  ],
+  "result": {
+    "item": "vintageimprovements:w_shaped_curving_head"
+  }
+}

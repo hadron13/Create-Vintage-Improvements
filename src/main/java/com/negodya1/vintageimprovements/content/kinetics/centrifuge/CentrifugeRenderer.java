@@ -196,6 +196,11 @@ public class CentrifugeRenderer extends KineticBlockEntityRenderer<CentrifugeBlo
 								ms.popPose();
 							}
 						}
+
+						if (be.getRedstoneApp()) {
+							superBuffer = CachedBufferer.partial(VintagePartialModels.REDSTONE_MODULE_CENTRIFUGE, blockState);
+							standardKineticRotationTransform(superBuffer, be, light).renderInto(ms, vb);
+						}
 					}
 				}
 			}

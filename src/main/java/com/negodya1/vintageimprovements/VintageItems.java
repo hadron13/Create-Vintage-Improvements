@@ -1,6 +1,8 @@
 package com.negodya1.vintageimprovements;
 
 import static com.negodya1.vintageimprovements.VintageImprovements.MY_REGISTRATE;
+import static com.negodya1.vintageimprovements.foundation.data.recipe.VintageCompatMetals.*;
+import static com.negodya1.vintageimprovements.foundation.data.recipe.VintageCompatMetals.STEEL;
 import static com.simibubi.create.AllTags.forgeItemTag;
 import static com.simibubi.create.AllTags.AllItemTags.CREATE_INGOTS;
 import static com.simibubi.create.AllTags.AllItemTags.CRUSHED_RAW_MATERIALS;
@@ -16,6 +18,7 @@ import static com.simibubi.create.foundation.data.recipe.CompatMetals.TIN;
 import static com.simibubi.create.foundation.data.recipe.CompatMetals.URANIUM;
 
 import com.negodya1.vintageimprovements.content.equipment.CopperSulfateItem;
+import com.negodya1.vintageimprovements.foundation.data.recipe.VintageCompatMetals;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.AllTags.AllItemTags;
 import com.simibubi.create.content.contraptions.glue.SuperGlueItem;
@@ -73,11 +76,186 @@ public class VintageItems {
 		MY_REGISTRATE.creativeModeTab(() -> VintageImprovements.VintageCreativeTab.instance);
 	}
 
+	public static final ItemEntry<TagDependentIngredientItem> ALUMINUM_SHEET = compatSheet(VintageCompatMetals.ALUMINUM);
+	public static final ItemEntry<TagDependentIngredientItem> AMETHYST_BRONZE_SHEET = compatSheet(AMETHYST_BRONZE);
+	public static final ItemEntry<TagDependentIngredientItem> BRONZE_SHEET = compatSheet(BRONZE);
+	public static final ItemEntry<TagDependentIngredientItem> CAST_IRON_SHEET = compatSheet(CAST_IRON);
+	public static final ItemEntry<TagDependentIngredientItem> COBALT_SHEET = compatSheet(COBALT);
+	public static final ItemEntry<TagDependentIngredientItem> CONSTANTAN_SHEET = compatSheet(CONSTANTAN);
+	public static final ItemEntry<TagDependentIngredientItem> ENDERIUM_SHEET = compatSheet(ENDERIUM, Rarity.UNCOMMON);
+	public static final ItemEntry<TagDependentIngredientItem> HEPATIZON_SHEET = compatSheet(HEPATIZON);
+	public static final ItemEntry<TagDependentIngredientItem> INVAR_SHEET = compatSheet(INVAR);
+	public static final ItemEntry<TagDependentIngredientItem> LEAD_SHEET = compatSheet(VintageCompatMetals.LEAD);
+	public static final ItemEntry<TagDependentIngredientItem> LUMIUM_SHEET = compatSheet(LUMIUM, Rarity.UNCOMMON);
+	public static final ItemEntry<TagDependentIngredientItem> MANYULLYN_SHEET = compatSheet(MANYULLYN);
+	public static final ItemEntry<TagDependentIngredientItem> NICKEL_SHEET = compatSheet(VintageCompatMetals.NICKEL);
+	public static final ItemEntry<TagDependentIngredientItem> OSMIUM_SHEET = compatSheet(VintageCompatMetals.OSMIUM);
+	public static final ItemEntry<TagDependentIngredientItem> PALLADIUM_SHEET = compatSheet(PALLADIUM);
+	public static final ItemEntry<TagDependentIngredientItem> PIG_IRON_SHEET = compatSheet(PIG_IRON);
+	public static final ItemEntry<TagDependentIngredientItem> PLATINUM_SHEET = compatSheet(VintageCompatMetals.PLATINUM);
+	public static final ItemEntry<TagDependentIngredientItem> PURE_GOLD_SHEET = compatSheet(PURE_GOLD);
+	public static final ItemEntry<TagDependentIngredientItem> REFINED_GLOWSTONE_SHEET = compatSheet(REFINED_GLOWSTONE);
+	public static final ItemEntry<TagDependentIngredientItem> REFINED_OBSIDIAN_SHEET = compatSheet(REFINED_OBSIDIAN);
+	public static final ItemEntry<TagDependentIngredientItem> RHODIUM_SHEET = compatSheet(RHODIUM);
+	public static final ItemEntry<TagDependentIngredientItem> ROSE_GOLD_SHEET = compatSheet(ROSE_GOLD);
+	public static final ItemEntry<TagDependentIngredientItem> SIGNALUM_SHEET = compatSheet(SIGNALUM, Rarity.UNCOMMON);
+	public static final ItemEntry<TagDependentIngredientItem> SILVER_SHEET = compatSheet(VintageCompatMetals.SILVER);
+	public static final ItemEntry<TagDependentIngredientItem> TIN_SHEET = compatSheet(VintageCompatMetals.TIN);
+	public static final ItemEntry<TagDependentIngredientItem> URANIUM_SHEET = compatSheet(VintageCompatMetals.URANIUM);
+
+	public static final ItemEntry<TagDependentIngredientItem> ALUMINUM_ROD = compatRod(VintageCompatMetals.ALUMINUM);
+	public static final ItemEntry<TagDependentIngredientItem> AMETHYST_BRONZE_ROD = compatRod(AMETHYST_BRONZE);
+	public static final ItemEntry<TagDependentIngredientItem> BRONZE_ROD = compatRod(BRONZE);
+	public static final ItemEntry<TagDependentIngredientItem> CAST_IRON_ROD = compatRod(CAST_IRON);
+	public static final ItemEntry<TagDependentIngredientItem> COBALT_ROD = compatRod(COBALT);
+	public static final ItemEntry<TagDependentIngredientItem> CONSTANTAN_ROD = compatRod(CONSTANTAN);
+	public static final ItemEntry<TagDependentIngredientItem> ENDERIUM_ROD = compatRod(ENDERIUM, Rarity.UNCOMMON);
+	public static final ItemEntry<TagDependentIngredientItem> HEPATIZON_ROD = compatRod(HEPATIZON);
+	public static final ItemEntry<TagDependentIngredientItem> INVAR_ROD = compatRod(INVAR);
+	public static final ItemEntry<TagDependentIngredientItem> LEAD_ROD = compatRod(VintageCompatMetals.LEAD);
+	public static final ItemEntry<TagDependentIngredientItem> LUMIUM_ROD = compatRod(LUMIUM, Rarity.UNCOMMON);
+	public static final ItemEntry<TagDependentIngredientItem> MANYULLYN_ROD = compatRod(MANYULLYN);
+	public static final ItemEntry<TagDependentIngredientItem> NICKEL_ROD = compatRod(VintageCompatMetals.NICKEL);
+	public static final ItemEntry<TagDependentIngredientItem> OSMIUM_ROD = compatRod(VintageCompatMetals.OSMIUM);
+	public static final ItemEntry<TagDependentIngredientItem> PALLADIUM_ROD = compatRod(PALLADIUM);
+	public static final ItemEntry<TagDependentIngredientItem> PIG_IRON_ROD = compatRod(PIG_IRON);
+	public static final ItemEntry<TagDependentIngredientItem> PLATINUM_ROD = compatRod(VintageCompatMetals.PLATINUM);
+	public static final ItemEntry<TagDependentIngredientItem> PURE_GOLD_ROD = compatRod(PURE_GOLD);
+	public static final ItemEntry<TagDependentIngredientItem> REFINED_GLOWSTONE_ROD = compatRod(REFINED_GLOWSTONE);
+	public static final ItemEntry<TagDependentIngredientItem> REFINED_OBSIDIAN_ROD = compatRod(REFINED_OBSIDIAN);
+	public static final ItemEntry<TagDependentIngredientItem> RHODIUM_ROD = compatRod(RHODIUM);
+	public static final ItemEntry<TagDependentIngredientItem> ROSE_GOLD_ROD = compatRod(ROSE_GOLD);
+	public static final ItemEntry<TagDependentIngredientItem> SIGNALUM_ROD = compatRod(SIGNALUM, Rarity.UNCOMMON);
+	public static final ItemEntry<TagDependentIngredientItem> SILVER_ROD = compatRod(VintageCompatMetals.SILVER);
+	public static final ItemEntry<TagDependentIngredientItem> STEEL_ROD = compatRod(STEEL);
+	public static final ItemEntry<TagDependentIngredientItem> TIN_ROD = compatRod(VintageCompatMetals.TIN);
+	public static final ItemEntry<TagDependentIngredientItem> URANIUM_ROD = compatRod(VintageCompatMetals.URANIUM);
+
+	public static final ItemEntry<TagDependentIngredientItem> ALUMINUM_SPRING = compatSpring(VintageCompatMetals.ALUMINUM);
+	public static final ItemEntry<TagDependentIngredientItem> AMETHYST_BRONZE_SPRING = compatSpring(AMETHYST_BRONZE);
+	public static final ItemEntry<TagDependentIngredientItem> BRONZE_SPRING = compatSpring(BRONZE);
+	public static final ItemEntry<TagDependentIngredientItem> CAST_IRON_SPRING = compatSpring(CAST_IRON);
+	public static final ItemEntry<TagDependentIngredientItem> COBALT_SPRING = compatSpring(COBALT);
+	public static final ItemEntry<TagDependentIngredientItem> CONSTANTAN_SPRING = compatSpring(CONSTANTAN);
+	public static final ItemEntry<TagDependentIngredientItem> ELECTRUM_SPRING = compatSpring(ELECTRUM);
+	public static final ItemEntry<TagDependentIngredientItem> ENDERIUM_SPRING = compatSpring(ENDERIUM, Rarity.UNCOMMON);
+	public static final ItemEntry<TagDependentIngredientItem> HEPATIZON_SPRING = compatSpring(HEPATIZON);
+	public static final ItemEntry<TagDependentIngredientItem> INVAR_SPRING = compatSpring(INVAR);
+	public static final ItemEntry<TagDependentIngredientItem> LEAD_SPRING = compatSpring(VintageCompatMetals.LEAD);
+	public static final ItemEntry<TagDependentIngredientItem> LUMIUM_SPRING = compatSpring(LUMIUM, Rarity.UNCOMMON);
+	public static final ItemEntry<TagDependentIngredientItem> MANYULLYN_SPRING = compatSpring(MANYULLYN);
+	public static final ItemEntry<TagDependentIngredientItem> NICKEL_SPRING = compatSpring(VintageCompatMetals.NICKEL);
+	public static final ItemEntry<TagDependentIngredientItem> OSMIUM_SPRING = compatSpring(VintageCompatMetals.OSMIUM);
+	public static final ItemEntry<TagDependentIngredientItem> PALLADIUM_SPRING = compatSpring(PALLADIUM);
+	public static final ItemEntry<TagDependentIngredientItem> PIG_IRON_SPRING = compatSpring(PIG_IRON);
+	public static final ItemEntry<TagDependentIngredientItem> PLATINUM_SPRING = compatSpring(VintageCompatMetals.PLATINUM);
+	public static final ItemEntry<TagDependentIngredientItem> PURE_GOLD_SPRING = compatSpring(PURE_GOLD);
+	public static final ItemEntry<TagDependentIngredientItem> REFINED_GLOWSTONE_SPRING = compatSpring(REFINED_GLOWSTONE);
+	public static final ItemEntry<TagDependentIngredientItem> REFINED_OBSIDIAN_SPRING = compatSpring(REFINED_OBSIDIAN);
+	public static final ItemEntry<TagDependentIngredientItem> RHODIUM_SPRING = compatSpring(RHODIUM);
+	public static final ItemEntry<TagDependentIngredientItem> ROSE_GOLD_SPRING = compatSpring(ROSE_GOLD);
+	public static final ItemEntry<TagDependentIngredientItem> SIGNALUM_SPRING = compatSpring(SIGNALUM, Rarity.UNCOMMON);
+	public static final ItemEntry<TagDependentIngredientItem> SILVER_SPRING = compatSpring(VintageCompatMetals.SILVER);
+	public static final ItemEntry<TagDependentIngredientItem> STEEL_SPRING = compatSpring(STEEL);
+	public static final ItemEntry<TagDependentIngredientItem> TIN_SPRING = compatSpring(VintageCompatMetals.TIN);
+	public static final ItemEntry<TagDependentIngredientItem> URANIUM_SPRING = compatSpring(VintageCompatMetals.URANIUM);
+
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_ALUMINUM_SPRING = compatSmallSpring(VintageCompatMetals.ALUMINUM);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_AMETHYST_BRONZE_SPRING = compatSmallSpring(AMETHYST_BRONZE);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_BRONZE_SPRING = compatSmallSpring(BRONZE);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_CAST_IRON_SPRING = compatSmallSpring(CAST_IRON);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_COBALT_SPRING = compatSmallSpring(COBALT);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_CONSTANTAN_SPRING = compatSmallSpring(CONSTANTAN);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_ELECTRUM_SPRING = compatSmallSpring(ELECTRUM);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_ENDERIUM_SPRING = compatSmallSpring(ENDERIUM, Rarity.UNCOMMON);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_HEPATIZON_SPRING = compatSmallSpring(HEPATIZON);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_INVAR_SPRING = compatSmallSpring(INVAR);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_LEAD_SPRING = compatSmallSpring(VintageCompatMetals.LEAD);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_LUMIUM_SPRING = compatSmallSpring(LUMIUM, Rarity.UNCOMMON);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_MANYULLYN_SPRING = compatSmallSpring(MANYULLYN);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_NICKEL_SPRING = compatSmallSpring(VintageCompatMetals.NICKEL);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_OSMIUM_SPRING = compatSmallSpring(VintageCompatMetals.OSMIUM);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_PALLADIUM_SPRING = compatSmallSpring(PALLADIUM);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_PIG_IRON_SPRING = compatSmallSpring(PIG_IRON);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_PLATINUM_SPRING = compatSmallSpring(VintageCompatMetals.PLATINUM);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_PURE_GOLD_SPRING = compatSmallSpring(PURE_GOLD);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_REFINED_GLOWSTONE_SPRING = compatSmallSpring(REFINED_GLOWSTONE);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_REFINED_OBSIDIAN_SPRING = compatSmallSpring(REFINED_OBSIDIAN);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_RHODIUM_SPRING = compatSmallSpring(RHODIUM);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_ROSE_GOLD_SPRING = compatSmallSpring(ROSE_GOLD);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_SIGNALUM_SPRING = compatSmallSpring(SIGNALUM, Rarity.UNCOMMON);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_SILVER_SPRING = compatSmallSpring(VintageCompatMetals.SILVER);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_STEEL_SPRING = compatSmallSpring(STEEL);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_TIN_SPRING = compatSmallSpring(VintageCompatMetals.TIN);
+	public static final ItemEntry<TagDependentIngredientItem> SMALL_URANIUM_SPRING = compatSmallSpring(VintageCompatMetals.URANIUM);
+
+	public static final ItemEntry<TagDependentIngredientItem> ALUMINUM_WIRE = compatWire(VintageCompatMetals.ALUMINUM);
+	public static final ItemEntry<TagDependentIngredientItem> AMETHYST_BRONZE_WIRE = compatWire(AMETHYST_BRONZE);
+	public static final ItemEntry<TagDependentIngredientItem> BRONZE_WIRE = compatWire(BRONZE);
+	public static final ItemEntry<TagDependentIngredientItem> CAST_IRON_WIRE = compatWire(CAST_IRON);
+	public static final ItemEntry<TagDependentIngredientItem> COBALT_WIRE = compatWire(COBALT);
+	public static final ItemEntry<TagDependentIngredientItem> CONSTANTAN_WIRE = compatWire(CONSTANTAN);
+	public static final ItemEntry<TagDependentIngredientItem> ENDERIUM_WIRE = compatWire(ENDERIUM, Rarity.UNCOMMON);
+	public static final ItemEntry<TagDependentIngredientItem> HEPATIZON_WIRE = compatWire(HEPATIZON);
+	public static final ItemEntry<TagDependentIngredientItem> INVAR_WIRE = compatWire(INVAR);
+	public static final ItemEntry<TagDependentIngredientItem> LEAD_WIRE = compatWire(VintageCompatMetals.LEAD);
+	public static final ItemEntry<TagDependentIngredientItem> LUMIUM_WIRE = compatWire(LUMIUM, Rarity.UNCOMMON);
+	public static final ItemEntry<TagDependentIngredientItem> MANYULLYN_WIRE = compatWire(MANYULLYN);
+	public static final ItemEntry<TagDependentIngredientItem> NICKEL_WIRE = compatWire(VintageCompatMetals.NICKEL);
+	public static final ItemEntry<TagDependentIngredientItem> OSMIUM_WIRE = compatWire(VintageCompatMetals.OSMIUM);
+	public static final ItemEntry<TagDependentIngredientItem> PALLADIUM_WIRE = compatWire(PALLADIUM);
+	public static final ItemEntry<TagDependentIngredientItem> PIG_IRON_WIRE = compatWire(PIG_IRON);
+	public static final ItemEntry<TagDependentIngredientItem> PLATINUM_WIRE = compatWire(VintageCompatMetals.PLATINUM);
+	public static final ItemEntry<TagDependentIngredientItem> PURE_GOLD_WIRE = compatWire(PURE_GOLD);
+	public static final ItemEntry<TagDependentIngredientItem> REFINED_GLOWSTONE_WIRE = compatWire(REFINED_GLOWSTONE);
+	public static final ItemEntry<TagDependentIngredientItem> REFINED_OBSIDIAN_WIRE = compatWire(REFINED_OBSIDIAN);
+	public static final ItemEntry<TagDependentIngredientItem> RHODIUM_WIRE = compatWire(RHODIUM);
+	public static final ItemEntry<TagDependentIngredientItem> ROSE_GOLD_WIRE = compatWire(ROSE_GOLD);
+	public static final ItemEntry<TagDependentIngredientItem> SIGNALUM_WIRE = compatWire(SIGNALUM, Rarity.UNCOMMON);
+	public static final ItemEntry<TagDependentIngredientItem> SILVER_WIRE = compatWire(VintageCompatMetals.SILVER);
+	public static final ItemEntry<TagDependentIngredientItem> STEEL_WIRE = compatWire(STEEL);
+	public static final ItemEntry<TagDependentIngredientItem> TIN_WIRE = compatWire(VintageCompatMetals.TIN);
+	public static final ItemEntry<TagDependentIngredientItem> URANIUM_WIRE = compatWire(VintageCompatMetals.URANIUM);
+
 	public static final ItemEntry<Item> REDSTONE_MODULE = ingredient("redstone_module");
 	public static final ItemEntry<SequencedAssemblyItem> INCOMPLETE_REDSTONE_MODULE = sequencedIngredient("incomplete_redstone_module");
 	public static final ItemEntry<CopperSulfateItem> COPPER_SULFATE =
 			MY_REGISTRATE.item("copper_sulfate", CopperSulfateItem::new)
 					.register();
+
+	public static final ItemEntry<RefinedRadianceItem> REFINED_RADIANCE_SHEET =
+			MY_REGISTRATE.item("refined_radiance_sheet", RefinedRadianceItem::new)
+					.properties(p -> p.rarity(Rarity.UNCOMMON))
+					.register();
+	public static final ItemEntry<RefinedRadianceItem> REFINED_RADIANCE_ROD =
+			MY_REGISTRATE.item("refined_radiance_rod", RefinedRadianceItem::new)
+					.properties(p -> p.rarity(Rarity.UNCOMMON))
+					.register();
+	public static final ItemEntry<RefinedRadianceItem> REFINED_RADIANCE_SPRING =
+			MY_REGISTRATE.item("refined_radiance_spring", RefinedRadianceItem::new)
+					.properties(p -> p.rarity(Rarity.UNCOMMON))
+					.register();
+	public static final ItemEntry<RefinedRadianceItem> SMALL_REFINED_RADIANCE_SPRING =
+			MY_REGISTRATE.item("small_refined_radiance_spring", RefinedRadianceItem::new)
+					.properties(p -> p.rarity(Rarity.UNCOMMON))
+					.register();
+	public static final ItemEntry<RefinedRadianceItem> REFINED_RADIANCE_WIRE =
+			MY_REGISTRATE.item("refined_radiance_wire", RefinedRadianceItem::new)
+					.properties(p -> p.rarity(Rarity.UNCOMMON))
+					.register();
+
+	public static final ItemEntry<Item> CONVEX_CURVING_HEAD = MY_REGISTRATE.item("convex_curving_head", Item::new)
+			.properties(p -> p.durability(1000))
+			.register();
+	public static final ItemEntry<Item> CONCAVE_CURVING_HEAD = MY_REGISTRATE.item("concave_curving_head", Item::new)
+			.properties(p -> p.durability(1000))
+			.register();
+	public static final ItemEntry<Item> W_SHAPED_CURVING_HEAD = MY_REGISTRATE.item("w_shaped_curving_head", Item::new)
+			.properties(p -> p.durability(1000))
+			.register();
+	public static final ItemEntry<Item> V_SHAPED_CURVING_HEAD = MY_REGISTRATE.item("v_shaped_curving_head", Item::new)
+			.properties(p -> p.durability(1000))
+			.register();
 
 	private static ItemEntry<Item> ingredient(String name) {
 		return MY_REGISTRATE.item(name, Item::new)
@@ -96,13 +274,91 @@ public class VintageItems {
 			.register();
 	}
 
-	private static ItemEntry<TagDependentIngredientItem> compatCrushedOre(CompatMetals metal) {
+	private static ItemEntry<TagDependentIngredientItem> compatRod(VintageCompatMetals metal) {
 		String metalName = metal.getName();
 		return MY_REGISTRATE
-			.item("crushed_raw_" + metalName,
-				props -> new TagDependentIngredientItem(props, AllTags.forgeItemTag("ores/" + metalName)))
-			.tag(CRUSHED_RAW_MATERIALS.tag)
-			.register();
+				.item(metalName + "_rod",
+						props -> new TagDependentIngredientItem(props, AllTags.forgeItemTag("ingots/" + metalName)))
+				.register();
+	}
+
+	private static ItemEntry<TagDependentIngredientItem> compatSheet(VintageCompatMetals metal) {
+		String metalName = metal.getName();
+		return MY_REGISTRATE
+				.item(metalName + "_sheet",
+						props -> new TagDependentIngredientItem(props, AllTags.forgeItemTag("ingots/" + metalName)))
+				.register();
+	}
+
+	private static ItemEntry<TagDependentIngredientItem> compatWire(VintageCompatMetals metal) {
+		String metalName = metal.getName();
+		return MY_REGISTRATE
+				.item(metalName + "_wire",
+						props -> new TagDependentIngredientItem(props, AllTags.forgeItemTag("ingots/" + metalName)))
+				.register();
+	}
+
+	private static ItemEntry<TagDependentIngredientItem> compatSpring(VintageCompatMetals metal) {
+		String metalName = metal.getName();
+		return MY_REGISTRATE
+				.item(metalName + "_spring",
+						props -> new TagDependentIngredientItem(props, AllTags.forgeItemTag("ingots/" + metalName)))
+				.register();
+	}
+
+	private static ItemEntry<TagDependentIngredientItem> compatSmallSpring(VintageCompatMetals metal) {
+		String metalName = metal.getName();
+		return MY_REGISTRATE
+				.item("small_" + metalName + "_spring",
+						props -> new TagDependentIngredientItem(props, AllTags.forgeItemTag("ingots/" + metalName)))
+				.register();
+	}
+
+	//With rarities
+
+	private static ItemEntry<TagDependentIngredientItem> compatRod(VintageCompatMetals metal, Rarity rarity) {
+		String metalName = metal.getName();
+		return MY_REGISTRATE
+				.item(metalName + "_rod",
+						props -> new TagDependentIngredientItem(props, AllTags.forgeItemTag("ingots/" + metalName)))
+				.properties(p -> p.rarity(rarity))
+				.register();
+	}
+
+	private static ItemEntry<TagDependentIngredientItem> compatSheet(VintageCompatMetals metal, Rarity rarity) {
+		String metalName = metal.getName();
+		return MY_REGISTRATE
+				.item(metalName + "_sheet",
+						props -> new TagDependentIngredientItem(props, AllTags.forgeItemTag("ingots/" + metalName)))
+				.properties(p -> p.rarity(rarity))
+				.register();
+	}
+
+	private static ItemEntry<TagDependentIngredientItem> compatWire(VintageCompatMetals metal, Rarity rarity) {
+		String metalName = metal.getName();
+		return MY_REGISTRATE
+				.item(metalName + "_wire",
+						props -> new TagDependentIngredientItem(props, AllTags.forgeItemTag("ingots/" + metalName)))
+				.properties(p -> p.rarity(rarity))
+				.register();
+	}
+
+	private static ItemEntry<TagDependentIngredientItem> compatSpring(VintageCompatMetals metal, Rarity rarity) {
+		String metalName = metal.getName();
+		return MY_REGISTRATE
+				.item(metalName + "_spring",
+						props -> new TagDependentIngredientItem(props, AllTags.forgeItemTag("ingots/" + metalName)))
+				.properties(p -> p.rarity(rarity))
+				.register();
+	}
+
+	private static ItemEntry<TagDependentIngredientItem> compatSmallSpring(VintageCompatMetals metal, Rarity rarity) {
+		String metalName = metal.getName();
+		return MY_REGISTRATE
+				.item("small_" + metalName + "_spring",
+						props -> new TagDependentIngredientItem(props, AllTags.forgeItemTag("ingots/" + metalName)))
+				.properties(p -> p.rarity(rarity))
+				.register();
 	}
 
 	// Load this class

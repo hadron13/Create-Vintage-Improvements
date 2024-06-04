@@ -1,0 +1,14 @@
+{
+  "type":"createaddition:rolling",
+  "ingredients": [
+    {
+      "tag": "forge:plates/vanadium"
+    }
+  ],
+  "results": [
+    {
+      "item": "vintageimprovements:vanadium_wire",
+		"count": 2
+    }
+  ]
+}
