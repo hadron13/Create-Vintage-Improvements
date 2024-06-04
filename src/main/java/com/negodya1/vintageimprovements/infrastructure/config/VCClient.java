@@ -3,8 +3,14 @@ package com.negodya1.vintageimprovements.infrastructure.config;
 import com.simibubi.create.foundation.config.ConfigBase;
 
 public class VCClient extends ConfigBase {
+
 	public final ConfigGroup client = group(0, "client",
 			Comments.client);
+
+	public final ConfigBool legacyMaterialsIntoCreativeTab = b(false, "legacyMaterialsIntoCreativeTab", Comments.legacyMaterialsIntoCreativeTab);
+
+	public final ConfigGroup configButton = group(1, "configButton",
+			Comments.configButton);
 
 	public final ConfigInt mainMenuConfigButtonRow = i(1, 0, 4, "mainMenuConfigButtonRow",
 			Comments.mainMenuConfigButtonRow);
@@ -38,5 +44,7 @@ public class VCClient extends ConfigBase {
 				"Offset the Vintage Improvements config button in the in-game menu by this many pixels on the X axis",
 				"The sign (-/+) of this value determines what side of the row the button appears on (left/right)"
 		};
+		static String configButton = "Position of Create: Vintage Improvements config button in the main menu & pause menu";
+		static String legacyMaterialsIntoCreativeTab = "If enabled, Shadow Steel & Refined Radiance items appears in the creative tab";
 	}
 }

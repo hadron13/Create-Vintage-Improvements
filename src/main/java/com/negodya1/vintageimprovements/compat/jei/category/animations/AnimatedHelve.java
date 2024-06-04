@@ -7,12 +7,14 @@ import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.VintagePartialModels;
 import com.simibubi.create.compat.jei.category.animations.AnimatedKinetics;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 
 public class AnimatedHelve extends AnimatedKinetics {
 
-	public void draw(PoseStack matrixStack, int xOffset, int yOffset, boolean mode) {
+	public void draw(PoseStack matrixStack, int xOffset, int yOffset, int mode) {
 		int scale = 23;
 
 		draw(matrixStack, xOffset, yOffset);
@@ -22,12 +24,12 @@ public class AnimatedHelve extends AnimatedKinetics {
 		matrixStack.mulPose(Vector3f.XP.rotationDegrees(-15.5f));
 		matrixStack.mulPose(Vector3f.YP.rotationDegrees(22.5f));
 
-		if (!mode)
+		if (mode == 0)
 			blockElement(Blocks.SMITHING_TABLE.defaultBlockState())
 					.atLocal(0, 0, 0)
 					.scale(scale)
 					.render(matrixStack);
-		else
+		else if (mode == 1)
 			blockElement(Blocks.ANVIL.defaultBlockState())
 					.atLocal(0, 0, 0)
 					.scale(scale)
@@ -64,6 +66,23 @@ public class AnimatedHelve extends AnimatedKinetics {
 			.withRotationOffset(new Vec3(0.5, 0.5, 1.5))
 			.scale(scale)
 			.render(matrixStack);
+
+		matrixStack.popPose();
+	}
+
+	public void renderBlock(PoseStack matrixStack, int xOffset, int yOffset, Item block) {
+		int scale = 23;
+
+		matrixStack.pushPose();
+		matrixStack.translate(xOffset - 6, yOffset + 56, 0);
+		matrixStack.mulPose(Vector3f.XP.rotationDegrees(-15.5f));
+		matrixStack.mulPose(Vector3f.YP.rotationDegrees(22.5f));
+
+		if (block instanceof BlockItem blockItem)
+			blockElement(blockItem.getBlock().defaultBlockState())
+					.atLocal(0, 0, 0)
+					.scale(scale)
+					.render(matrixStack);
 
 		matrixStack.popPose();
 	}

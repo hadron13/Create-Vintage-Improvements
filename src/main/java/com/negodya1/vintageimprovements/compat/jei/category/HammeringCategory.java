@@ -35,7 +35,7 @@ import java.util.List;
 @ParametersAreNonnullByDefault
 public class HammeringCategory extends CreateRecipeCategory<HammeringRecipe> {
 
-	private final AnimatedHelve centrifuge = new AnimatedHelve();
+	private final AnimatedHelve helve = new AnimatedHelve();
 
 	public HammeringCategory(Info<HammeringRecipe> info) {
 		super(info);
@@ -53,6 +53,11 @@ public class HammeringCategory extends CreateRecipeCategory<HammeringRecipe> {
 					.addIngredients(ingredient);
 			i++;
 		}
+
+		if (!recipe.getAnvilBlock().getDefaultInstance().is(Items.AIR))
+			builder.addSlot(RecipeIngredientRole.INPUT, 4, 14)
+					.setBackground(getRenderedSlot(), -1, -1)
+					.addItemStack(recipe.getAnvilBlock().getDefaultInstance());
 
 		i = 0;
 		List<ProcessingOutput> results = recipe.getRollableResults();
@@ -72,7 +77,11 @@ public class HammeringCategory extends CreateRecipeCategory<HammeringRecipe> {
 		AllGuiTextures.JEI_DOWN_ARROW.render(graphics, 132, 28);
 		AllGuiTextures.JEI_LONG_ARROW.render(graphics, 2, 55);
 
-		centrifuge.draw(graphics, 86, 6, true);
+		if (!recipe.getAnvilBlock().getDefaultInstance().is(Items.AIR)) {
+			helve.draw(graphics, 86, 6,2);
+			helve.renderBlock(graphics, 86, 6, recipe.getAnvilBlock());
+		}
+		else helve.draw(graphics, 86, 6,1);
 
 		Minecraft.getInstance().font.draw(graphics,
 				Component.translatable(VintageImprovements.MODID + ".jei.text.hammer_blows").append(" " + recipe.getHammerBlows()), 40, 75, 0xFFFFFF);

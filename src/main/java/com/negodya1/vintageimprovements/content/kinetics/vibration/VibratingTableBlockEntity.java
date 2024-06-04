@@ -361,16 +361,53 @@ public class VibratingTableBlockEntity extends KineticBlockEntity {
 			if (!found) return;
 		}
 
-		ItemStack stackInSlot = inputInv.getStackInSlot(0);
-		stackInSlot.shrink(1);
-		inputInv.setStackInSlot(0, stackInSlot);
-		lastRecipe.rollResults()
-				.forEach(stack -> ItemHandlerHelper.insertItemStacked(outputInv, stack, false));
 
-		if (lastRecipeIsAssembly) lastRecipe = null;
+
+		if (lastRecipeIsAssembly) {
+			VibratingRecipe.apply(this, lastRecipe);
+			lastRecipe = null;
+		}
+		else {
+			ItemStack stackInSlot = inputInv.getStackInSlot(0);
+			stackInSlot.shrink(1);
+			inputInv.setStackInSlot(0, stackInSlot);
+			lastRecipe.rollResults()
+					.forEach(stack -> ItemHandlerHelper.insertItemStacked(outputInv, stack, false));
+		}
 
 		sendData();
 		setChanged();
+	}
+
+	public boolean acceptOutputs(List<ItemStack> outputItems, boolean simulate) {
+		outputInv.allowInsertion();
+		boolean acceptOutputsInner = acceptOutputsInner(outputItems, simulate);
+		outputInv.forbidInsertion();
+		return acceptOutputsInner;
+	}
+
+	private boolean acceptOutputsInner(List<ItemStack> outputItems, boolean simulate) {
+		BlockState blockState = getBlockState();
+		if (!(blockState.getBlock() instanceof VibratingTableBlock))
+			return false;
+
+		IItemHandler targetInv = outputInv;
+
+		if (targetInv == null && !outputItems.isEmpty())
+			return false;
+		if (!acceptItemOutputsIntoHelve(outputItems, simulate, targetInv))
+			return false;
+
+		return true;
+	}
+
+	private boolean acceptItemOutputsIntoHelve(List<ItemStack> outputItems, boolean simulate, IItemHandler targetInv) {
+		for (ItemStack itemStack : outputItems) {
+			if (!ItemHandlerHelper.insertItemStacked(targetInv, itemStack.copy(), simulate)
+					.isEmpty())
+				return false;
+		}
+		return true;
 	}
 
 	public int getProcessingSpeed() {

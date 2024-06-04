@@ -9,16 +9,23 @@ import com.simibubi.create.compat.jei.category.sequencedAssembly.SequencedAssemb
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder.ProcessingRecipeParams;
 import com.simibubi.create.content.processing.sequenced.IAssemblyRecipe;
+import com.simibubi.create.foundation.utility.Iterate;
 import com.simibubi.create.foundation.utility.Lang;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
@@ -35,6 +42,62 @@ public class VibratingRecipe extends ProcessingRecipe<RecipeWrapper> implements 
 			return false;
 		return ingredients.get(0)
 			.test(inv.getItem(0));
+	}
+
+	public static boolean apply(VibratingTableBlockEntity centrifuge, Recipe<?> recipe) {
+		return apply(centrifuge, recipe, false);
+	}
+
+	private static boolean apply(VibratingTableBlockEntity centrifuge, Recipe<?> recipe, boolean test) {
+		IItemHandlerModifiable availableItems = (IItemHandlerModifiable) centrifuge.getCapability(ForgeCapabilities.ITEM_HANDLER)
+				.orElse(null);
+
+		if (availableItems == null)
+			return false;
+
+		List<ItemStack> recipeOutputItems = new ArrayList<>();
+		List<Ingredient> ingredients = new LinkedList<>(recipe.getIngredients());
+
+		for (boolean simulate : Iterate.trueAndFalse) {
+			if (!simulate && test)
+				return true;
+
+			int[] extractedItemsFromSlot = new int[availableItems.getSlots()];
+
+			Ingredients: for (int i = 0; i < ingredients.size(); i++) {
+				Ingredient ingredient = ingredients.get(i);
+
+				for (int slot = 0; slot < availableItems.getSlots(); slot++) {
+					if (simulate && availableItems.getStackInSlot(slot)
+							.getCount() <= extractedItemsFromSlot[slot])
+						continue;
+					ItemStack extracted = availableItems.getStackInSlot(slot);
+
+					if (!ingredient.test(extracted))
+						continue;
+					if (!simulate)
+						extracted.shrink(1);
+
+					extractedItemsFromSlot[slot]++;
+					continue Ingredients;
+				}
+
+				// something wasn't found
+				return false;
+			}
+
+			if (simulate) {
+				if (recipe instanceof VibratingRecipe centrifugeRecipe) {
+					recipeOutputItems.addAll(centrifugeRecipe.rollResults());
+					recipeOutputItems.addAll(centrifugeRecipe.getRemainingItems(centrifuge.inputInv));
+				}
+			}
+
+			if (!centrifuge.acceptOutputs(recipeOutputItems, simulate))
+				return false;
+		}
+
+		return true;
 	}
 
 	@Override

@@ -42,6 +42,9 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
@@ -51,6 +54,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.UpgradeRecipe;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.AnvilBlock;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -93,6 +97,12 @@ public class HelveBlockEntity extends SmartBlockEntity implements IHaveGoggleInf
 	private boolean contentsChanged;
 	private static final Object hammeringRecipesKey = new Object();
 	private int operatingMode;
+	Block anvilBlock;
+
+	public static final TagKey<Item> customAnvilTag =
+			ItemTags.create(new ResourceLocation("vintageimprovements", "custom_hammering_blocks"));
+	public static final TagKey<Item> anvilTag =
+			ItemTags.create(new ResourceLocation("vintageimprovements", "anvils"));
 
 	public HelveBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
@@ -103,6 +113,7 @@ public class HelveBlockEntity extends SmartBlockEntity implements IHaveGoggleInf
 		capability = LazyOptional.of(() -> new HelveInventoryHandler(inputInv, outputInv));
 		operatingMode = 0;
 		hammerBlows = 0;
+		anvilBlock = Blocks.AIR;
 	}
 
 	public void resetRecipes() {
@@ -196,13 +207,25 @@ public class HelveBlockEntity extends SmartBlockEntity implements IHaveGoggleInf
 
 	@Override
 	public void tick() {
-		VintageImprovements.logThis("Timer = " + timer + " Blows = " + hammerBlows);
 		super.tick();
 
-		if (level.getBlockState(worldPosition.below()).getBlock() instanceof AnvilBlock)
+		if (level.getBlockState(worldPosition.below()).getBlock() instanceof AnvilBlock ||
+				level.getBlockState(worldPosition.below()).getBlock().asItem().getDefaultInstance().is(anvilTag)) {
 			changeMode(1);
-		else if (level.getBlockState(worldPosition.below()).is(Blocks.SMITHING_TABLE)) changeMode(2);
-		else changeMode(0);
+			anvilBlock = Blocks.AIR;
+		}
+		else if (level.getBlockState(worldPosition.below()).getBlock().asItem().getDefaultInstance().is(customAnvilTag)) {
+			changeMode(1);
+			anvilBlock = level.getBlockState(worldPosition.below()).getBlock();
+		}
+		else if (level.getBlockState(worldPosition.below()).is(Blocks.SMITHING_TABLE)) {
+			changeMode(2);
+			anvilBlock = Blocks.AIR;
+		}
+		else {
+			changeMode(0);
+			anvilBlock = Blocks.AIR;
+		}
 
 		if (operatingMode == 1) {
 			for (int i = 0; i < outputInv.getSlots(); i++)
@@ -241,17 +264,36 @@ public class HelveBlockEntity extends SmartBlockEntity implements IHaveGoggleInf
 
 			if (lastHammeringRecipe == null || !HammeringRecipe.match(this, lastHammeringRecipe)) {
 
-				Optional<HammeringRecipe> assemblyRecipe = SequencedAssemblyRecipe.getRecipe(level, inputInv,
-						VintageRecipes.HAMMERING.getType(), HammeringRecipe.class);
+				for (int i = 0; i < inputInv.getSlots(); i++) {
+					Optional<HammeringRecipe> assemblyRecipe = SequencedAssemblyRecipe.
+							getRecipe(level, inputInv.getStackInSlot(i),
+									VintageRecipes.HAMMERING.getType(), HammeringRecipe.class);
+					if (assemblyRecipe.isPresent()) {
+						boolean found = true;
 
-				if (assemblyRecipe.isPresent()) {
-					lastHammeringRecipe = assemblyRecipe.get();
-					timer = 500;
-					hammerBlows = assemblyRecipe.get().hammerBlows;
-					lastRecipeIsAssembly = true;
+						for (Ingredient cur : assemblyRecipe.get().getIngredients()) {
+							boolean find = false;
 
-					sendData();
-					return;
+							for (ItemStack item : cur.getItems()) {
+								if (item.getCount() <= inputInv.countItem(item.getItem())) {
+									find = true;
+									break;
+								}
+							}
+
+							found = find;
+						}
+
+						if (found) {
+							lastHammeringRecipe = assemblyRecipe.get();
+							timer = 500;
+							hammerBlows = assemblyRecipe.get().hammerBlows;
+							lastRecipeIsAssembly = true;
+
+							sendData();
+							return;
+						}
+					}
 				}
 
 				lastRecipeIsAssembly = false;
@@ -405,7 +447,23 @@ public class HelveBlockEntity extends SmartBlockEntity implements IHaveGoggleInf
 			if (!found) return;
 		}
 
-		if (HammeringRecipe.apply(this, lastHammeringRecipe)) lastHammeringRecipe = null;
+		if (HammeringRecipe.apply(this, lastHammeringRecipe)) {
+			lastHammeringRecipe = null;
+			if (VintageConfig.server().recipes.damageAnvilAfterHammeringRecipe.get()) {
+				if (!level.isClientSide) {
+					if (level.getBlockState(worldPosition.below()).getBlock() instanceof AnvilBlock) {
+						if (level.random.nextInt() % 100 < VintageConfig.server().recipes.chanceToDamageAnvilAfterHammeringRecipe.get()) {
+							BlockState state = AnvilBlock.damage(level.getBlockState(worldPosition.below()));
+							if (state == null)
+								level.destroyBlock(worldPosition.below(), false);
+							else
+								level.setBlockAndUpdate(worldPosition.below(), state);
+
+						}
+					}
+				}
+			}
+		}
 
 		sendData();
 		setChanged();

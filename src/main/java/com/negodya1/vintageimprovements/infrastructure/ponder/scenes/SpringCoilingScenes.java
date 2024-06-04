@@ -1,6 +1,7 @@
 package com.negodya1.vintageimprovements.infrastructure.ponder.scenes;
 
 import com.negodya1.vintageimprovements.VintageImprovements;
+import com.negodya1.vintageimprovements.VintageItems;
 import com.negodya1.vintageimprovements.content.kinetics.grinder.GrinderBlockEntity;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
@@ -42,8 +43,8 @@ public class SpringCoilingScenes {
 			.placeNearTarget();
 		scene.idle(45);
 
-		ItemStack steel_rod = new ItemStack(VintageImprovements.STEEL_ROD.get());
-		ItemStack steel_spring = new ItemStack(VintageImprovements.STEEL_SPRING.get());
+		ItemStack steel_rod = new ItemStack(VintageItems.STEEL_ROD.get());
+		ItemStack steel_spring = new ItemStack(VintageItems.STEEL_SPRING.get());
 
 		BlockPos itemSpawn = util.grid.at(4, 1, 2);
 		scene.world.createItemOnBeltLike(itemSpawn, Direction.UP, steel_rod);

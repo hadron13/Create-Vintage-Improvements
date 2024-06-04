@@ -47,7 +47,7 @@ public class AutoSmithingCategory extends CreateRecipeCategory<AutoUpgradeRecipe
 	public void draw(AutoUpgradeRecipe recipe, IRecipeSlotsView iRecipeSlotsView, PoseStack graphics, double mouseX, double mouseY) {
 		AllGuiTextures.JEI_ARROW.render(graphics, 12, 55);
 
-		helve.draw(graphics, 68, 6, false);
+		helve.draw(graphics, 68, 6, 0);
 
 		Minecraft instance = Minecraft.getInstance();
 

@@ -1,0 +1,18 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/queens_slime"
+    }
+  ],
+  "results": [
+    {
+      "item": "vintageimprovements:queens_slime_sheet"
+    }
+  ],
+	"conditions": [
+	{
+		"type": "forge:mod_loaded",
+		"modid": "tconstruct"
+    }	]
+}
