@@ -72,9 +72,7 @@ public class HelveRenderer extends KineticBlockEntityRenderer<HelveKineticBlockE
 	}
 
 	@Override
-	protected void renderSafe(HelveKineticBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
-		int light, int overlay) {
-
+	protected void renderSafe(HelveKineticBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {
 		BlockState blockState = be.getBlockState();
 		VertexConsumer vb = buffer.getBuffer(RenderType.solid());
 		SuperByteBuffer superBuffer = CachedBufferer.partial(VintagePartialModels.HELVE_HAMMER, blockState);
@@ -85,7 +83,7 @@ public class HelveRenderer extends KineticBlockEntityRenderer<HelveKineticBlockE
 
 		superBuffer.translate(0, 0, -1);
 
-		superBuffer.renderInto(ms, vb);
+		superBuffer.light(light).renderInto(ms, vb);
 
 		if (Backend.canUseInstancing(be.getLevel()))
 			return;

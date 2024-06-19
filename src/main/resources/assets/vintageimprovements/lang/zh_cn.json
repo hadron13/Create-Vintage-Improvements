@@ -244,6 +244,10 @@
 
 	"item.vintageimprovements.copper_sulfate": "硫酸铜",
 	"item.vintageimprovements.copper_sulfate.tooltip.summary": "可用作骨粉",
+	
+	"item.vintageimprovements.recipe_card": "Recipe Card", //
+	"item.vintageimprovements.incomplete_recipe_card": "Incomplete Recipe Card", //
+	"vintageimprovements.recipe_card.item_slot": "Ingredient slot", //
 
 	"item.vintageimprovements.convex_curving_head": "凸形弯曲封头",
 	"item.vintageimprovements.convex_curving_head.tooltip.summary": "可安装到冲压机上以生产桶状的配方",
@@ -266,6 +270,11 @@
 	"item.vintageimprovements.grinder_belt": "砂带",
 	"vintageimprovements.recipe.assembly.polishing": "磨床打磨",
 	"vintageimprovements.recipe.polishing": "打磨",
+	"vintageimprovements.recipe.assembly.speed": "Speed", //
+	"vintageimprovements.recipe.assembly.low": "Low", //
+	"vintageimprovements.recipe.assembly.medium": "Medium", //
+	"vintageimprovements.recipe.assembly.high": "High", //
+	"vintageimprovements.recipe.assembly.any": "Any", //
 
 	"vintageimprovements.recipe.grinder_sandpaper_polishing": "打磨",
 	"block.vintageimprovements.spring_coiling_machine": "卷簧机",
@@ -293,14 +302,21 @@
 	"vintageimprovements.recipe.assembly.curving": "冲压机处理",
 	"vintageimprovements.recipe.curving": "冲压",
 	"vintageimprovements.recipe.auto_curving": "冲压",
+	"vintageimprovements.recipe.assembly.with_head": "with head:", //
 
 	"block.vintageimprovements.helve_hammer": "杠杆锤",
 	"vintageimprovements.recipe.assembly.hammering": "杠杆锤处理",
 	"vintageimprovements.recipe.hammering": "锤打",
 	"vintageimprovements.recipe.auto_smithing": "自动锻造",
 	
-	"vintageimprovements.recipe.with": "with", //
-	"vintageimprovements.recipe.and": "&", //
+	"block.vintageimprovements.lathe": "Lathe", //
+	"vintageimprovements.recipe.assembly.turning": "Process with Lathe", //
+	"vintageimprovements.recipe.turning": "Turning", //
+	"vintageimprovements.lathe.item_slot": "Current ingredient", //
+	
+	"vintageimprovements.recipe.assembly.with": "with", //
+	"vintageimprovements.recipe.assembly.and": "&", //
+	"vintageimprovements.recipe.assembly.on": "on", //
 
 	"vintageimprovements.ponder.belt_grinder_processing.header": "在砂带磨床上处理物品",
 	"vintageimprovements.ponder.belt_grinder_processing.text_1": "砂带磨床可以处理各种物品",
@@ -369,6 +385,22 @@
 	"vintageimprovements.ponder.helve_hammer.text_8": "经过所需的锤击次数后,产物可以右键取出",
 	"vintageimprovements.ponder.helve_hammer.text_9": "物品也可以自动化取出或置入",
 	
+	"vintageimprovements.ponder.lathe.header": "Processing Items with the Lathe", //
+    "vintageimprovements.ponder.lathe.text_1": "Lathe can process a variety of items", //
+    "vintageimprovements.ponder.lathe.text_2": "They must be powered from the side...", //
+    "vintageimprovements.ponder.lathe.text_3": "...and front using shafts", //
+    "vintageimprovements.ponder.lathe.text_4": "Ingredients can be inserted to front block via Right-click", //
+    "vintageimprovements.ponder.lathe.text_5": "To select a recipe, click on the back block", //
+	"vintageimprovements.ponder.lathe.text_6": "You need to do this every time", //
+    "vintageimprovements.ponder.lathe.text_7": "The result can be obtained via Right-click", //
+    "vintageimprovements.ponder.lathe.text_8": "The items can also be extracted/inserted by automation", //
+	
+	"vintageimprovements.ponder.lathe_automation.header": "Automation of the Lathe", //
+    "vintageimprovements.ponder.lathe_automation.text_1": "Lathe can be automated with the Recipe Card", //
+    "vintageimprovements.ponder.lathe_automation.text_2": "Use a Recipe Card via Right-click to define a recipe", //
+    "vintageimprovements.ponder.lathe_automation.text_3": "Then you must put it inside a back Lathe block", //
+    "vintageimprovements.ponder.lathe_automation.text_4": "Lathe will automatically apply chosen recipe", //
+	
 	"vintageimprovements.jei.text.required_speed": "需求转速:",
 	"vintageimprovements.jei.text.low": "低",
 	"vintageimprovements.jei.text.medium": "中",
@@ -412,14 +444,24 @@
 	"vintageimprovements.gui.goggles.pressurizing_mode": "加压处理",
 	"vintageimprovements.gui.goggles.hammering_mode": "锤击",
 	"vintageimprovements.gui.goggles.smithing_mode": "自动锻造",
+	"vintageimprovements.gui.goggles.manual_mode": "Manual", //
+	"vintageimprovements.gui.goggles.automatic_mode": "Automatic", //
+	"vintageimprovements.gui.goggles.current_recipe": "Current recipe:", //
+	"vintageimprovements.gui.goggles.no_recipe": "No Recipe", //
 
 	"vintageimprovements.gui.goggles.no_operating_block": "在锤子下方放置铁砧或锻造台,以开始工作",
 	"vintageimprovements.gui.goggles.hammer_blows": "剩余锤击次数:",
 	
 	"vintageimprovements.gui.goggles.curving_head": "Head: ", //
 	"vintageimprovements.gui.goggles.durability": "Head's Durability", //
+	
+	"vintageimprovements.gui.lathe.title": "Lathe", //
 
 	"vintageimprovements.item_description.machine_rpm_requirements": "该机器需要的最低RPM为:",
+	"vintageimprovements.item_description.additional_machine_rpm_requirements": "Another part of this machine has a different minimum RPM requirement:", //
+	"vintageimprovements.item_description.recipe_index": "Recipe index:", //
+	"vintageimprovements.item_description.ingredient": "Ingredient:", //
+	"vintageimprovements.item_description.result": "Result:", //
 
 	"trim_material.vintageimprovements.vanadium": "钒质",
 	"trim_material.vintageimprovements.brass": "黄铜质",

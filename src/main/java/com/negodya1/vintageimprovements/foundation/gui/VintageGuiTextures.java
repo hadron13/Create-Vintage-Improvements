@@ -15,7 +15,15 @@ public enum VintageGuiTextures implements ScreenElement {
 
     // JEI
     JEI_UP_ARROW("jei/widgets", 0, 0, 18, 14),
-    JEI_UP_TO_RIGHT_ARROW("jei/widgets", 17, 0, 14, 18);
+    JEI_UP_TO_RIGHT_ARROW("jei/widgets", 17, 0, 14, 18),
+
+    //Recipe Card
+    RECIPE_CARD("recipe_card", 0, 0, 179, 109),
+    RECIPE_BUTTON("recipe_card", 0, 109, 16, 18),
+    RECIPE_BUTTON_SELECTED("recipe_card", 0, 127, 16, 18),
+    RECIPE_BUTTON_SELECTION("recipe_card", 0, 145, 16, 18),
+    SCROLL_ACTIVE("recipe_card", 16, 109, 12, 15),
+    SCROLL_INACTIVE("recipe_card", 28, 109, 12, 15);
 
     public static final int FONT_COLOR = 0x575F7A;
 

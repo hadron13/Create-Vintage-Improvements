@@ -3,6 +3,8 @@ package com.negodya1.vintageimprovements;
 import com.negodya1.vintageimprovements.infrastructure.config.VintageConfig;
 import com.negodya1.vintageimprovements.infrastructure.ponder.VintagePonder;
 import com.simibubi.create.AllItems;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLPaths;
@@ -175,6 +177,7 @@ public class VintageImprovements {
                 output.accept(VintageBlocks.CENTRIFUGE.get());
                 output.accept(VintageBlocks.CURVING_PRESS.get());
                 output.accept(VintageBlocks.HELVE.get());
+                output.accept(VintageBlocks.LATHE_ROTATING.get());
 
                 output.accept(VintageItems.CONVEX_CURVING_HEAD.get());
                 output.accept(VintageItems.CONCAVE_CURVING_HEAD.get());
@@ -196,6 +199,8 @@ public class VintageImprovements {
                 output.accept(VintageFluids.SULFURIC_ACID.getBucket().get());
 
                 output.accept(VintageItems.COPPER_SULFATE);
+
+                output.accept(VintageItems.RECIPE_CARD);
 
                 if (VintageConfig.client().legacyMaterialsIntoCreativeTab.get()) {
                     output.accept(AllItems.REFINED_RADIANCE);
@@ -643,11 +648,12 @@ public class VintageImprovements {
         CREATIVE_MODE_TABS.register(modEventBus);
 
         VintageBlocks.register();
+        VintageItems.register();
+        VintageFluids.register();
+        VintageMenuTypes.register();
         VintageBlockEntity.register();
         VintageRecipes.register(modEventBus);
         VintagePartialModels.init();
-        VintageItems.register();
-        VintageFluids.register();
 
         modEventBus.addListener(VintageImprovements::commonSetup);
 
@@ -668,8 +674,7 @@ public class VintageImprovements {
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event)
-        {
+        public static void onClientSetup(FMLClientSetupEvent event) {
             VintagePonder.register();
         }
     }

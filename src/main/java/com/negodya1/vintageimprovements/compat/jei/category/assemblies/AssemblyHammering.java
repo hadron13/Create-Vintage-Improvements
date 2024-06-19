@@ -33,7 +33,7 @@ public class AssemblyHammering extends SequencedAssemblySubCategory {
     }
 
     public void setRecipe(IRecipeLayoutBuilder builder, SequencedRecipe<?> recipe, IFocusGroup focuses, int x) {
-        if (recipe.getRecipe().getIngredients().size() <= 1 && recipe.getRecipe().getFluidIngredients().isEmpty()) return;
+        if (recipe.getRecipe().getIngredients().size() <= 1) return;
 
         int offset = 0;
 
@@ -50,14 +50,6 @@ public class AssemblyHammering extends SequencedAssemblySubCategory {
                 builder.addSlot(RecipeIngredientRole.INPUT, x + 4, 15 + offset * 16)
                         .setBackground(getRenderedSlot(), -1, -1)
                         .addItemStack(hammeringRecipe.getAnvilBlock().getDefaultInstance());
-
-        for (FluidIngredient fluidIngredient : recipe.getRecipe().getFluidIngredients()) {
-            builder
-                    .addSlot(RecipeIngredientRole.INPUT, x + 4, 15 + offset * 16)
-                    .setBackground(CreateRecipeCategory.getRenderedSlot(), -1, -1)
-                    .addIngredients(ForgeTypes.FLUID_STACK, CreateRecipeCategory.withImprovedVisibility(fluidIngredient.getMatchingFluidStacks()))
-                    .addTooltipCallback(CreateRecipeCategory.addFluidTooltip(fluidIngredient.getRequiredAmount()));
-        }
     }
 
     @Override

@@ -19,6 +19,7 @@ import com.simibubi.create.foundation.utility.Lang;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -88,7 +89,17 @@ public class PolishingRecipe extends ProcessingRecipe<RecipeWrapper> implements 
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public Component getDescriptionForAssembly() {
-		return VintageLang.translateDirect("recipe.assembly.polishing");
+		MutableComponent result = VintageLang.translateDirect("recipe.assembly.polishing");
+		result.append(" ").append(VintageLang.translateDirect("recipe.assembly.on")).append(" ");
+		switch (speedLimits) {
+			case 1 -> result.append(VintageLang.translateDirect("recipe.assembly.low"));
+			case 2 -> result.append(VintageLang.translateDirect("recipe.assembly.medium"));
+			case 3 -> result.append(VintageLang.translateDirect("recipe.assembly.high"));
+			default -> result.append(VintageLang.translateDirect("recipe.assembly.any"));
+		}
+		result.append(" ").append(VintageLang.translateDirect("recipe.assembly.speed"));
+
+		return result;
 	}
 	
 	@Override

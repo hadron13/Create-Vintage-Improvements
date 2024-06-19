@@ -170,7 +170,11 @@ Curving Press craft
 
 Curving Press provides **curving** recipes. Before work you must install one of Curving Heads. Different heads provides different recipes
 
-![Curving Head Recipes](https://cdn.modrinth.com/data/S27aYArf/images/485e06e4263531375954f717441ea53073050614.png)
+![Curving Head Recipes](https://cdn.modrinth.com/data/S27aYArf/images/af24541d9c1f7bbdc3a977bc13824d3eec434a13.png)
+
+Stonecutter crafts
+
+![Curving Head Recipes 2](https://cdn.modrinth.com/data/S27aYArf/images/faa65cbb3b19d5abc7d00515a1ec752a301bc087.png)
 
 You also can create custom heads, just add "vintageimprovements:curving_heads" tag to item
 
@@ -208,6 +212,24 @@ Some recipes may require specific block instead of anvil, this block must have "
 
 </details>
 
+<details>
+<summary>Lathe & Recipe Card</summary>
+
+Lathe craft
+
+![Lathe craft](https://cdn.modrinth.com/data/S27aYArf/images/dd2ae6f7bd0f202d402deb4e242374fc9289164b.png)
+
+Lathe provides **turning** recipes
+
+![Turning Example](https://cdn.modrinth.com/data/S27aYArf/images/af24541d9c1f7bbdc3a977bc13824d3eec434a13.png)
+
+Usually recipes are selected manually. But you can automate this process with the Recipe Card
+
+![Recipe Card Recipe](https://cdn.modrinth.com/data/S27aYArf/images/f79af1ab9a6e7d19eca4c0b655dccdba7635cde2.png)
+
+![Recipe Card Menu](https://cdn.modrinth.com/data/S27aYArf/images/7c38301fc6859fcb589fafb60885c54cc74d4d1c.png)
+
+</details>
 
 <details>
 <summary>Sulfur & Sulfuric Acid</summary>

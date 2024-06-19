@@ -298,10 +298,6 @@ public class HelveBlockEntity extends SmartBlockEntity implements IHaveGoggleInf
 							sendData();
 							return;
 						}
-
-						if (!assemblyRecipe.get().anvilBlock.asItem().getDefaultInstance().is(assemblyRecipe.get().anvilBlock)) {
-
-						}
 					}
 				}
 
@@ -574,7 +570,9 @@ public class HelveBlockEntity extends SmartBlockEntity implements IHaveGoggleInf
 
 	public float getSpeed() {
 		HelveKineticBlockEntity be = (HelveKineticBlockEntity) level.getBlockEntity(HelveBlock.getSlave(level, worldPosition, this.getBlockState()));
-		return be.getSpeed();
+		if (be != null)
+			return be.getSpeed();
+		return 0;
 	}
 
 	public int getProcessingSpeed() {

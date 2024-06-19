@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "vintageimprovements:block/lathe/block",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "vintageimprovements:block/lathe/block"
+    },
+    "facing=south": {
+      "model": "vintageimprovements:block/lathe/block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "vintageimprovements:block/lathe/block",
+      "y": 270
+    }
+  }
+}

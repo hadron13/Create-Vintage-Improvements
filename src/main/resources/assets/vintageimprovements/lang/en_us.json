@@ -245,6 +245,10 @@
 	"item.vintageimprovements.copper_sulfate": "Copper Sulfate",
 	"item.vintageimprovements.copper_sulfate.tooltip.summary": "Can be used as Bone Meal",
 	
+	"item.vintageimprovements.recipe_card": "Recipe Card",
+	"item.vintageimprovements.incomplete_recipe_card": "Incomplete Recipe Card",
+	"vintageimprovements.recipe_card.item_slot": "Ingredient slot",
+	
 	"item.vintageimprovements.convex_curving_head": "Convex Curving Head",
 	"item.vintageimprovements.convex_curving_head.tooltip.summary": "Can be installed to Curving Press to produce bucket-like recipes",
 	"item.vintageimprovements.convex_curving_head.tooltip.condition1": " █░█",
@@ -267,6 +271,11 @@
 	"vintageimprovements.recipe.assembly.polishing": "Polishing on Grinder",
 	"vintageimprovements.recipe.polishing": "Polishing",
 	"vintageimprovements.recipe.grinder_sandpaper_polishing": "Polishing",
+	"vintageimprovements.recipe.assembly.speed": "Speed",
+	"vintageimprovements.recipe.assembly.low": "Low",
+	"vintageimprovements.recipe.assembly.medium": "Medium",
+	"vintageimprovements.recipe.assembly.high": "High",
+	"vintageimprovements.recipe.assembly.any": "Any",
 	
 	"block.vintageimprovements.spring_coiling_machine": "Spring Coiling Machine",
 	"item.vintageimprovements.spring_coiling_machine_wheel": "Spring Coiling Wheel",
@@ -293,14 +302,21 @@
 	"vintageimprovements.recipe.assembly.curving": "Process in Curving Press",
 	"vintageimprovements.recipe.curving": "Curving",
 	"vintageimprovements.recipe.auto_curving": "Curving",
+	"vintageimprovements.recipe.assembly.with_head": "with head:",
 	
 	"block.vintageimprovements.helve_hammer": "Helve Hammer",
 	"vintageimprovements.recipe.assembly.hammering": "Process with Helve Hammer",
 	"vintageimprovements.recipe.hammering": "Hammering",
 	"vintageimprovements.recipe.auto_smithing": "Auto Smithing",
 	
-	"vintageimprovements.recipe.with": "with",
-	"vintageimprovements.recipe.and": "&",
+	"block.vintageimprovements.lathe": "Lathe",
+	"vintageimprovements.recipe.assembly.turning": "Process with Lathe",
+	"vintageimprovements.recipe.turning": "Turning",
+	"vintageimprovements.lathe.item_slot": "Current ingredient",
+	
+	"vintageimprovements.recipe.assembly.with": "with",
+	"vintageimprovements.recipe.assembly.and": "&",
+	"vintageimprovements.recipe.assembly.on": "on",
 	
 	"vintageimprovements.ponder.belt_grinder_processing.header": "Processing Items on the Belt Grinder",
 	"vintageimprovements.ponder.belt_grinder_processing.text_1": "Belt Grinders can process a variety of items",
@@ -369,6 +385,22 @@
 	"vintageimprovements.ponder.helve_hammer.text_8": "After a set amount of hammer blows, the result can be obtained by right-clicking",
 	"vintageimprovements.ponder.helve_hammer.text_9": "Items can also be extracted/inserted by automation",
 	
+	"vintageimprovements.ponder.lathe.header": "Processing Items with the Lathe",
+    "vintageimprovements.ponder.lathe.text_1": "Lathe can process a variety of items",
+    "vintageimprovements.ponder.lathe.text_2": "They must be powered from the side...",
+    "vintageimprovements.ponder.lathe.text_3": "...and front using shafts",
+    "vintageimprovements.ponder.lathe.text_4": "Ingredients can be inserted to front block via Right-click",
+    "vintageimprovements.ponder.lathe.text_5": "To select a recipe, click on the back block",
+	"vintageimprovements.ponder.lathe.text_6": "You need to do this every time",
+    "vintageimprovements.ponder.lathe.text_7": "The result can be obtained via Right-click",
+    "vintageimprovements.ponder.lathe.text_8": "The items can also be extracted/inserted by automation",
+	
+	"vintageimprovements.ponder.lathe_automation.header": "Automation of the Lathe",
+    "vintageimprovements.ponder.lathe_automation.text_1": "Lathe can be automated with the Recipe Card",
+    "vintageimprovements.ponder.lathe_automation.text_2": "Use a Recipe Card via Right-click to define a recipe",
+    "vintageimprovements.ponder.lathe_automation.text_3": "Then you must put it inside a back Lathe block",
+    "vintageimprovements.ponder.lathe_automation.text_4": "Lathe will automatically apply chosen recipe",
+	
 	"vintageimprovements.jei.text.required_speed": "Required Speed:",
 	"vintageimprovements.jei.text.low": "Low",
 	"vintageimprovements.jei.text.medium": "Medium",
@@ -412,6 +444,10 @@
 	"vintageimprovements.gui.goggles.pressurizing_mode": "Pressurizing",
 	"vintageimprovements.gui.goggles.hammering_mode": "Hammering",
 	"vintageimprovements.gui.goggles.smithing_mode": "Smithing",
+	"vintageimprovements.gui.goggles.manual_mode": "Manual",
+	"vintageimprovements.gui.goggles.automatic_mode": "Automatic",
+	"vintageimprovements.gui.goggles.current_recipe": "Current recipe:",
+	"vintageimprovements.gui.goggles.no_recipe": "No Recipe",
 	
 	"vintageimprovements.gui.goggles.no_operating_block": "Place an Anvil or a Smithing Table under the Hammer",
 	"vintageimprovements.gui.goggles.hammer_blows": "Hammer blows remaining:",
@@ -419,7 +455,13 @@
 	"vintageimprovements.gui.goggles.curving_head": "Head: ",
 	"vintageimprovements.gui.goggles.durability": "Head's Durability",
 	
+	"vintageimprovements.gui.lathe.title": "Lathe",
+	
 	"vintageimprovements.item_description.machine_rpm_requirements": "This machine has a minimum RPM requirement:",
+	"vintageimprovements.item_description.additional_machine_rpm_requirements": "Another part of this machine has a different minimum RPM requirement:",
+	"vintageimprovements.item_description.recipe_index": "Recipe index:",
+	"vintageimprovements.item_description.ingredient": "Ingredient:",
+	"vintageimprovements.item_description.result": "Result:",
 	
 	"trim_material.vintageimprovements.vanadium": "Vanadium Material",
 	"trim_material.vintageimprovements.brass": "Brass Material",

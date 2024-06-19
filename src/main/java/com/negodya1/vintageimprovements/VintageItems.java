@@ -3,6 +3,8 @@ package com.negodya1.vintageimprovements;
 import static com.negodya1.vintageimprovements.VintageImprovements.MY_REGISTRATE;
 import static com.negodya1.vintageimprovements.foundation.data.recipe.VintageCompatMetals.*;
 
+import com.negodya1.vintageimprovements.content.equipment.CurvingHeadItem;
+import com.negodya1.vintageimprovements.content.kinetics.lathe.recipe_card.RecipeCardItem;
 import com.negodya1.vintageimprovements.foundation.data.recipe.VintageCompatMetals;
 
 import com.negodya1.vintageimprovements.content.equipment.CopperSulfateItem;
@@ -207,8 +209,7 @@ public class VintageItems {
 	public static final ItemEntry<Item> REDSTONE_MODULE = ingredient("redstone_module");
 	public static final ItemEntry<SequencedAssemblyItem> INCOMPLETE_REDSTONE_MODULE = sequencedIngredient("incomplete_redstone_module");
 	public static final ItemEntry<CopperSulfateItem> COPPER_SULFATE =
-			MY_REGISTRATE.item("copper_sulfate", CopperSulfateItem::new)
-					.register();
+			MY_REGISTRATE.item("copper_sulfate", CopperSulfateItem::new).register();
 
 	public static final ItemEntry<RefinedRadianceItem> REFINED_RADIANCE_SHEET =
 			MY_REGISTRATE.item("refined_radiance_sheet", RefinedRadianceItem::new)
@@ -231,18 +232,22 @@ public class VintageItems {
 					.properties(p -> p.rarity(Rarity.UNCOMMON))
 					.register();
 
-	public static final ItemEntry<Item> CONVEX_CURVING_HEAD = MY_REGISTRATE.item("convex_curving_head", Item::new)
+	public static final ItemEntry<CurvingHeadItem> CONVEX_CURVING_HEAD = MY_REGISTRATE.item("convex_curving_head", CurvingHeadItem::new)
 			.properties(p -> p.durability(1000))
 			.register();
-	public static final ItemEntry<Item> CONCAVE_CURVING_HEAD = MY_REGISTRATE.item("concave_curving_head", Item::new)
+	public static final ItemEntry<CurvingHeadItem> CONCAVE_CURVING_HEAD = MY_REGISTRATE.item("concave_curving_head", CurvingHeadItem::new)
 			.properties(p -> p.durability(1000))
 			.register();
-	public static final ItemEntry<Item> W_SHAPED_CURVING_HEAD = MY_REGISTRATE.item("w_shaped_curving_head", Item::new)
+	public static final ItemEntry<CurvingHeadItem> W_SHAPED_CURVING_HEAD = MY_REGISTRATE.item("w_shaped_curving_head", CurvingHeadItem::new)
 			.properties(p -> p.durability(1000))
 			.register();
-	public static final ItemEntry<Item> V_SHAPED_CURVING_HEAD = MY_REGISTRATE.item("v_shaped_curving_head", Item::new)
+	public static final ItemEntry<CurvingHeadItem> V_SHAPED_CURVING_HEAD = MY_REGISTRATE.item("v_shaped_curving_head", CurvingHeadItem::new)
 			.properties(p -> p.durability(1000))
 			.register();
+
+	public static final ItemEntry<RecipeCardItem> RECIPE_CARD =
+			MY_REGISTRATE.item("recipe_card", RecipeCardItem::new).register();
+	public static final ItemEntry<SequencedAssemblyItem> INCOMPLETE_RECIPE_CARD = sequencedIngredient("incomplete_recipe_card");
 
 	private static ItemEntry<Item> ingredient(String name) {
 		return MY_REGISTRATE.item(name, Item::new)
