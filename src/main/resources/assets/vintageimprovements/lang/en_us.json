@@ -406,6 +406,7 @@
 	"vintageimprovements.jei.text.medium": "Medium",
 	"vintageimprovements.jei.text.high": "High",
 	"vintageimprovements.jei.text.any": "Any",
+	"vintageimprovements.jei.text.fragile": "Fragile. Ingredient will be destroyed on wrong speed",
 	
 	"vintageimprovements.jei.text.leaves_vibrating.text1": "You can vibrate",
 	"vintageimprovements.jei.text.leaves_vibrating.text2": "any leaves to get",

@@ -406,6 +406,7 @@
 	"vintageimprovements.jei.text.medium": "中",
 	"vintageimprovements.jei.text.high": "高",
 	"vintageimprovements.jei.text.any": "任意",
+	"vintageimprovements.jei.text.fragile": "Fragile. Ingredient will be destroyed on wrong speed", //
 
 	"vintageimprovements.jei.text.leaves_vibrating.text1": "任意种类的树叶",
 	"vintageimprovements.jei.text.leaves_vibrating.text2": "均可被振动处理",

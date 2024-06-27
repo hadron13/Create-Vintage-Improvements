@@ -100,7 +100,7 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 		recipeIndex = 0;
 		invProvider = LazyOptional.of(() -> inventory);
 		playEvent = ItemStack.EMPTY;
-		textureType = 0;
+		textureType = VintageConfig.common().defaultBeltGrinderSkin.get();
 	}
 
 	public boolean canCraft(ItemStack stack) {
@@ -399,40 +399,39 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 			return;
 		}
 
-		PolishingRecipe polishingRecipe = (PolishingRecipe)recipe;
+		if (recipe instanceof PolishingRecipe polishingRecipe) {
+			if (polishingRecipe.speedLimits != 0) {
+				int speed = (int)Math.abs(getSpeed());
+				boolean wrongLimit = false;
 
-		if (polishingRecipe.speedLimits != 0) {
-			int speed = (int)Math.abs(getSpeed());
-			boolean wrongLimit = false;
+				if (polishingRecipe.speedLimits == 1 && speed > VintageConfig.server().recipes.lowSpeedValue.get()) wrongLimit = true;
+				if (polishingRecipe.speedLimits == 2 && (speed > VintageConfig.server().recipes.mediumSpeedValue.get() || speed <= VintageConfig.server().recipes.lowSpeedValue.get())) wrongLimit = true;
+				if (polishingRecipe.speedLimits == 3 && speed <= VintageConfig.server().recipes.mediumSpeedValue.get()) wrongLimit = true;
 
-			if (polishingRecipe.speedLimits == 1 && speed > VintageConfig.server().recipes.lowSpeedValue.get()) wrongLimit = true;
-			if (polishingRecipe.speedLimits == 2 && (speed > VintageConfig.server().recipes.mediumSpeedValue.get() || speed <= VintageConfig.server().recipes.lowSpeedValue.get())) wrongLimit = true;
-			if (polishingRecipe.speedLimits == 3 && speed <= VintageConfig.server().recipes.mediumSpeedValue.get()) wrongLimit = true;
-
-			if (wrongLimit) {
-				if (VintageConfig.server().recipes.destroyOnWrongGrinderSpeed.get()) inventory.clear();
-				return;
+				if (wrongLimit) {
+					if (VintageConfig.server().recipes.destroyOnWrongGrinderSpeed.get()
+							|| polishingRecipe.fragile) inventory.clear();
+					return;
+				}
 			}
-		}
 
-		int rolls = inventory.getStackInSlot(0)
-			.getCount();
-		inventory.clear();
+			int rolls = inventory.getStackInSlot(0)
+					.getCount();
+			inventory.clear();
 
-		List<ItemStack> list = new ArrayList<>();
-		for (int roll = 0; roll < rolls; roll++) {
-			List<ItemStack> results = new LinkedList<ItemStack>();
-			if (recipe instanceof PolishingRecipe)
-				results = ((PolishingRecipe) recipe).rollResults();
+			List<ItemStack> list = new ArrayList<>();
+			for (int roll = 0; roll < rolls; roll++) {
+				List<ItemStack> results = polishingRecipe.rollResults();
 
-			for (int i = 0; i < results.size(); i++) {
-				ItemStack stack = results.get(i);
-				ItemHelper.addToList(stack, list);
+				for (int i = 0; i < results.size(); i++) {
+					ItemStack stack = results.get(i);
+					ItemHelper.addToList(stack, list);
+				}
 			}
+
+			for (int slot = 0; slot < list.size() && slot + 1 < inventory.getSlots(); slot++)
+				inventory.setStackInSlot(slot + 1, list.get(slot));
 		}
-		
-		for (int slot = 0; slot < list.size() && slot + 1 < inventory.getSlots(); slot++) 
-			inventory.setStackInSlot(slot + 1, list.get(slot));
 	}
 
 	private List<? extends Recipe<?>> getRecipes() {

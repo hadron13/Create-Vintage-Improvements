@@ -2,6 +2,7 @@ package com.negodya1.vintageimprovements.content.kinetics.lathe;
 
 import com.google.common.collect.ImmutableList;
 import com.negodya1.vintageimprovements.VintageBlocks;
+import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.content.kinetics.lathe.recipe_card.RecipeCardMenu;
 import com.negodya1.vintageimprovements.foundation.gui.VintageGuiTextures;
 import com.negodya1.vintageimprovements.foundation.utility.VintageLang;
@@ -114,7 +115,7 @@ public class LatheScreen extends AbstractSimiContainerScreen<LatheMenu> {
 			int k = x + j % 4 * 16;
 			int l = j / 4;
 			int i1 = y + l * 18 + 2;
-			graphics.renderItem(list.get(i).getResultItem(RegistryAccess.EMPTY), k, i1); //minecraft.level.registryAccess()
+			graphics.renderItem(list.get(i).getResultItem(RegistryAccess.EMPTY), k, i1);
 		}
 	}
 

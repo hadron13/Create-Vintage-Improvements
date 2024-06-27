@@ -1,6 +1,6 @@
 {
 	"type":"vintageimprovements:pressurizing",
-	"secondaryFluidInputs": 1,
+	"secondaryFluidInput": 1,
 	"ingredients": [ 
 		{
 			"fluid": "vintageimprovements:sulfur_trioxide",

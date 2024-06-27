@@ -7,6 +7,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.compat.jei.category.animations.AnimatedGrinder;
 import com.negodya1.vintageimprovements.content.kinetics.grinder.PolishingRecipe;
+import com.negodya1.vintageimprovements.foundation.gui.VintageGuiTextures;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
 import com.simibubi.create.foundation.gui.AllGuiTextures;
@@ -72,6 +73,13 @@ public class GrinderPolishingCategory extends CreateRecipeCategory<PolishingReci
 			default:
 				graphics.drawString(Minecraft.getInstance().font,  Component.translatable(VintageImprovements.MODID + ".jei.text.any"), 128, 75, 0xFFFFFF);
 				break;
+		}
+
+		if (recipe.isFragile()) {
+			VintageGuiTextures.JEI_FRAGILE.render(graphics, 2, 62);
+			if (mouseX >= 2 && mouseX <= 15 && mouseY >= 62 && mouseY <= 85)
+				graphics.renderTooltip(Minecraft.getInstance().font,
+						Component.translatable(VintageImprovements.MODID + ".jei.text.fragile"), (int)mouseX,  (int)mouseY);
 		}
 	}
 

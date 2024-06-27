@@ -12,6 +12,7 @@ import com.simibubi.create.Create;
 import com.simibubi.create.content.fluids.transfer.GenericItemEmptying;
 import com.simibubi.create.content.fluids.transfer.GenericItemFilling;
 import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
+import com.simibubi.create.content.kinetics.deployer.DeployerFakePlayer;
 import com.simibubi.create.content.redstone.thresholdSwitch.ThresholdSwitchBlockEntity;
 import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.fluid.FluidHelper;
@@ -261,9 +262,8 @@ public class LatheMovingBlock extends DirectionalKineticBlock implements IWrench
 					lathe.currentRecipe = null;
 					lathe.resetRecipe();
 					if (worldIn.isClientSide) return;
-					if (player instanceof FakePlayer);
-					else withBlockEntityDo(worldIn, pos,
-							be -> NetworkHooks.openScreen((ServerPlayer) player, be, be::sendToMenu));
+					if (player instanceof DeployerFakePlayer);
+					else NetworkHooks.openScreen((ServerPlayer) player, lathe, lathe::sendToMenu);
 				}
 				else {
 					lathe.resetRecipe();

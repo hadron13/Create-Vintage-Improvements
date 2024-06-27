@@ -34,29 +34,39 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 public class PolishingRecipe extends ProcessingRecipe<RecipeWrapper> implements IAssemblyRecipe {
 
 	int speedLimits;
+	boolean fragile;
 	public PolishingRecipe(ProcessingRecipeParams params) {
 		super(VintageRecipes.POLISHING, params);
+		speedLimits = 0;
+		fragile = false;
 	}
 
 	@Override
 	public void readAdditional(JsonObject json) {
-		if (json.has("speed_limits")) speedLimits = json.get("speed_limits").getAsInt();
+		if (json.has("speedLimits")) speedLimits = json.get("speedLimits").getAsInt();
+		else if (json.has("speed_limits")) speedLimits = json.get("speed_limits").getAsInt();
 		else speedLimits = 0;
+
+		if (json.has("fragile")) fragile = json.get("fragile").getAsBoolean();
+		else fragile = false;
 	}
 
 	@Override
 	public void readAdditional(FriendlyByteBuf buffer) {
 		speedLimits = buffer.readInt();
+		fragile = buffer.readBoolean();
 	}
 
 	@Override
 	public void writeAdditional(JsonObject json) {
-		json.addProperty("speed_limits", speedLimits);
+		json.addProperty("speedLimits", speedLimits);
+		json.addProperty("fragile", fragile);
 	}
 
 	@Override
 	public void writeAdditional(FriendlyByteBuf buffer) {
 		buffer.writeInt(speedLimits);
+		buffer.writeBoolean(fragile);
 	}
 
 
@@ -112,8 +122,8 @@ public class PolishingRecipe extends ProcessingRecipe<RecipeWrapper> implements 
 		return () -> AssemblyPolishing::new;
 	}
 
-	public int getSpeedLimits() {
-		return speedLimits;
-	}
+	public int getSpeedLimits() {return speedLimits;}
+
+	public boolean isFragile() {return fragile;}
 
 }

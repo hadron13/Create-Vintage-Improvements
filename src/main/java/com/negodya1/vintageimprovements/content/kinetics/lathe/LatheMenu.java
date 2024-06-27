@@ -34,19 +34,16 @@ import java.util.stream.Collectors;
 public class LatheMenu extends MenuBase<LatheMovingBlockEntity> {
 
 	private static final Object turningRecipesKey = new Object();
-	private final Level level;
 	List<TurningRecipe> recipes;
 	private Slot inputSlot;
 
 	public LatheMenu(MenuType<?> type, int id, Inventory inv, FriendlyByteBuf extraData) {
 		super(type, id, inv, extraData);
-		level = inv.player.level();
 		recipes = new ArrayList<>();
 	}
 
 	public LatheMenu(MenuType<?> type, int id, Inventory inv, LatheMovingBlockEntity be) {
 		super(type, id, inv, be);
-		level = inv.player.level();
 		recipes = new ArrayList<>();
 	}
 

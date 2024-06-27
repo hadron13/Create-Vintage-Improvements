@@ -120,7 +120,7 @@ public class LatheRotatingBlockEntity extends KineticBlockEntity implements IHav
 		super(type, pos, state);
 
 		inputInv = new SmartInventory(1, this, 1, false);
-		outputInv = new SmartInventory(1, this, 1, false);
+		outputInv = new SmartInventory(1, this);
 		capability = LazyOptional.of(LatheRotatingBlockEntity.LatheInventoryHandler::new);
 		playEvent = ItemStack.EMPTY;
 	}
@@ -200,7 +200,7 @@ public class LatheRotatingBlockEntity extends KineticBlockEntity implements IHav
 	@Override
 	public void write(CompoundTag compound, boolean clientPacket) {
 		compound.putFloat("Timer", timer);
-		compound.putFloat("initialTimer", initialTimer);
+		compound.putFloat("InitialTimer", initialTimer);
 		compound.put("InputInventory", inputInv.serializeNBT());
 		compound.put("OutputInventory", outputInv.serializeNBT());
 		super.write(compound, clientPacket);
@@ -215,7 +215,7 @@ public class LatheRotatingBlockEntity extends KineticBlockEntity implements IHav
 	protected void read(CompoundTag compound, boolean clientPacket) {
 		super.read(compound, clientPacket);
 		timer = compound.getFloat("Timer");
-		initialTimer = compound.getFloat("initialTimer");
+		initialTimer = compound.getFloat("InitialTimer");
 		inputInv.deserializeNBT(compound.getCompound("InputInventory"));
 		outputInv.deserializeNBT(compound.getCompound("OutputInventory"));
 		if (compound.contains("PlayEvent"))

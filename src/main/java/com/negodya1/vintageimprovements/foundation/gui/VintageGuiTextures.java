@@ -16,6 +16,7 @@ public enum VintageGuiTextures implements ScreenElement {
     // JEI
     JEI_UP_ARROW("jei/widgets", 0, 0, 18, 14),
     JEI_UP_TO_RIGHT_ARROW("jei/widgets", 17, 0, 14, 18),
+    JEI_FRAGILE("jei/widgets", 31, 0, 14, 23),
 
     //Recipe Card
     RECIPE_CARD("recipe_card", 0, 0, 179, 109),

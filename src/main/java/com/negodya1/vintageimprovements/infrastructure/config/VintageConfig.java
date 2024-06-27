@@ -53,7 +53,7 @@ public class VintageConfig {
 
     public static void register(ModLoadingContext context) {
         client = register(VCClient::new, ModConfig.Type.CLIENT);
-        //common = register(VCCommon::new, ModConfig.Type.COMMON);
+        common = register(VCCommon::new, ModConfig.Type.COMMON);
         server = register(VCServer::new, ModConfig.Type.SERVER);
 
         for (Entry<ModConfig.Type, ConfigBase> pair : CONFIGS.entrySet())
