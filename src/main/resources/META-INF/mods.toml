@@ -63,6 +63,6 @@ Much vintage, some improvements
 [[dependencies.vintageimprovements]]
     modId="create"
     mandatory=true
-    versionRange="[0.5.1.e,)"
+    versionRange="[0.5.1.c,)"
     ordering="NONE"
     side="BOTH"

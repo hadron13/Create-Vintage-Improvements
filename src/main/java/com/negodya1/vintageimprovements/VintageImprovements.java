@@ -29,7 +29,6 @@ import com.simibubi.create.content.decoration.palettes.AllPaletteBlocks;
 import com.simibubi.create.content.equipment.potatoCannon.BuiltinPotatoProjectileTypes;
 import com.simibubi.create.content.fluids.tank.BoilerHeaters;
 import com.simibubi.create.content.kinetics.TorquePropagator;
-import com.simibubi.create.content.kinetics.fan.processing.AllFanProcessingTypes;
 import com.simibubi.create.content.kinetics.mechanicalArm.AllArmInteractionPointTypes;
 import com.simibubi.create.content.redstone.displayLink.AllDisplayBehaviours;
 import com.simibubi.create.content.redstone.link.RedstoneLinkNetworkHandler;
@@ -47,7 +46,6 @@ import com.simibubi.create.foundation.item.TooltipModifier;
 import com.simibubi.create.foundation.utility.AttachedRegistry;
 import com.simibubi.create.infrastructure.command.ServerLagger;
 import com.simibubi.create.infrastructure.config.AllConfigs;
-import com.simibubi.create.infrastructure.data.CreateDatagen;
 import com.simibubi.create.infrastructure.worldgen.AllFeatures;
 import com.simibubi.create.infrastructure.worldgen.AllPlacementModifiers;
 
