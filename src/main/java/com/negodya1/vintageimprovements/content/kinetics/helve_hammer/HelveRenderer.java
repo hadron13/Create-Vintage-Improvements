@@ -81,7 +81,7 @@ public class HelveRenderer extends KineticBlockEntityRenderer<HelveKineticBlockE
 
 		superBuffer.translate(0, 0, -1);
 
-		superBuffer.renderInto(ms, vb);
+		superBuffer.light(light).renderInto(ms, vb);
 
 		if (Backend.canUseInstancing(be.getLevel()))
 			return;

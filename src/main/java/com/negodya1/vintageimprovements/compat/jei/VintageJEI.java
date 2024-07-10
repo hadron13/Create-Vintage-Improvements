@@ -18,6 +18,7 @@ import com.negodya1.vintageimprovements.content.kinetics.curving_press.CurvingRe
 import com.negodya1.vintageimprovements.content.kinetics.grinder.PolishingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.AutoUpgradeRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.HammeringRecipe;
+import com.negodya1.vintageimprovements.content.kinetics.lathe.TurningRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.LeavesVibratingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.VibratingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.VibratingTableBlockEntity;
@@ -194,6 +195,13 @@ public class VintageJEI implements IModPlugin {
 				.doubleItemIcon(VintageBlocks.HELVE.get(), Blocks.SMITHING_TABLE)
 				.emptyBackground(177, 70)
 				.build("auto_smithing", AutoSmithingCategory::new));
+
+		ALL.add(builder(TurningRecipe.class)
+				.addTypedRecipes(VintageRecipes.TURNING::getType)
+				.catalyst(VintageBlocks.LATHE_ROTATING::get)
+				.itemIcon(VintageBlocks.LATHE_ROTATING.get())
+				.emptyBackground(177, 70)
+				.build("turning", TurningCategory::new));
 
 		ALL.forEach(registration::addRecipeCategories);
 	}

@@ -389,11 +389,12 @@ public class VintageImprovements {
         ITEMS.register(modEventBus);
 
         VintageBlocks.register();
+        VintageItems.register();
+        VintageFluids.register();
+        VintageMenuTypes.register();
         VintageBlockEntity.register();
         VintageRecipes.register(modEventBus);
         VintagePartialModels.init();
-        VintageItems.register();
-        VintageFluids.register();
 
         modEventBus.addListener(VintageImprovements::commonSetup);
 

@@ -1,16 +1,14 @@
 {
   "type":"createaddition:rolling",
-  "ingredients": [
+  "input":
     {
       "tag": "forge:ingots/ironwood"
-    }
-  ],
-  "results": [
+    },  
+  "result":
     {
       "item": "vintageimprovements:ironwood_rod",
 		"count": 2
-    }
-  ],
+    },  
 	"conditions": [ {
 		"type": "forge:mod_loaded",
 		"modid": "createaddition"

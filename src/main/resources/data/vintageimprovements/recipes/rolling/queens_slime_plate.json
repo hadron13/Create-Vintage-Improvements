@@ -1,16 +1,14 @@
 {
   "type":"createaddition:rolling",
-  "ingredients": [
+  "input":
     {
       "tag": "forge:plates/queens_slime"
-    }
-  ],
-  "results": [
+    },  
+  "result":
     {
       "item": "vintageimprovements:queens_slime_wire",
 		"count": 2
-    }
-  ],
+    },  
 	"conditions": [ {
 		"type": "forge:mod_loaded",
 		"modid": "createaddition"

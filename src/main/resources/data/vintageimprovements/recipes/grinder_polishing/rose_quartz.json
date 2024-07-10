@@ -1,6 +1,6 @@
 {
 	"type":"vintageimprovements:polishing",
-	"speed_limits": 1,
+	"speedLimits": 1,
 	"ingredients": [
 		{
 			"item": "create:rose_quartz"

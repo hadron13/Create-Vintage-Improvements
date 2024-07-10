@@ -1,16 +1,14 @@
 {
   "type":"createaddition:rolling",
-  "ingredients": [
+  "input":
     {
       "tag": "forge:plates/fiery"
-    }
-  ],
-  "results": [
+    },  
+  "result":
     {
       "item": "vintageimprovements:fiery_wire",
 		"count": 2
-    }
-  ],
+    },  
 	"conditions": [ {
 		"type": "forge:mod_loaded",
 		"modid": "createaddition"

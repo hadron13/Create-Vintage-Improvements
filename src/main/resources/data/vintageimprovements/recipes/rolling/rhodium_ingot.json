@@ -1,16 +1,14 @@
 {
   "type":"createaddition:rolling",
-  "ingredients": [
+  "input":
     {
       "tag": "forge:ingots/rhodium"
-    }
-  ],
-  "results": [
+    },  
+  "result":
     {
       "item": "vintageimprovements:rhodium_rod",
 		"count": 2
-    }
-  ],
+    },  
   "conditions": [ {
 		"type": "forge:mod_loaded",
 		"modid": "createaddition"

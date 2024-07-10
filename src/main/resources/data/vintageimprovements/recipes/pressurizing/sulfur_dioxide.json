@@ -1,6 +1,6 @@
 {
 	"type":"vintageimprovements:pressurizing",
-	"secondaryFluidResults": 0,
+	"secondaryFluidOutput": 0,
 	"heatRequirement": "heated",
 	"ingredients": [ 
 		{

@@ -8,6 +8,10 @@ import com.negodya1.vintageimprovements.content.kinetics.coiling.CoilingBlock;
 import com.negodya1.vintageimprovements.content.kinetics.coiling.CoilingGenerator;
 import com.negodya1.vintageimprovements.content.kinetics.curving_press.CurvingPressBlock;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.*;
+import com.negodya1.vintageimprovements.content.kinetics.lathe.LatheGenerator;
+import com.negodya1.vintageimprovements.content.kinetics.lathe.LatheItem;
+import com.negodya1.vintageimprovements.content.kinetics.lathe.LatheMovingBlock;
+import com.negodya1.vintageimprovements.content.kinetics.lathe.LatheRotatingBlock;
 import com.negodya1.vintageimprovements.content.kinetics.vacuum_chamber.VacuumChamberBlock;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.VibratingTableBlock;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.VibratingTableGenerator;
@@ -150,6 +154,29 @@ public class VintageBlocks {
                     .transform(axeOrPickaxe())
                     .transform(BlockStressDefaults.setImpact(8.0))
                     .lang("Helve Hammer")
+                    .register();
+
+    public static final BlockEntry<LatheRotatingBlock> LATHE_ROTATING = MY_REGISTRATE.block("lathe", LatheRotatingBlock::new)
+            .initialProperties(SharedProperties::stone)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .properties(p -> p.noOcclusion().color(MaterialColor.DIRT))
+            .transform(axeOrPickaxe())
+            .blockstate(new LatheGenerator()::generate)
+            .item(LatheItem::new)
+            .tag(AllTags.AllItemTags.CONTRAPTION_CONTROLLED.tag)
+            .transform(customItemModel())
+            .transform(BlockStressDefaults.setImpact(2.0))
+            .register();
+
+    public static final BlockEntry<LatheMovingBlock> LATHE_MOVING =
+            MY_REGISTRATE.block("lathe_moving", LatheMovingBlock::new)
+                    .initialProperties(SharedProperties::stone)
+                    .blockstate((c, p) -> p.getVariantBuilder(c.get())
+                            .forAllStatesExcept(BlockStateGen.mapToAir(p), HelveKineticBlock.FACING))
+                    .properties(p -> p.noOcclusion().color(MaterialColor.DIRT))
+                    .transform(axeOrPickaxe())
+                    .transform(BlockStressDefaults.setImpact(4.0))
+                    .lang("Lathe")
                     .register();
 
     //Building blocks

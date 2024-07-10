@@ -51,7 +51,11 @@ public class VintagePartialModels {
 			CURVING_HEAD_4 = block("curving_press/head_4"),
 			CURVING_HEAD_5 = block("curving_press/head_5"),
 			REDSTONE_MODULE_CENTRIFUGE = block("centrifuge/redstone"),
-			REDSTONE_MODULE_CURVING_PRESS = block("curving_press/redstone");
+			REDSTONE_MODULE_CURVING_PRESS = block("curving_press/redstone"),
+			LATHE_ROTATING_HEAD = block("lathe/rotating_head"),
+			LATHE_MOVING_HEAD = block("lathe/moving_head"),
+			LATHE_SLOT = block("lathe/slot"),
+			LATHE_SLOT_FULL = block("lathe/slot_full");
 
 	private static PartialModel block(String path) {
 		return new PartialModel(VintageImprovements.asResource("block/" + path));

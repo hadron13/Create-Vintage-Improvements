@@ -20,7 +20,6 @@ public class VintagePonder {
 
         HELPER.forComponents(VintageBlocks.VACUUM_CHAMBER)
                 .addStoryBoard("vacuum_chamber/processing", VacuumChamberScenes::processing, AllPonderTags.KINETIC_APPLIANCES);
-
         HELPER.forComponents(VintageBlocks.VACUUM_CHAMBER)
                 .addStoryBoard("vacuum_chamber/secondary", VacuumChamberScenes::secondary, AllPonderTags.KINETIC_APPLIANCES);
 
@@ -43,6 +42,18 @@ public class VintagePonder {
         HELPER.forComponents(VintageBlocks.HELVE)
                 .addStoryBoard("helve_hammer/processing", HelveScenes::processing, AllPonderTags.KINETIC_APPLIANCES);
 
+        HELPER.addStoryBoard(VintageItems.CONVEX_CURVING_HEAD, "curving_press/processing", CurvingPressScenes::processing);
+        HELPER.addStoryBoard(VintageItems.CONCAVE_CURVING_HEAD, "curving_press/processing", CurvingPressScenes::processing);
+        HELPER.addStoryBoard(VintageItems.W_SHAPED_CURVING_HEAD, "curving_press/processing", CurvingPressScenes::processing);
+        HELPER.addStoryBoard(VintageItems.V_SHAPED_CURVING_HEAD, "curving_press/processing", CurvingPressScenes::processing);
+
+        HELPER.forComponents(VintageBlocks.LATHE_ROTATING)
+                .addStoryBoard("lathe/processing", LatheScenes::processing, AllPonderTags.KINETIC_APPLIANCES);
+        HELPER.forComponents(VintageBlocks.LATHE_ROTATING)
+                .addStoryBoard("lathe/automation", LatheScenes::automation, AllPonderTags.KINETIC_APPLIANCES);
+
+        HELPER.addStoryBoard(VintageItems.RECIPE_CARD, "lathe/automation", LatheScenes::automation);
+
         PonderRegistry.TAGS.forTag(AllPonderTags.KINETIC_APPLIANCES)
                 .add(VintageBlocks.BELT_GRINDER)
                 .add(VintageBlocks.SPRING_COILING_MACHINE)
@@ -50,7 +61,8 @@ public class VintagePonder {
                 .add(VintageBlocks.VIBRATING_TABLE)
                 .add(VintageBlocks.CURVING_PRESS)
                 .add(VintageBlocks.CENTRIFUGE)
-                .add(VintageBlocks.HELVE);
+                .add(VintageBlocks.HELVE)
+                .add(VintageBlocks.LATHE_ROTATING);
 
         PonderRegistry.TAGS.forTag(AllPonderTags.REDSTONE)
                 .add(VintageItems.REDSTONE_MODULE);

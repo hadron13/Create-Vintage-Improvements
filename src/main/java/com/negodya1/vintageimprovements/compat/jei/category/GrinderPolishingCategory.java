@@ -1,5 +1,6 @@
 package com.negodya1.vintageimprovements.compat.jei.category;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -9,6 +10,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.compat.jei.category.animations.AnimatedGrinder;
 import com.negodya1.vintageimprovements.content.kinetics.grinder.PolishingRecipe;
+import com.negodya1.vintageimprovements.foundation.gui.VintageGuiTextures;
+import com.negodya1.vintageimprovements.foundation.utility.VintageLang;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
 import com.simibubi.create.foundation.gui.AllGuiTextures;
@@ -81,21 +84,18 @@ public class GrinderPolishingCategory extends CreateRecipeCategory<PolishingReci
 
 		Minecraft.getInstance().font.draw(matrixStack,  text, (177 - width)/2.0f, 75, 0xFFFFFF);
 
-//
-//		switch (speedLimits) {
-//			case 1:
-//				Minecraft.getInstance().font.draw(matrixStack,  Components.translatable(VintageImprovements.MODID + ".jei.text.low"), 128, 75, 0x00FF00);
-//				break;
-//			case 2:
-//				Minecraft.getInstance().font.draw(matrixStack,  Components.translatable(VintageImprovements.MODID + ".jei.text.medium"), 128, 75, 0xFFFF00);
-//				break;
-//			case 3:
-//				Minecraft.getInstance().font.draw(matrixStack,  Components.translatable(VintageImprovements.MODID + ".jei.text.high"), 128, 75, 0xFF0000);
-//				break;
-//			default:
-//				Minecraft.getInstance().font.draw(matrixStack,  Components.translatable(VintageImprovements.MODID + ".jei.text.any"), 128, 75, 0xFFFFFF);
-//				break;
-//		}
+
+		if (recipe.isFragile()) {
+			VintageGuiTextures.JEI_FRAGILE.render(matrixStack, 2, 62);
+			if (mouseX >= 2 && mouseX <= 15 && mouseY >= 62 && mouseY <= 85)
+				Minecraft.getInstance().screen.renderComponentTooltip(matrixStack, addToTooltip(new LinkedList<>()), (int)mouseX,  (int)mouseY);
+		}
+	}
+
+	private List<Component> addToTooltip(List<Component> list) {
+		list.add(VintageLang.translateDirect("jei.text.fragile")
+				.withStyle(ChatFormatting.GOLD));
+		return list;
 	}
 
 }

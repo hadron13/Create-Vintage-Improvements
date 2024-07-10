@@ -1,16 +1,14 @@
 {
   "type":"createaddition:rolling",
-  "ingredients": [
+  "input":
     {
       "tag": "forge:ingots/zinc"
-    }
-  ],
-  "results": [
+    },  
+  "result":
     {
       "item": "vintageimprovements:zinc_rod",
 		"count": 2
-    }
-  ],
+    },  
   "conditions": [ {
 		"type": "forge:mod_loaded",
 		"modid": "createaddition"

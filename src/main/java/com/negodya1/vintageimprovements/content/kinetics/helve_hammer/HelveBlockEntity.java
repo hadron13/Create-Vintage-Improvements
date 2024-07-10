@@ -576,7 +576,9 @@ public class HelveBlockEntity extends SmartBlockEntity implements IHaveGoggleInf
 
 	public float getSpeed() {
 		HelveKineticBlockEntity be = (HelveKineticBlockEntity) level.getBlockEntity(HelveBlock.getSlave(level, worldPosition, this.getBlockState()));
-		return be.getSpeed();
+		if (be != null)
+			return be.getSpeed();
+		return 0;
 	}
 
 	public int getProcessingSpeed() {

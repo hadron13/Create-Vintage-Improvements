@@ -18,6 +18,8 @@ import static com.simibubi.create.foundation.data.recipe.CompatMetals.TIN;
 import static com.simibubi.create.foundation.data.recipe.CompatMetals.URANIUM;
 
 import com.negodya1.vintageimprovements.content.equipment.CopperSulfateItem;
+import com.negodya1.vintageimprovements.content.equipment.CurvingHeadItem;
+import com.negodya1.vintageimprovements.content.kinetics.lathe.recipe_card.RecipeCardItem;
 import com.negodya1.vintageimprovements.foundation.data.recipe.VintageCompatMetals;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.AllTags.AllItemTags;
@@ -244,18 +246,22 @@ public class VintageItems {
 					.properties(p -> p.rarity(Rarity.UNCOMMON))
 					.register();
 
-	public static final ItemEntry<Item> CONVEX_CURVING_HEAD = MY_REGISTRATE.item("convex_curving_head", Item::new)
+	public static final ItemEntry<CurvingHeadItem> CONVEX_CURVING_HEAD = MY_REGISTRATE.item("convex_curving_head", CurvingHeadItem::new)
 			.properties(p -> p.durability(1000))
 			.register();
-	public static final ItemEntry<Item> CONCAVE_CURVING_HEAD = MY_REGISTRATE.item("concave_curving_head", Item::new)
+	public static final ItemEntry<CurvingHeadItem> CONCAVE_CURVING_HEAD = MY_REGISTRATE.item("concave_curving_head", CurvingHeadItem::new)
 			.properties(p -> p.durability(1000))
 			.register();
-	public static final ItemEntry<Item> W_SHAPED_CURVING_HEAD = MY_REGISTRATE.item("w_shaped_curving_head", Item::new)
+	public static final ItemEntry<CurvingHeadItem> W_SHAPED_CURVING_HEAD = MY_REGISTRATE.item("w_shaped_curving_head", CurvingHeadItem::new)
 			.properties(p -> p.durability(1000))
 			.register();
-	public static final ItemEntry<Item> V_SHAPED_CURVING_HEAD = MY_REGISTRATE.item("v_shaped_curving_head", Item::new)
+	public static final ItemEntry<CurvingHeadItem> V_SHAPED_CURVING_HEAD = MY_REGISTRATE.item("v_shaped_curving_head", CurvingHeadItem::new)
 			.properties(p -> p.durability(1000))
 			.register();
+
+	public static final ItemEntry<RecipeCardItem> RECIPE_CARD =
+			MY_REGISTRATE.item("recipe_card", RecipeCardItem::new).register();
+	public static final ItemEntry<SequencedAssemblyItem> INCOMPLETE_RECIPE_CARD = sequencedIngredient("incomplete_recipe_card");
 
 	private static ItemEntry<Item> ingredient(String name) {
 		return MY_REGISTRATE.item(name, Item::new)
