@@ -19,6 +19,7 @@ import com.simibubi.create.foundation.utility.Lang;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -30,29 +31,39 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 public class PolishingRecipe extends ProcessingRecipe<RecipeWrapper> implements IAssemblyRecipe {
 
 	int speedLimits;
+	boolean fragile;
 	public PolishingRecipe(ProcessingRecipeParams params) {
 		super(VintageRecipes.POLISHING, params);
+		speedLimits = 0;
+		fragile = false;
 	}
 
 	@Override
 	public void readAdditional(JsonObject json) {
-		if (json.has("speed_limits")) speedLimits = json.get("speed_limits").getAsInt();
+		if (json.has("speedLimits")) speedLimits = json.get("speedLimits").getAsInt();
+		else if (json.has("speed_limits")) speedLimits = json.get("speed_limits").getAsInt();
 		else speedLimits = 0;
+
+		if (json.has("fragile")) fragile = json.get("fragile").getAsBoolean();
+		else fragile = false;
 	}
 
 	@Override
 	public void readAdditional(FriendlyByteBuf buffer) {
 		speedLimits = buffer.readInt();
+		fragile = buffer.readBoolean();
 	}
 
 	@Override
 	public void writeAdditional(JsonObject json) {
-		json.addProperty("speed_limits", speedLimits);
+		json.addProperty("speedLimits", speedLimits);
+		json.addProperty("fragile", fragile);
 	}
 
 	@Override
 	public void writeAdditional(FriendlyByteBuf buffer) {
 		buffer.writeInt(speedLimits);
+		buffer.writeBoolean(fragile);
 	}
 
 
@@ -61,7 +72,7 @@ public class PolishingRecipe extends ProcessingRecipe<RecipeWrapper> implements 
 		if (inv.isEmpty())
 			return false;
 		return ingredients.get(0)
-			.test(inv.getItem(0));
+				.test(inv.getItem(0));
 	}
 
 	@Override
@@ -85,21 +96,31 @@ public class PolishingRecipe extends ProcessingRecipe<RecipeWrapper> implements 
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public Component getDescriptionForAssembly() {
-		return VintageLang.translateDirect("recipe.assembly.polishing");
+		MutableComponent result = VintageLang.translateDirect("recipe.assembly.polishing");
+		result.append(" ").append(VintageLang.translateDirect("recipe.assembly.on")).append(" ");
+		switch (speedLimits) {
+			case 1 -> result.append(VintageLang.translateDirect("recipe.assembly.low"));
+			case 2 -> result.append(VintageLang.translateDirect("recipe.assembly.medium"));
+			case 3 -> result.append(VintageLang.translateDirect("recipe.assembly.high"));
+			default -> result.append(VintageLang.translateDirect("recipe.assembly.any"));
+		}
+		result.append(" ").append(VintageLang.translateDirect("recipe.assembly.speed"));
+
+		return result;
 	}
-	
+
 	@Override
 	public void addRequiredMachines(Set<ItemLike> list) {
 		list.add(VintageBlocks.BELT_GRINDER.get());
 	}
-	
+
 	@Override
 	public Supplier<Supplier<SequencedAssemblySubCategory>> getJEISubCategory() {
 		return () -> AssemblyPolishing::new;
 	}
 
-	public int getSpeedLimits() {
-		return speedLimits;
-	}
+	public int getSpeedLimits() {return speedLimits;}
+
+	public boolean isFragile() {return fragile;}
 
 }

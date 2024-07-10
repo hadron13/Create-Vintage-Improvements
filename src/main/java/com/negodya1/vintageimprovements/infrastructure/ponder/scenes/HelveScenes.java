@@ -83,7 +83,7 @@ public class HelveScenes {
 
 		scene.world.showSection(cogs, Direction.DOWN);
 		scene.idle(10);
-		scene.world.setKineticSpeed(helveKineticSelect, 128);
+		scene.world.setKineticSpeed(helveKineticSelect, -128);
 		scene.effects.indicateSuccess(helveKinetic);
 		scene.idle(10);
 

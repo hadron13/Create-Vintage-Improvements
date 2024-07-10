@@ -9,6 +9,7 @@ import com.negodya1.vintageimprovements.content.kinetics.curving_press.CurvingRe
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.AutoSmithingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.AutoUpgradeRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.HammeringRecipe;
+import com.negodya1.vintageimprovements.content.kinetics.lathe.TurningRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.vacuum_chamber.PressurizingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.vacuum_chamber.VacuumizingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.LeavesVibratingRecipe;
@@ -49,7 +50,8 @@ public enum VintageRecipes implements IRecipeTypeInfo {
     PRESSURIZING(PressurizingRecipe::new),
     HAMMERING(HammeringRecipe::new),
     AUTO_SMITHING(AutoSmithingRecipe::new),
-    AUTO_UPGRADE(AutoUpgradeRecipe::new);
+    AUTO_UPGRADE(AutoUpgradeRecipe::new),
+    TURNING(TurningRecipe::new);
     private final ResourceLocation id;
     private final RegistryObject<RecipeSerializer<?>> serializerObject;
     @Nullable

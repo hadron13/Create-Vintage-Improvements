@@ -28,6 +28,7 @@ import com.simibubi.create.foundation.fluid.FluidIngredient;
 import com.simibubi.create.foundation.item.SmartInventory;
 import com.simibubi.create.foundation.recipe.DummyCraftingContainer;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
+import com.simibubi.create.foundation.utility.Components;
 import com.simibubi.create.foundation.utility.Iterate;
 
 import com.simibubi.create.foundation.utility.Lang;
@@ -176,6 +177,11 @@ public class HammeringRecipe extends ProcessingRecipe<SmartInventory> implements
 				if (ingredients.get(ingredients.size() - 1).getItems().length > 0)
 					result.append(" ").append(VintageLang.translateDirect("recipe.assembly.and").append(" ").append(ingredients.get(ingredients.size() - 1).getItems()[0].getItem().getDescription()));
 			}
+		}
+
+		if (anvilBlock != Blocks.AIR.asItem()) {
+			result.append(" ").append(VintageLang.translateDirect("recipe.assembly.on")).append(" ")
+					.append(Components.translatable(anvilBlock.getDescriptionId()));
 		}
 
 		return result;

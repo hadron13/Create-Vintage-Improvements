@@ -1,16 +1,14 @@
 {
   "type":"createaddition:rolling",
-  "ingredients": [
+  "input":
     {
       "tag": "forge:plates/refined_radiance"
-    }
-  ],
-  "results": [
+    },  
+  "result":
     {
       "item": "vintageimprovements:refined_radiance_wire",
 		"count": 2
-    }
-  ],
+    },  
   "conditions": [ {
 		"type": "forge:mod_loaded",
 		"modid": "createaddition"

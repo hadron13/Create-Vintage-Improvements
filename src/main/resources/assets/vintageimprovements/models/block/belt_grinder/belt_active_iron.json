@@ -1,8 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "vintageimprovements:block/grinder_belt",
-		"particle": "vintageimprovements:block/grinder_belt_belt"
+		"0": "vintageimprovements:block/grinder_belt_iron"
 	},
 	"elements": [
 		{

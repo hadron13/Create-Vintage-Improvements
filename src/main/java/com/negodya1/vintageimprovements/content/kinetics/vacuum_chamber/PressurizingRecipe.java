@@ -282,8 +282,8 @@ public class PressurizingRecipe extends BasinRecipe implements IAssemblyRecipe {
 
 	@Override
 	public void readAdditional(JsonObject json) {
-		if (json.has("secondaryFluidResults")) secondaryFluidResults = json.get("secondaryFluidResults").getAsInt();
-		if (json.has("secondaryFluidInputs")) secondaryFluidInputs = json.get("secondaryFluidInputs").getAsInt();
+		if (json.has("secondaryFluidOutput")) secondaryFluidResults = json.get("secondaryFluidOutput").getAsInt();
+		if (json.has("secondaryFluidInput")) secondaryFluidInputs = json.get("secondaryFluidInput").getAsInt();
 	}
 
 	@Override
@@ -294,8 +294,8 @@ public class PressurizingRecipe extends BasinRecipe implements IAssemblyRecipe {
 
 	@Override
 	public void writeAdditional(JsonObject json) {
-		json.addProperty("secondaryFluidResults", secondaryFluidResults);
-		json.addProperty("secondaryFluidInputs", secondaryFluidInputs);
+		json.addProperty("secondaryFluidOutput", secondaryFluidResults);
+		json.addProperty("secondaryFluidInput", secondaryFluidInputs);
 	}
 
 	@Override

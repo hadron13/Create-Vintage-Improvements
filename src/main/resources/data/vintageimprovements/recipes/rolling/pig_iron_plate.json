@@ -1,16 +1,14 @@
 {
   "type":"createaddition:rolling",
-  "ingredients": [
+  "input":
     {
       "tag": "forge:plates/pig_iron"
-    }
-  ],
-  "results": [
+    },  
+  "result":
     {
       "item": "vintageimprovements:pig_iron_wire",
 		"count": 2
-    }
-  ],
+    },  
   "conditions": [ {
 		"type": "forge:mod_loaded",
 		"modid": "createaddition"
