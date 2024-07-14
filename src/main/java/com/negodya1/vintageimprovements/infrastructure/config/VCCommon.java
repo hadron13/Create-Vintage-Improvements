@@ -15,7 +15,7 @@ public class VCCommon extends ConfigBase {
 	}
 
 	private static class Comments {
-		static String common = "Client/seerver settings";
+		static String common = "Client/server settings";
 		static String defaultBeltGrinderSkin = "Defines default Belt Grinder appearance";
 	}
 }

@@ -136,10 +136,9 @@ public class VintageImprovements {
     public static final RegistryObject<Item> SMALL_NETHERSTEEL_SPRING = ITEMS.register("small_nethersteel_spring", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SMALL_NETHERITE_SPRING = ITEMS.register("small_netherite_spring", () -> new Item(new Item.Properties().fireResistant()));
 
-
     public static final RegistryObject<Item> GRINDER_BELT = ITEMS.register("grinder_belt", () -> new Item(new Item.Properties()));
-
     public static final RegistryObject<Item> SPRING_COILING_MACHINE_WHEEL = ITEMS.register("spring_coiling_machine_wheel", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LASER_ITEM = ITEMS.register("laser_item", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> SULFUR_CHUNK = ITEMS.register("sulfur_chunk", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SULFUR = ITEMS.register("sulfur", () -> new Item(new Item.Properties()));
@@ -158,6 +157,7 @@ public class VintageImprovements {
     public static final RegistryObject<Item> ZINC_SHEET = ITEMS.register("zinc_sheet", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SHADOW_STEEL_SHEET = ITEMS.register("shadow_steel_sheet", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
+    public static boolean useEnergy = false;
 
     public static final RegistryObject<CreativeModeTab> VINTAGE_IMPROVEMENT_TAB = CREATIVE_MODE_TABS.register("vintage_improvement_tab", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.COMBAT)
@@ -178,6 +178,7 @@ public class VintageImprovements {
                 output.accept(VintageBlocks.CURVING_PRESS.get());
                 output.accept(VintageBlocks.HELVE.get());
                 output.accept(VintageBlocks.LATHE_ROTATING.get());
+                output.accept(VintageBlocks.LASER.get());
 
                 output.accept(VintageItems.CONVEX_CURVING_HEAD.get());
                 output.accept(VintageItems.CONCAVE_CURVING_HEAD.get());
@@ -186,6 +187,7 @@ public class VintageImprovements {
 
                 output.accept(GRINDER_BELT.get());
                 output.accept(SPRING_COILING_MACHINE_WHEEL.get());
+                output.accept(LASER_ITEM.get());
                 output.accept(VintageItems.REDSTONE_MODULE.get());
 
                 output.accept(SULFUR_CHUNK.get());
@@ -629,6 +631,10 @@ public class VintageImprovements {
     public VintageImprovements() {
         onCtor();
         MinecraftForge.EVENT_BUS.register(this);
+
+        useEnergy = ModList.get().isLoaded("createaddition") || ModList.get().isLoaded("mekanism")
+        || ModList.get().isLoaded("thermal") || ModList.get().isLoaded("botarium")
+                || ModList.get().isLoaded("immersiveengineering");
     }
 
     public static void onCtor() {

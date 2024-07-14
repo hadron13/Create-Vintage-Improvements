@@ -19,6 +19,7 @@ import com.negodya1.vintageimprovements.content.kinetics.grinder.GrinderBlockEnt
 import com.negodya1.vintageimprovements.content.kinetics.grinder.PolishingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.AutoSmithingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.HammeringRecipe;
+import com.negodya1.vintageimprovements.content.kinetics.laser.LaserCuttingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.lathe.TurningRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.LeavesVibratingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.VibratingRecipe;
@@ -203,6 +204,13 @@ public class VintageJEI implements IModPlugin {
 				.itemIcon(VintageBlocks.LATHE_ROTATING.get())
 				.emptyBackground(177, 70)
 				.build("turning", TurningCategory::new));
+
+		ALL.add(builder(LaserCuttingRecipe.class)
+				.addTypedRecipes(VintageRecipes.LASER_CUTTING::getType)
+				.catalyst(VintageBlocks.LASER::get)
+				.itemIcon(VintageBlocks.LASER)
+				.emptyBackground(177, 85)
+				.build("laser_cutting", LaserCuttingCategory::new));
 
 		ALL.forEach(registration::addRecipeCategories);
 	}

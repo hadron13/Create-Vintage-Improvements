@@ -54,15 +54,7 @@ import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.StonecutterRecipe;
-import net.minecraft.world.level.block.BambooStalkBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CactusBlock;
-import net.minecraft.world.level.block.ChorusPlantBlock;
-import net.minecraft.world.level.block.KelpBlock;
-import net.minecraft.world.level.block.KelpPlantBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.StemGrownBlock;
-import net.minecraft.world.level.block.SugarCaneBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -384,8 +376,8 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 			List<ItemStack> list = new ArrayList<>();
 			for (int roll = 0; roll < rolls; roll++) {
 				List<ItemStack> results = new LinkedList<ItemStack>();
-				if (recipe instanceof SandPaperPolishingRecipe)
-					results = ((SandPaperPolishingRecipe) recipe).rollResults();
+				if (recipe instanceof SandPaperPolishingRecipe sandRecipe)
+					results = sandRecipe.rollResults();
 
 				for (int i = 0; i < results.size(); i++) {
 					ItemStack stack = results.get(i);
@@ -395,7 +387,6 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 
 			for (int slot = 0; slot < list.size() && slot + 1 < inventory.getSlots(); slot++)
 				inventory.setStackInSlot(slot + 1, list.get(slot));
-
 			return;
 		}
 

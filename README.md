@@ -232,6 +232,23 @@ Usually recipes are selected manually. But you can automate this process with th
 </details>
 
 <details>
+<summary>Laser</summary>
+
+Laser craft
+
+![Laser head craft](https://cdn.modrinth.com/data/S27aYArf/images/0958fe0bfa11781d26c9f530e44de5f35a963f69.png)
+
+![Laser craft](https://cdn.modrinth.com/data/S27aYArf/images/831e8bd35186938943cbe99afe2adf47b148e255.png)
+
+Laser provides **laser cutting** recipes
+
+![Laser Cutting Example](https://cdn.modrinth.com/data/S27aYArf/images/64ba7d227841d359e33405c03643e0af40384f49.png)
+
+Laser consumes energy during works (only if another mod that provides energy is installed). Vintage Improvements doesn't provides any energy sources, but any sources of Forge Energy is supported: [Mekanism](https://modrinth.com/mod/mekanism-generators), [Thermal Expansion](https://modrinth.com/mod/thermal-expansion), [Create Crafts & Additions](https://modrinth.com/mod/createaddition), [Botarium](https://modrinth.com/mod/botarium), [Immersive Engineering](https://modrinth.com/mod/immersiveengineering)
+
+</details>
+
+<details>
 <summary>Sulfur & Sulfuric Acid</summary>
 
 ![Surfuric Items](https://cdn.modrinth.com/data/S27aYArf/images/5713cb088d9dab801482db3452d5b2128a4ce632.png)

@@ -8,6 +8,7 @@ import com.negodya1.vintageimprovements.content.kinetics.coiling.CoilingBlock;
 import com.negodya1.vintageimprovements.content.kinetics.coiling.CoilingGenerator;
 import com.negodya1.vintageimprovements.content.kinetics.curving_press.CurvingPressBlock;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.*;
+import com.negodya1.vintageimprovements.content.kinetics.laser.LaserBlock;
 import com.negodya1.vintageimprovements.content.kinetics.lathe.LatheGenerator;
 import com.negodya1.vintageimprovements.content.kinetics.lathe.LatheItem;
 import com.negodya1.vintageimprovements.content.kinetics.lathe.LatheMovingBlock;
@@ -29,8 +30,9 @@ import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.common.Tags;
 
@@ -178,6 +180,18 @@ public class VintageBlocks {
                     .transform(axeOrPickaxe())
                     .transform(BlockStressDefaults.setImpact(4.0))
                     .lang("Lathe")
+                    .register();
+
+    public static final BlockEntry<LaserBlock> LASER =
+            MY_REGISTRATE.block("laser", LaserBlock::new)
+                    .initialProperties(SharedProperties::stone)
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .properties(p -> p.noOcclusion().mapColor(MapColor.PODZOL))
+                    .transform(axeOrPickaxe())
+                    .blockstate(BlockStateGen.horizontalBlockProvider(true))
+                    .transform(BlockStressDefaults.setImpact(2.0))
+                    .item(AssemblyOperatorBlockItem::new)
+                    .transform(customItemModel())
                     .register();
 
     //Building blocks

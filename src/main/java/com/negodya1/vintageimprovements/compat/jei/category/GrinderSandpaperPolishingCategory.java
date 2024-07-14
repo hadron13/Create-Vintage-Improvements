@@ -4,6 +4,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.compat.jei.category.animations.AnimatedGrinder;
+import com.negodya1.vintageimprovements.foundation.gui.VintageGuiTextures;
 import com.negodya1.vintageimprovements.infrastructure.config.VintageConfig;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
 import com.simibubi.create.content.equipment.sandPaper.SandPaperPolishingRecipe;
@@ -57,22 +58,23 @@ public class GrinderSandpaperPolishingCategory extends CreateRecipeCategory<Sand
 
 		grinder.draw(graphics, 72, 42);
 
-		graphics.drawString(Minecraft.getInstance().font,  Component.translatable(VintageImprovements.MODID + ".jei.text.required_speed"), 40, 75, 0xFFFFFF);
-
 		int speedLimits = VintageConfig.server().recipes.speedLimitsForSandpaperPolishingRecipes.get();
 		switch (speedLimits) {
-			case 1:
-				graphics.drawString(Minecraft.getInstance().font,  Component.translatable(VintageImprovements.MODID + ".jei.text.low"), 128, 75, 0x00FF00);
-				break;
-			case 2:
-				graphics.drawString(Minecraft.getInstance().font,  Component.translatable(VintageImprovements.MODID + ".jei.text.medium"), 128, 75, 0xFFFF00);
-				break;
-			case 3:
-				graphics.drawString(Minecraft.getInstance().font,  Component.translatable(VintageImprovements.MODID + ".jei.text.high"), 128, 75, 0xFF0000);
-				break;
-			default:
-				graphics.drawString(Minecraft.getInstance().font,  Component.translatable(VintageImprovements.MODID + ".jei.text.any"), 128, 75, 0xFFFFFF);
-				break;
+			case 1 ->
+					graphics.drawCenteredString(Minecraft.getInstance().font, Component.translatable(VintageImprovements.MODID + ".jei.text.required_speed").append(" ").append(Component.translatable(VintageImprovements.MODID + ".jei.text.low")), 88, 75, 0x00FF00);
+			case 2 ->
+					graphics.drawCenteredString(Minecraft.getInstance().font, Component.translatable(VintageImprovements.MODID + ".jei.text.required_speed").append(" ").append(Component.translatable(VintageImprovements.MODID + ".jei.text.medium")), 88, 75, 0xFFFF00);
+			case 3 ->
+					graphics.drawCenteredString(Minecraft.getInstance().font, Component.translatable(VintageImprovements.MODID + ".jei.text.required_speed").append(" ").append(Component.translatable(VintageImprovements.MODID + ".jei.text.high")), 88, 75, 0xFF0000);
+			default ->
+					graphics.drawCenteredString(Minecraft.getInstance().font, Component.translatable(VintageImprovements.MODID + ".jei.text.required_speed").append(" ").append(Component.translatable(VintageImprovements.MODID + ".jei.text.any")), 88, 75, 0xFFFFFF);
+		}
+
+		if (VintageConfig.server().recipes.destroyOnWrongGrinderSpeed.get()) {
+			VintageGuiTextures.JEI_FRAGILE.render(graphics, 2, 62);
+			if (mouseX >= 2 && mouseX <= 15 && mouseY >= 62 && mouseY <= 85)
+				graphics.renderTooltip(Minecraft.getInstance().font,
+						Component.translatable(VintageImprovements.MODID + ".jei.text.fragile"), (int)mouseX,  (int)mouseY);
 		}
 	}
 

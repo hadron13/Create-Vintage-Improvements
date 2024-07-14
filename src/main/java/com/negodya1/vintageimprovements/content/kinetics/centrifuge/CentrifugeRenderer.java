@@ -88,6 +88,11 @@ public class CentrifugeRenderer extends KineticBlockEntityRenderer<CentrifugeBlo
 		SuperByteBuffer superBuffer = CachedBufferer.partial(VintagePartialModels.CENTRIFUGE_BEAMS, blockState);
 		standardKineticRotationTransform(superBuffer, be, light).renderInto(ms, vb);
 
+		if (be.getRedstoneApp()) {
+			SuperByteBuffer redstoneBuffer = CachedBufferer.partial(VintagePartialModels.REDSTONE_MODULE_CENTRIFUGE, blockState);
+			standardKineticRotationTransform(redstoneBuffer, be, light).renderInto(ms, vb);
+		}
+
 		if (be.getBasins() > 0) {
 			superBuffer = CachedBufferer.partial(VintagePartialModels.BASIN, blockState);
 			standardKineticRotationTransform(superBuffer, be, light).translate(28 / 16f, 0, 0).renderInto(ms, vb);
@@ -196,11 +201,6 @@ public class CentrifugeRenderer extends KineticBlockEntityRenderer<CentrifugeBlo
 								renderItem(be, pos, ms, buffer, light, overlay, intAttached.getValue());
 								ms.popPose();
 							}
-						}
-
-						if (be.getRedstoneApp()) {
-							superBuffer = CachedBufferer.partial(VintagePartialModels.REDSTONE_MODULE_CENTRIFUGE, blockState);
-							standardKineticRotationTransform(superBuffer, be, light).renderInto(ms, vb);
 						}
 					}
 				}

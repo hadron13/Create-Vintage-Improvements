@@ -43,7 +43,9 @@ public class VintagePartialModels {
 		LATHE_ROTATING_HEAD = block("lathe/rotating_head"),
 		LATHE_MOVING_HEAD = block("lathe/moving_head"),
 	    LATHE_SLOT = block("lathe/slot"),
-		LATHE_SLOT_FULL = block("lathe/slot_full");
+		LATHE_SLOT_FULL = block("lathe/slot_full"),
+		LASER_HEAD = block("laser/head"),
+		LASER_BEAM = block("laser/beam");
 	private static PartialModel block(String path) {
 		return new PartialModel(VintageImprovements.asResource("block/" + path));
 	}

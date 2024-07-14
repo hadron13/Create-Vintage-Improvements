@@ -314,6 +314,11 @@
 	"vintageimprovements.recipe.turning": "Turning",
 	"vintageimprovements.lathe.item_slot": "Current ingredient",
 	
+	"block.vintageimprovements.laser": "Laser",
+	"item.vintageimprovements.laser_item": "Laser",
+	"vintageimprovements.recipe.assembly.laser_cutting": "Process with Laser",
+	"vintageimprovements.recipe.laser_cutting": "Laser Cutting",
+	
 	"vintageimprovements.recipe.assembly.with": "with",
 	"vintageimprovements.recipe.assembly.and": "&",
 	"vintageimprovements.recipe.assembly.on": "on",
@@ -401,6 +406,14 @@
     "vintageimprovements.ponder.lathe_automation.text_3": "Then you must put it inside a back Lathe block",
     "vintageimprovements.ponder.lathe_automation.text_4": "Lathe will automatically apply chosen recipe",
 	
+	"vintageimprovements.ponder.laser.header": "Processing Items with the Laser",
+    "vintageimprovements.ponder.laser.text_1": "The Laser consumes energy during works (only if another mod that provides energy is installed)",
+    "vintageimprovements.ponder.laser.text_2": "Any sources of Forge Energy are supported",
+    "vintageimprovements.ponder.laser.text_3": "The Laser can process items provided beneath it",
+    "vintageimprovements.ponder.laser.text_4": "The Input items can be dropped or placed on a Depot under the Laser",
+    "vintageimprovements.ponder.laser.text_5": "When items are provided by a belt...",
+    "vintageimprovements.ponder.laser.text_6": "The Laser will hold and process them automatically",
+	
 	"vintageimprovements.jei.text.required_speed": "Required Speed:",
 	"vintageimprovements.jei.text.low": "Low",
 	"vintageimprovements.jei.text.medium": "Medium",
@@ -431,6 +444,8 @@
 	
 	"vintageimprovements.jei.text.curving_head_damage": "Head Damage",
 	
+	"vintageimprovements.jei.text.energy": "Energy costs:",
+	
 	"vintageimprovements.gui.goggles.low": "Low",
 	"vintageimprovements.gui.goggles.medium": "Medium",
 	"vintageimprovements.gui.goggles.high": "High",
@@ -455,6 +470,8 @@
 	
 	"vintageimprovements.gui.goggles.curving_head": "Head: ",
 	"vintageimprovements.gui.goggles.durability": "Head's Durability",
+	
+	"vintageimprovements.gui.goggles.energy": "Energy:",
 	
 	"vintageimprovements.gui.lathe.title": "Lathe",
 	

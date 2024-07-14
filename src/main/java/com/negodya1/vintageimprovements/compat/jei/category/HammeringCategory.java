@@ -93,9 +93,9 @@ public class HammeringCategory extends CreateRecipeCategory<HammeringRecipe> {
 		}
 		else helve.draw(graphics, 86, 6,1);
 
-		graphics.drawString(Minecraft.getInstance().font,
+		graphics.drawCenteredString(Minecraft.getInstance().font,
 				Component.translatable(VintageImprovements.MODID + ".jei.text.hammer_blows").append(" " + recipe.getHammerBlows()),
-				40, 75, 0xFFFFFF);
+				88, 75, 0xFFFFFF);
 	}
 
 }

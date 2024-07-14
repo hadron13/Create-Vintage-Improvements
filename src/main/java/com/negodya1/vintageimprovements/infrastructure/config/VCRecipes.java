@@ -7,6 +7,7 @@ public class VCRecipes extends ConfigBase {
 
 	public final ConfigGroup recipes = group(0, "recipes",
 			Comments.recipes);
+
 	public final ConfigGroup grinder = group(1, "grinder",
 			Comments.grinder);
 	public final ConfigBool destroyOnWrongGrinderSpeed =
@@ -47,9 +48,9 @@ public class VCRecipes extends ConfigBase {
 	}
 
 	private static class Comments {
-		static String destroyOnWrongGrinderSpeed = "Destroy item, when it inserted in grinder with wrong recipe speed.";
-		static String lowSpeedValue = "Low speed value for grinder crafts, speed_limits = 1.";
-		static String mediumSpeedValue = "Medium speed value for grinder crafts, speed_limits = 2.";
+		static String destroyOnWrongGrinderSpeed = "Destroy item, when it inserted in grinder with wrong recipe speed. Only for sandpaper recipes.";
+		static String lowSpeedValue = "Low speed value for grinder crafts, speedLimits = 1.";
+		static String mediumSpeedValue = "Medium speed value for grinder crafts, speedLimits = 2.";
 		static String allowSandpaperPolishingOnGrinder = "Allows sandpaper crafts on belt grinder, when recipes collides belt grinder recipe have priority.";
 		static String speedLimitsForSandpaperPolishingRecipes = "Works only when \"allowSandpaperPolishingOnGrinder\" is true. Defines speed limits for sandpaper recipes on belt grinder.";
 		static String allowUnpackingOnVibratingTable = "Allows unpacking storage blocks crafts on vibrating table.";

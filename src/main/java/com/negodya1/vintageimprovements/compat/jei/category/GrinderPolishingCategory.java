@@ -16,6 +16,7 @@ import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -57,22 +58,16 @@ public class GrinderPolishingCategory extends CreateRecipeCategory<PolishingReci
 
 		grinder.draw(graphics, 72, 42);
 
-		graphics.drawString(Minecraft.getInstance().font,  Component.translatable(VintageImprovements.MODID + ".jei.text.required_speed"), 40, 75, 0xFFFFFF);
-
 		int speedLimits = recipe.getSpeedLimits();
 		switch (speedLimits) {
-			case 1:
-				graphics.drawString(Minecraft.getInstance().font,  Component.translatable(VintageImprovements.MODID + ".jei.text.low"), 128, 75, 0x00FF00);
-				break;
-			case 2:
-				graphics.drawString(Minecraft.getInstance().font,  Component.translatable(VintageImprovements.MODID + ".jei.text.medium"), 128, 75, 0xFFFF00);
-				break;
-			case 3:
-				graphics.drawString(Minecraft.getInstance().font,  Component.translatable(VintageImprovements.MODID + ".jei.text.high"), 128, 75, 0xFF0000);
-				break;
-			default:
-				graphics.drawString(Minecraft.getInstance().font,  Component.translatable(VintageImprovements.MODID + ".jei.text.any"), 128, 75, 0xFFFFFF);
-				break;
+			case 1 ->
+					graphics.drawCenteredString(Minecraft.getInstance().font, Component.translatable(VintageImprovements.MODID + ".jei.text.required_speed").append(" ").append(Component.translatable(VintageImprovements.MODID + ".jei.text.low")), 88, 75, 0x00FF00);
+			case 2 ->
+					graphics.drawCenteredString(Minecraft.getInstance().font, Component.translatable(VintageImprovements.MODID + ".jei.text.required_speed").append(" ").append(Component.translatable(VintageImprovements.MODID + ".jei.text.medium")), 88, 75, 0xFFFF00);
+			case 3 ->
+					graphics.drawCenteredString(Minecraft.getInstance().font, Component.translatable(VintageImprovements.MODID + ".jei.text.required_speed").append(" ").append(Component.translatable(VintageImprovements.MODID + ".jei.text.high")), 88, 75, 0xFF0000);
+			default ->
+					graphics.drawCenteredString(Minecraft.getInstance().font, Component.translatable(VintageImprovements.MODID + ".jei.text.required_speed").append(" ").append(Component.translatable(VintageImprovements.MODID + ".jei.text.any")), 88, 75, 0xFFFFFF);
 		}
 
 		if (recipe.isFragile()) {

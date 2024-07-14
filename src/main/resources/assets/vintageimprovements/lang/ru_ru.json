@@ -314,6 +314,11 @@
 	"vintageimprovements.recipe.turning": "Точение",
 	"vintageimprovements.lathe.item_slot": "Текущий ингредиент",
 	
+	"block.vintageimprovements.laser": "Лазер",
+	"item.vintageimprovements.laser_item": "Лазер",
+	"vintageimprovements.recipe.assembly.laser_cutting": "Обработайте лазером",
+	"vintageimprovements.recipe.laser_cutting": "Лазерная резка",
+	
 	"vintageimprovements.recipe.assembly.with": "вместе с",
 	"vintageimprovements.recipe.assembly.and": "и",
 	"vintageimprovements.recipe.assembly.on": "на",
@@ -401,6 +406,14 @@
     "vintageimprovements.ponder.lathe_automation.text_3": "Затем поместите карточку в тыльный блок токарного станка",
     "vintageimprovements.ponder.lathe_automation.text_4": "Теперь токарный станок будет автоматически обрабатывать выбранный рецепт",
 	
+	"vintageimprovements.ponder.laser.header": "Обработкой предметов лазером",
+    "vintageimprovements.ponder.laser.text_1": "Лазер потребляет энергию во время работы (только если установлен какой-либо мод предоставляющий энергию)",
+    "vintageimprovements.ponder.laser.text_2": "Поддерживаются любые источники FE",
+    "vintageimprovements.ponder.laser.text_3": "Лазер может обрабатывать предметы под собой",
+    "vintageimprovements.ponder.laser.text_4": "Подаваемые предметы должны быть брошены или помещены на депо под лазер",
+    "vintageimprovements.ponder.laser.text_5": "Когда предметы подаются на конвейере...",
+    "vintageimprovements.ponder.laser.text_6": "...лазер будет задерживать и резать их автоматически",
+	
 	"vintageimprovements.jei.text.required_speed": "Треб. Скорость:",
 	"vintageimprovements.jei.text.low": "Низкая",
 	"vintageimprovements.jei.text.medium": "Средняя",
@@ -431,6 +444,8 @@
 	
 	"vintageimprovements.jei.text.curving_head_damage": "Урон насадке",
 	
+	"vintageimprovements.jei.text.energy": "Затраты энергии:",
+	
 	"vintageimprovements.gui.goggles.low": "Низкая",
 	"vintageimprovements.gui.goggles.medium": "Средняя",
 	"vintageimprovements.gui.goggles.high": "Высокая",
@@ -455,6 +470,8 @@
 	
 	"vintageimprovements.gui.goggles.curving_head": "Насадка: ",
 	"vintageimprovements.gui.goggles.durability": "Прочность насадки",
+	
+	"vintageimprovements.gui.goggles.energy": "Энергия:",
 	
 	"vintageimprovements.gui.lathe.title": "Токарный станок",
 	

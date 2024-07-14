@@ -14,6 +14,9 @@ import com.negodya1.vintageimprovements.content.kinetics.grinder.GrinderBlockEnt
 import com.negodya1.vintageimprovements.content.kinetics.grinder.GrinderInstance;
 import com.negodya1.vintageimprovements.content.kinetics.grinder.GrinderRenderer;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.*;
+import com.negodya1.vintageimprovements.content.kinetics.laser.LaserBlockEntity;
+import com.negodya1.vintageimprovements.content.kinetics.laser.LaserInstance;
+import com.negodya1.vintageimprovements.content.kinetics.laser.LaserRenderer;
 import com.negodya1.vintageimprovements.content.kinetics.lathe.*;
 import com.negodya1.vintageimprovements.content.kinetics.vacuum_chamber.VacuumChamberBlockEntity;
 import com.negodya1.vintageimprovements.content.kinetics.vacuum_chamber.VacuumChamberInstance;
@@ -95,6 +98,13 @@ public class VintageBlockEntity {
             .instance(() -> LatheMovingInstance::new)
             .validBlocks(VintageBlocks.LATHE_MOVING)
             .renderer(() -> LatheMovingRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<LaserBlockEntity> LASER = MY_REGISTRATE
+            .blockEntity("laser", LaserBlockEntity::new)
+            .instance(() -> LaserInstance::new)
+            .validBlocks(VintageBlocks.LASER)
+            .renderer(() -> LaserRenderer::new)
             .register();
 
     public static void register() {}

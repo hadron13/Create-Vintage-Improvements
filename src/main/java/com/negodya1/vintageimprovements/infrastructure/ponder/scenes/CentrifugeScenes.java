@@ -72,7 +72,6 @@ public class CentrifugeScenes {
 		scene.world.setBlock(centrifuge.above(), AllBlocks.SHAFT.getDefaultState().setValue(AXIS, Direction.Axis.Y), false);
 		scene.world.setKineticSpeed(util.select.position(centrifuge.above()), 100);
 
-
 		scene.world.showSection(cogs, Direction.DOWN);
 		scene.world.showSection(util.select.position(5, 1, 2), Direction.DOWN);
 		scene.idle(10);

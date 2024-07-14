@@ -54,6 +54,9 @@ public class VintagePonder {
 
         HELPER.addStoryBoard(VintageItems.RECIPE_CARD, "lathe/automation", LatheScenes::automation);
 
+        HELPER.forComponents(VintageBlocks.LASER)
+                .addStoryBoard("laser/processing", LaserScenes::processing, AllPonderTags.KINETIC_APPLIANCES);
+
         PonderRegistry.TAGS.forTag(AllPonderTags.KINETIC_APPLIANCES)
                 .add(VintageBlocks.BELT_GRINDER)
                 .add(VintageBlocks.SPRING_COILING_MACHINE)
@@ -62,7 +65,8 @@ public class VintagePonder {
                 .add(VintageBlocks.CENTRIFUGE)
                 .add(VintageBlocks.CURVING_PRESS)
                 .add(VintageBlocks.HELVE)
-                .add(VintageBlocks.LATHE_ROTATING);
+                .add(VintageBlocks.LATHE_ROTATING)
+                .add(VintageBlocks.LASER);
 
         PonderRegistry.TAGS.forTag(AllPonderTags.REDSTONE)
                 .add(VintageItems.REDSTONE_MODULE);
