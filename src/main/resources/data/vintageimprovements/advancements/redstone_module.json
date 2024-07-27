@@ -1,0 +1,39 @@
+{
+  "parent": "vintageimprovements:vibrating",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vintageimprovements:redstone_module"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "color": "#DBA213",
+      "translate": "advancement.vintageimprovements.redstone_module.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "vintageimprovements:redstone_module"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.vintageimprovements.redstone_module"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -4,6 +4,7 @@ import com.negodya1.vintageimprovements.VintageBlockEntity;
 import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.VintageItems;
 import com.negodya1.vintageimprovements.content.kinetics.centrifuge.CentrifugeStructuralBlockEntity;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllShapes;
@@ -19,6 +20,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -34,7 +36,15 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import javax.annotation.Nullable;
+
 public class CurvingPressBlock extends HorizontalKineticBlock implements IBE<CurvingPressBlockEntity> {
+
+	@Override
+	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+		VintageAdvancementBehaviour.setPlacedBy(level, pos, placer);
+		super.setPlacedBy(level, pos, state, placer, stack);
+	}
 
 	public static final TagKey<Item> headTag = ItemTags.create(new ResourceLocation("vintageimprovements", "curving_heads"));
 

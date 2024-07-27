@@ -7,6 +7,8 @@ import com.google.common.collect.ImmutableList;
 import com.negodya1.vintageimprovements.VintageRecipes;
 import com.negodya1.vintageimprovements.content.kinetics.centrifuge.CentrifugeBlock;
 import com.negodya1.vintageimprovements.content.kinetics.centrifuge.CentrifugeBlockEntity;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancements;
 import com.negodya1.vintageimprovements.foundation.utility.VintageLang;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllSoundEvents;
@@ -72,6 +74,7 @@ public class VacuumChamberBlockEntity extends BasinOperatingBlockEntity {
 	public LazyOptional<IFluidHandler> fluidCapability;
 	boolean contentsChanged;
 	boolean mode;
+	VintageAdvancementBehaviour advancementBehaviour;
 
 	public VacuumChamberBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
@@ -123,6 +126,9 @@ public class VacuumChamberBlockEntity extends BasinOperatingBlockEntity {
 			LazyOptional<? extends IFluidHandler> outputCap = outputTank.getCapability();
 			return new VacuumChamberTanksHandler(outputCap.orElse(null), inputCap.orElse(null));
 		});
+
+		advancementBehaviour = new VintageAdvancementBehaviour(this);
+		behaviours.add(advancementBehaviour);
 	}
 
 	private class VacuumChamberTanksHandler extends CombinedTankWrapper {
@@ -228,6 +234,7 @@ public class VacuumChamberBlockEntity extends BasinOperatingBlockEntity {
 				return;
 		getProcessedRecipeTrigger().ifPresent(this::award);
 		basin.inputTank.sendDataImmediately();
+		advancementBehaviour.awardVintageAdvancement(VintageAdvancements.USE_COMPRESSOR);
 
 		// Continue mixing
 		if (wasEmpty && matchBasinRecipe(currentRecipe)) {

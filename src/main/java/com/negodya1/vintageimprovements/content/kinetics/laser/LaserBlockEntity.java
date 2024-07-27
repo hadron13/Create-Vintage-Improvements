@@ -14,6 +14,8 @@ import com.negodya1.vintageimprovements.content.energy.base.ElectricKineticBlock
 import com.negodya1.vintageimprovements.content.kinetics.coiling.CoilingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.curving_press.CurvingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.laser.LaserCuttingRecipe;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancements;
 import com.negodya1.vintageimprovements.foundation.utility.VintageLang;
 import com.negodya1.vintageimprovements.infrastructure.config.VCEnergy;
 import com.negodya1.vintageimprovements.infrastructure.config.VintageConfig;
@@ -62,8 +64,8 @@ public class LaserBlockEntity extends ElectricKineticBlockEntity implements IHav
 	private final ItemStackHandler inputInv;
 	private int chargeAccumulator;
 	protected int poweredTimer = 0;
-
 	int oldEnergyCount;
+	VintageAdvancementBehaviour advancementBehaviour;
 
 	public LaserBlockEntity(BlockEntityType<?> tileEntityTypeIn, BlockPos pos, BlockState state) {
 		super(tileEntityTypeIn, pos, state);
@@ -97,6 +99,8 @@ public class LaserBlockEntity extends ElectricKineticBlockEntity implements IHav
 			new BeltProcessingBehaviour(this).whenItemEnters((s, i) -> LaserBeltCallbacks.onItemReceived(s, i, this))
 				.whileItemHeld((s, i) -> LaserBeltCallbacks.whenItemHeld(s, i, this));
 		behaviours.add(processingBehaviour);
+		advancementBehaviour = new VintageAdvancementBehaviour(this);
+		behaviours.add(advancementBehaviour);
 	}
 
 	@Override
@@ -208,6 +212,7 @@ public class LaserBlockEntity extends ElectricKineticBlockEntity implements IHav
 				outList.add(result);
 				handler.handleProcessingOnItem(transported, TransportedItemStackHandlerBehaviour.TransportedResult.convertToAndLeaveHeld(outList, remainingStack));
 				chargeAccumulator = 0;
+				advancementBehaviour.awardVintageAdvancement(VintageAdvancements.USE_LASER);
 			}
 			return true;
 		}
@@ -248,6 +253,7 @@ public class LaserBlockEntity extends ElectricKineticBlockEntity implements IHav
 					level.addFreshEntity(created);
 				}
 				item.shrink(recipe.getIngredients().size());
+				advancementBehaviour.awardVintageAdvancement(VintageAdvancements.USE_LASER);
 
 				chargeAccumulator = 0;
 				return true;

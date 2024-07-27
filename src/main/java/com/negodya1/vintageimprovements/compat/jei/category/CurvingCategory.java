@@ -95,15 +95,15 @@ public class CurvingCategory extends CreateRecipeCategory<CurvingRecipe> {
 				if (!new ItemStack(recipe.getItemAsHead()).isDamageableItem()) return;
 			if (recipe.getHeadDamage() < 0) {
 				if (VintageConfig.server().recipes.damageHeadAfterAutoCurvingRecipe.get() == 0) return;
-				graphics.drawString(Minecraft.getInstance().font,
+				graphics.drawCenteredString(Minecraft.getInstance().font,
 						Component.translatable(VintageImprovements.MODID + ".jei.text.curving_head_damage").append( ": "
 								+ VintageConfig.server().recipes.damageHeadAfterAutoCurvingRecipe.get()),
-						40, 75, 0xFFFFFF);
+						88, 75, 0xFFFFFF);
 			}
-			else graphics.drawString(Minecraft.getInstance().font,
+			else graphics.drawCenteredString(Minecraft.getInstance().font,
 						Component.translatable(VintageImprovements.MODID + ".jei.text.curving_head_damage").append( ": "
 								+ recipe.getHeadDamage()),
-						40, 75, 0xFFFFFF);
+					88, 75, 0xFFFFFF);
 		}
 	}
 

@@ -1,0 +1,30 @@
+{
+    "parent": "vintageimprovements:belt_grinder",
+    "criteria": {
+      "belt_grinder": {
+        "conditions": {},
+        "trigger": "vintageimprovements:belt_grinder_skin_change"
+      }
+    },
+    "display": {
+    "announce_to_chat": false,
+    "description": {
+      "color": "#DBA213",
+      "translate": "advancement.vintageimprovements.belt_grinder_skin_change.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "create:red_sand_paper"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.vintageimprovements.belt_grinder_skin_change"
+    }
+  },
+    "requirements": [
+      [
+        "belt_grinder"
+      ]
+    ]
+  }

@@ -156,4 +156,56 @@ public class HelveScenes {
 		scene.idle(25);
 		scene.world.modifyEntities(ItemEntity.class, Entity::discard);
 	}
+
+	public static void slots_blocking(SceneBuilder scene, SceneBuildingUtil util) {
+		scene.title("slots_blocking", "Helve Hammer slots blocking");
+		scene.configureBasePlate(0, 0, 5);
+
+		scene.world.showSection(util.select.layer(0), Direction.UP);
+
+		BlockPos helve = util.grid.at(1, 2, 2);
+		Selection helveSelect = util.select.position(1, 2, 2);
+
+		BlockPos helveKinetic = util.grid.at(3, 2, 2);
+		Selection helveKineticSelect = util.select.position(3, 2, 2);
+
+		scene.idle(5);
+		scene.world.showSection(util.select.fromTo(helve.below(), helveKinetic.below()), Direction.DOWN);
+		scene.idle(10);
+		scene.world.showSection(util.select.fromTo(helve, helveKinetic), Direction.DOWN);
+		scene.idle(10);
+		Vec3 helveTop = util.vector.centerOf(helve);
+		scene.overlay.showText(40)
+				.attachKeyFrame()
+				.text("Some recipes may require less then 3 ingredients")
+				.pointAt(helveTop)
+				.placeNearTarget();
+		scene.idle(50);
+
+		scene.overlay.showText(40)
+				.attachKeyFrame()
+				.text("You can block redundant slots with Helve Hammer Slot Cover")
+				.pointAt(helveTop)
+				.placeNearTarget();
+		scene.idle(50);
+
+		ItemStack stack = new ItemStack(VintageItems.HELVE_HAMMER_SLOT_COVER.get());
+
+		scene.overlay.showControls(
+				new InputWindowElement(util.vector.blockSurface(helve, Direction.NORTH), Pointing.RIGHT).rightClick()
+						.withItem(stack),
+				40);
+		scene.idle(50);
+
+		scene.overlay.showText(40)
+				.attachKeyFrame()
+				.text("You can remove Slot Covers via right-click with a Wrench")
+				.pointAt(helveTop)
+				.placeNearTarget();
+		scene.idle(50);
+
+		scene.markAsFinished();
+		scene.idle(25);
+		scene.world.modifyEntities(ItemEntity.class, Entity::discard);
+	}
 }

@@ -4,6 +4,8 @@ import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.VintageRecipes;
 import com.negodya1.vintageimprovements.VintageRecipesList;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.HelveBlock;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancements;
 import com.negodya1.vintageimprovements.infrastructure.config.VintageConfig;
 import com.simibubi.create.AllSoundEvents;
 import com.simibubi.create.content.kinetics.base.IRotate;
@@ -63,6 +65,7 @@ public class VibratingTableBlockEntity extends KineticBlockEntity {
 	private VibratingRecipe lastRecipe;
 	private ItemStack playEvent;
 	boolean lastRecipeIsAssembly;
+	VintageAdvancementBehaviour advancementBehaviour;
 
 	public static final TagKey<Item> storageTag = ItemTags.create(new ResourceLocation("forge", "storage_blocks"));
 	public static final TagKey<Item> leavesTag = ItemTags.create(new ResourceLocation("minecraft", "leaves"));
@@ -84,6 +87,8 @@ public class VibratingTableBlockEntity extends KineticBlockEntity {
 	public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
 		behaviours.add(new DirectBeltInputBehaviour(this));
 		super.addBehaviours(behaviours);
+		advancementBehaviour = new VintageAdvancementBehaviour(this);
+		behaviours.add(advancementBehaviour);
 	}
 
 	@Override
@@ -298,6 +303,7 @@ public class VibratingTableBlockEntity extends KineticBlockEntity {
 
 								ItemStack result = recipe.getResultItem(RegistryAccess.EMPTY).copy();
 								ItemHandlerHelper.insertItemStacked(outputInv, result, false);
+								advancementBehaviour.awardVintageAdvancement(VintageAdvancements.USE_VIBRATION_TABLE);
 
 								sendData();
 								setChanged();
@@ -327,6 +333,7 @@ public class VibratingTableBlockEntity extends KineticBlockEntity {
 
 				stackInSlot.shrink(1);
 				inputInv.setStackInSlot(0, stackInSlot);
+				advancementBehaviour.awardVintageAdvancement(VintageAdvancements.USE_VIBRATION_TABLE);
 
 				sendData();
 				setChanged();
@@ -349,6 +356,7 @@ public class VibratingTableBlockEntity extends KineticBlockEntity {
 			lastRecipe.rollResults()
 					.forEach(stack -> ItemHandlerHelper.insertItemStacked(outputInv, stack, false));
 		}
+		advancementBehaviour.awardVintageAdvancement(VintageAdvancements.USE_VIBRATION_TABLE);
 
 		sendData();
 		setChanged();

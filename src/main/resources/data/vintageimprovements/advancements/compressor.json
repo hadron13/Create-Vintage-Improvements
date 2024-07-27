@@ -1,0 +1,30 @@
+{
+    "parent": "vintageimprovements:iron_spring",
+    "criteria": {
+      "compressor": {
+        "conditions": {},
+        "trigger": "vintageimprovements:use_compressor"
+      }
+    },
+    "display": {
+    "announce_to_chat": false,
+    "description": {
+      "color": "#DBA213",
+      "translate": "advancement.vintageimprovements.compressor.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "vintageimprovements:vacuum_chamber"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.vintageimprovements.compressor"
+    }
+  },
+    "requirements": [
+      [
+        "compressor"
+      ]
+    ]
+  }

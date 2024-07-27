@@ -4,6 +4,8 @@ import com.negodya1.vintageimprovements.VintageBlocks;
 import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.VintageItems;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.HammeringRecipe;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancements;
 import com.negodya1.vintageimprovements.foundation.utility.VintageLang;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
@@ -84,6 +86,7 @@ public class CentrifugeBlockEntity extends KineticBlockEntity implements IHaveGo
 	List<IntAttached<ItemStack>> visualizedOutputItems;
 	LerpedFloat ingredientRotationSpeed;
 	LerpedFloat ingredientRotation;
+	VintageAdvancementBehaviour advancementBehaviour;
 
 	public CentrifugeBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
@@ -141,6 +144,9 @@ public class CentrifugeBlockEntity extends KineticBlockEntity implements IHaveGo
 			LazyOptional<? extends IFluidHandler> outputCap = outputTank.getCapability();
 			return new CentrifugeTanksHandler(outputCap.orElse(null), inputCap.orElse(null));
 		});
+
+		advancementBehaviour = new VintageAdvancementBehaviour(this);
+		behaviours.add(advancementBehaviour);
 	}
 
 	@Override
@@ -211,10 +217,13 @@ public class CentrifugeBlockEntity extends KineticBlockEntity implements IHaveGo
 	}
 
 	public boolean isProccesingNow() {
-		Optional<CentrifugationRecipe> recipe = SequencedAssemblyRecipe.getRecipe(level, inputInv,
-				VintageRecipes.CENTRIFUGATION.getType(), CentrifugationRecipe.class);
-
-		if (recipe.isPresent()) return CentrifugationRecipe.match(this, recipe.get());
+		for (int i = 0; i < inputInv.getSlots(); i++) {
+			Optional<CentrifugationRecipe> assemblyRecipe = SequencedAssemblyRecipe.
+					getRecipe(level, inputInv.getStackInSlot(i),
+							VintageRecipes.CENTRIFUGATION.getType(), CentrifugationRecipe.class);
+			if (assemblyRecipe.isPresent())
+				return CentrifugationRecipe.match(this, assemblyRecipe.get());
+		}
 
 		List<Recipe<?>> recipes = getRecipes();
 
@@ -454,12 +463,16 @@ public class CentrifugeBlockEntity extends KineticBlockEntity implements IHaveGo
 	private void process() {
 		if (lastRecipe == null || !CentrifugationRecipe.match(this, lastRecipe)) {
 			boolean found = false;
-			Optional<CentrifugationRecipe> assemblyRecipe = SequencedAssemblyRecipe.getRecipe(level, inputInv,
-					VintageRecipes.CENTRIFUGATION.getType(), CentrifugationRecipe.class);
-			if (assemblyRecipe.isPresent()) {
-				lastRecipe = assemblyRecipe.get();
-				lastRecipeIsAssembly = true;
-				found = true;
+			for (int i = 0; i < inputInv.getSlots(); i++) {
+				Optional<CentrifugationRecipe> assemblyRecipe = SequencedAssemblyRecipe.
+						getRecipe(level, inputInv.getStackInSlot(i),
+								VintageRecipes.CENTRIFUGATION.getType(), CentrifugationRecipe.class);
+				if (assemblyRecipe.isPresent()) {
+					lastRecipe = assemblyRecipe.get();
+					lastRecipeIsAssembly = true;
+					found = true;
+					break;
+				}
 			}
 
 			if (!found) {
@@ -474,6 +487,7 @@ public class CentrifugeBlockEntity extends KineticBlockEntity implements IHaveGo
 		}
 
 		if (CentrifugationRecipe.apply(this, lastRecipe) && lastRecipeIsAssembly) lastRecipe = null;
+		advancementBehaviour.awardVintageAdvancement(VintageAdvancements.USE_CENTRIFUGE);
 
 		sendData();
 		setChanged();

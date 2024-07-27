@@ -1,0 +1,30 @@
+{
+    "parent": "vintageimprovements:lathe",
+    "criteria": {
+      "curving_press": {
+        "conditions": {},
+        "trigger": "vintageimprovements:use_curving_press"
+      }
+    },
+    "display": {
+    "announce_to_chat": false,
+    "description": {
+      "color": "#DBA213",
+      "translate": "advancement.vintageimprovements.curving.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "vintageimprovements:curving_press"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.vintageimprovements.curving"
+    }
+  },
+    "requirements": [
+      [
+        "curving_press"
+      ]
+    ]
+  }

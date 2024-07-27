@@ -12,11 +12,14 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import com.google.common.collect.ImmutableList;
 import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.VintageRecipes;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancements;
 import com.negodya1.vintageimprovements.foundation.utility.VintageLang;
 import com.negodya1.vintageimprovements.infrastructure.config.VintageConfig;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.AllSoundEvents;
 import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
+import com.simibubi.create.content.equipment.sandPaper.SandPaperItem;
 import com.simibubi.create.content.equipment.sandPaper.SandPaperPolishingRecipe;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.belt.behaviour.DirectBeltInputBehaviour;
@@ -80,6 +83,7 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 	private int recipeIndex;
 	private final LazyOptional<IItemHandler> invProvider;
 	private FilteringBehaviour filtering;
+	private VintageAdvancementBehaviour advancementBehaviour;
 
 	private ItemStack playEvent;
 	private int textureType;
@@ -109,6 +113,8 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 		filtering = new FilteringBehaviour(this, new GrinderFilterSlot()).forRecipes();
 		behaviours.add(filtering);
 		behaviours.add(new DirectBeltInputBehaviour(this));
+		advancementBehaviour = new VintageAdvancementBehaviour(this);
+		behaviours.add(advancementBehaviour);
 	}
 
 	@Override
@@ -387,6 +393,7 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 
 			for (int slot = 0; slot < list.size() && slot + 1 < inventory.getSlots(); slot++)
 				inventory.setStackInSlot(slot + 1, list.get(slot));
+			advancementBehaviour.awardVintageAdvancement(VintageAdvancements.USE_BELT_GRINDER);
 			return;
 		}
 
@@ -422,6 +429,7 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 
 			for (int slot = 0; slot < list.size() && slot + 1 < inventory.getSlots(); slot++)
 				inventory.setStackInSlot(slot + 1, list.get(slot));
+			advancementBehaviour.awardVintageAdvancement(VintageAdvancements.USE_BELT_GRINDER);
 		}
 	}
 
@@ -543,6 +551,8 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 
 	public boolean addTexture(ItemStack items) {
 		if (items.isEmpty()) return false;
+		if (!(items.getItem() instanceof SandPaperItem)) return false;
+		advancementBehaviour.awardVintageAdvancement(VintageAdvancements.BELT_GRINDER_SKIN_CHANGE);
 
 		switch (items.getItem().getDescriptionId()) {
 			case "item.create.sand_paper":

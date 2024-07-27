@@ -1,3 +1,5 @@
+![Title](https://cdn.modrinth.com/data/S27aYArf/images/8ea3db8e08d47ab58df9a7483ec26673f1c2a45f.png)
+
 ## Need hosting?
 
 [![Banner](https://www.bisecthosting.com/partners/custom-banners/25d79f00-76c2-4045-a231-62a85437014f.webp)](https://bisecthosting.com/thebadguy)
@@ -75,6 +77,7 @@ This wires can be used in custom recipes in mod packs.
 
 </details>
 
+![BeltGrinderTitle](https://cdn.modrinth.com/data/S27aYArf/images/c16e888cc187f8800aadc508f773d5e17f352453.png)
 
 <details>
 <summary>Belt Grinder</summary>
@@ -93,6 +96,7 @@ Belt's appearance can be changed via right click with a Sand Paper. [Create Craf
 
 </details>
 
+![SpringCoilingMachineTitle](https://cdn.modrinth.com/data/S27aYArf/images/08fbda93181d500e38c01adcc23c24053f357cf4.png)
 
 <details>
 <summary>Spring Coiling Machine & Springs</summary>
@@ -110,6 +114,7 @@ Grinder provides **coiling** recipes.
 
 </details>
 
+![CompressorTitle](https://cdn.modrinth.com/data/S27aYArf/images/4546a2e5213e43a774c21b3ac2be0fe2c82893b4.png)
 
 <details>
 <summary>Compressor</summary>
@@ -128,6 +133,7 @@ Modes can be switched via right click with Wrench. Recipes may require fluids in
 
 </details>
 
+![VibratingTitle](https://cdn.modrinth.com/data/S27aYArf/images/b46886aaded7dd5b00efdbc1d9da3c83527caf51.png)
 
 <details>
 <summary>Vibrating Table</summary>
@@ -146,6 +152,7 @@ In config you can turn on **unpacking** and **leaves vibrating** recipes (enable
 
 </details>
 
+![CentrifugeTitle](https://cdn.modrinth.com/data/S27aYArf/images/6be4dbaee547ad596479a7c8085e7a39788a008f.png)
 
 <details>
 <summary>Centrifuge</summary>
@@ -160,6 +167,7 @@ Centrifuge needs 4 Basins intsalled to work and provides **centrifugation** reci
 
 </details>
 
+![CurvingPress](https://cdn.modrinth.com/data/S27aYArf/images/36226e9d4b70979796a6c24c9ad949d065faf642.png)
 
 <details>
 <summary>Curving Press</summary>
@@ -188,6 +196,7 @@ Some recipes cause damage to the curving heads, auto recipes damage can be custo
 
 </details>
 
+![HelveHammerTitle](https://cdn.modrinth.com/data/S27aYArf/images/29b57204ae928f7195dd2d31dfd05b144c852267.png)
 
 <details>
 <summary>Helve Hammer & Netherite Sheet</summary>
@@ -212,6 +221,8 @@ Some recipes may require specific block instead of anvil, this block must have "
 
 </details>
 
+![LatheTitle](https://cdn.modrinth.com/data/S27aYArf/images/e09b1bc895c804265c36d9ef53f0f0f53602fdbb.png)
+
 <details>
 <summary>Lathe & Recipe Card</summary>
 
@@ -230,6 +241,8 @@ Usually recipes are selected manually. But you can automate this process with th
 ![Recipe Card Menu](https://cdn.modrinth.com/data/S27aYArf/images/7c38301fc6859fcb589fafb60885c54cc74d4d1c.png)
 
 </details>
+
+![LaserTitle](https://cdn.modrinth.com/data/S27aYArf/images/607b68885b6f72ba6cbd3c6273c509f9d0f5274c.png)
 
 <details>
 <summary>Laser</summary>
@@ -344,3 +357,4 @@ After version 0.2 release (about 3 major updates)
 - en_us (edited by **padin**)
 - ru_ru
 - zh_cn by **Catchmons, Junnaturefox & Qi-Month**
+- pt_br by **reds**

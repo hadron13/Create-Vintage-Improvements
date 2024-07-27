@@ -9,6 +9,8 @@ import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.VintageItems;
 import com.negodya1.vintageimprovements.VintageRecipes;
 import com.negodya1.vintageimprovements.VintageRecipesList;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancements;
 import com.negodya1.vintageimprovements.foundation.utility.VintageLang;
 import com.negodya1.vintageimprovements.infrastructure.config.VCRecipes;
 import com.negodya1.vintageimprovements.infrastructure.config.VCServer;
@@ -79,6 +81,7 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 	boolean redstoneModule;
 
 	public CurvingBehaviour pressingBehaviour;
+	VintageAdvancementBehaviour advancementBehaviour;
 
 	public CurvingPressBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
@@ -99,6 +102,8 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 		super.addBehaviours(behaviours);
 		pressingBehaviour = new CurvingBehaviour(this);
 		behaviours.add(pressingBehaviour);
+		advancementBehaviour = new VintageAdvancementBehaviour(this);
+		behaviours.add(advancementBehaviour);
 	}
 
 	public boolean addRedstoneApp(ItemStack items) {
@@ -128,6 +133,7 @@ public class CurvingPressBlockEntity extends KineticBlockEntity implements Curvi
 			}
 		}
 
+		advancementBehaviour.awardVintageAdvancement(VintageAdvancements.USE_CURVING_PRESS);
 		setChanged();
 		sendData();
 	}

@@ -162,7 +162,7 @@ public class HelveKineticBlock extends DirectionalKineticBlock implements IWrenc
 
 	public static BlockPos getMaster(BlockGetter level, BlockPos pos, BlockState state) {
 		Direction direction = state.getValue(FACING);
-		BlockPos targetedPos = pos.relative(direction);
+		BlockPos targetedPos = pos.relative(direction, 2);
 		BlockState targetedState = level.getBlockState(targetedPos);
 		if (targetedState.is(VintageBlocks.HELVE_STRUCTURAL.get()) || targetedState.is(VintageBlocks.HELVE_KINETIC.get()))
 			return getMaster(level, targetedPos, targetedState);

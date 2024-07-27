@@ -7,6 +7,8 @@ import java.util.function.Consumer;
 
 import com.negodya1.vintageimprovements.*;
 import com.negodya1.vintageimprovements.content.kinetics.lathe.recipe_card.RecipeCardItem;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancements;
 import com.negodya1.vintageimprovements.foundation.utility.VintageLang;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.fluids.transfer.GenericItemEmptying;

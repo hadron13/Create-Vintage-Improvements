@@ -37,6 +37,8 @@ public class VCRecipes extends ConfigBase {
 
 	public final ConfigGroup helveHammer = group(1, "helveHammer",
 			Comments.helveHammer);
+	public final ConfigBool allowTemplatelessRecipes =
+			b(true, "allowTemplatelessRecipes", Comments.allowTemplatelessRecipes);
 	public final ConfigBool damageAnvilAfterHammeringRecipe =
 			b(false, "damageAnvilAfterHammeringRecipe", Comments.damageAnvilAfterHammeringRecipe);
 	public final ConfigInt chanceToDamageAnvilAfterHammeringRecipe =
@@ -64,6 +66,7 @@ public class VCRecipes extends ConfigBase {
 		static String chanceToDamageAnvilAfterHammeringRecipe = "Chance of Anvil damaging after finishing recipe";
 		static String recipes = "Recipes configs";
 		static String damageHeadAfterAutoCurvingRecipe = "Amount of damage, that curving heads will get after auto recipe";
+		static String allowTemplatelessRecipes = "Allows processing templateless recipes for Helve Hammer";
 	}
 
 }

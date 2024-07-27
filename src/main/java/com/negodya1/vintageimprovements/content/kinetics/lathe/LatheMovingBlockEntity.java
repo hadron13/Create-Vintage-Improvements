@@ -7,6 +7,7 @@ import com.negodya1.vintageimprovements.VintageRecipes;
 import com.negodya1.vintageimprovements.content.kinetics.grinder.GrinderFilterSlot;
 import com.negodya1.vintageimprovements.content.kinetics.grinder.PolishingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.lathe.recipe_card.RecipeCardItem;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
 import com.negodya1.vintageimprovements.foundation.utility.VintageLang;
 import com.negodya1.vintageimprovements.infrastructure.config.VintageConfig;
 import com.simibubi.create.AllRecipeTypes;
@@ -103,9 +104,7 @@ public class LatheMovingBlockEntity extends KineticBlockEntity implements MenuPr
 	}
 
 	@Override
-	public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
-		super.addBehaviours(behaviours);
-	}
+	public void addBehaviours(List<BlockEntityBehaviour> behaviours) {super.addBehaviours(behaviours);}
 
 	@Override
 	protected AABB createRenderBoundingBox() {

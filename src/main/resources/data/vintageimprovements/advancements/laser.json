@@ -1,0 +1,30 @@
+{
+    "parent": "vintageimprovements:iron_spring",
+    "criteria": {
+      "laser": {
+        "conditions": {},
+        "trigger": "vintageimprovements:use_laser"
+      }
+    },
+    "display": {
+    "announce_to_chat": false,
+    "description": {
+      "color": "#DBA213",
+      "translate": "advancement.vintageimprovements.laser.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "vintageimprovements:laser"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.vintageimprovements.laser"
+    }
+  },
+    "requirements": [
+      [
+        "laser"
+      ]
+    ]
+  }

@@ -14,6 +14,8 @@ import com.google.common.collect.ImmutableList;
 import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.VintageRecipes;
 
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancements;
 import com.simibubi.create.AllSoundEvents;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.belt.behaviour.DirectBeltInputBehaviour;
@@ -66,6 +68,7 @@ public class CoilingBlockEntity extends KineticBlockEntity {
 	private int recipeIndex;
 	private final LazyOptional<IItemHandler> invProvider;
 	private FilteringBehaviour filtering;
+	private VintageAdvancementBehaviour advancementBehaviour;
 	private ItemStack playEvent;
 
 	private int springColor;
@@ -91,6 +94,8 @@ public class CoilingBlockEntity extends KineticBlockEntity {
 		filtering = new FilteringBehaviour(this, new CoilingFilterSlot()).forRecipes();
 		behaviours.add(filtering);
 		behaviours.add(new DirectBeltInputBehaviour(this));
+		advancementBehaviour = new VintageAdvancementBehaviour(this);
+		behaviours.add(advancementBehaviour);
 	}
 
 	@Override
@@ -320,6 +325,7 @@ public class CoilingBlockEntity extends KineticBlockEntity {
 		
 		for (int slot = 0; slot < list.size() && slot + 1 < inventory.getSlots(); slot++) 
 			inventory.setStackInSlot(slot + 1, list.get(slot));
+		advancementBehaviour.awardVintageAdvancement(VintageAdvancements.USE_COILING_MACHINE);
 	}
 
 	private List<? extends Recipe<?>> getRecipes() {

@@ -6,6 +6,7 @@ import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.HelveItem;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.HelveKineticBlock;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.HelveStructuralBlock;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
 import com.simibubi.create.AllShapes;
 import com.simibubi.create.content.kinetics.base.HorizontalKineticBlock;
 import com.simibubi.create.foundation.block.IBE;
@@ -20,6 +21,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -42,6 +44,13 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class LatheRotatingBlock extends HorizontalKineticBlock implements IBE<LatheRotatingBlockEntity> {
+
+	@Override
+	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+		VintageAdvancementBehaviour.setPlacedBy(level, pos, placer);
+		super.setPlacedBy(level, pos, state, placer, stack);
+	}
+
 	public LatheRotatingBlock(Properties properties) {
 		super(properties);
 	}

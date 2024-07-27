@@ -10,6 +10,8 @@ import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.HelveBlock
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.HelveKineticBlockEntity;
 import com.negodya1.vintageimprovements.content.kinetics.lathe.recipe_card.RecipeCardItem;
 import com.negodya1.vintageimprovements.content.kinetics.vacuum_chamber.PressurizingRecipe;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancements;
 import com.negodya1.vintageimprovements.foundation.utility.VintageLang;
 import com.negodya1.vintageimprovements.infrastructure.config.VintageConfig;
 import com.simibubi.create.AllBlocks;
@@ -115,6 +117,7 @@ public class LatheRotatingBlockEntity extends KineticBlockEntity implements IHav
 	public float initialTimer;
 	private TurningRecipe lastRecipe;
 	private ItemStack playEvent;
+	public VintageAdvancementBehaviour advancementBehaviour;
 
 	public LatheRotatingBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
@@ -195,6 +198,8 @@ public class LatheRotatingBlockEntity extends KineticBlockEntity implements IHav
 	public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
 		behaviours.add(new DirectBeltInputBehaviour(this));
 		super.addBehaviours(behaviours);
+		advancementBehaviour = new VintageAdvancementBehaviour(this);
+		behaviours.add(advancementBehaviour);
 	}
 
 	@Override
@@ -353,6 +358,7 @@ public class LatheRotatingBlockEntity extends KineticBlockEntity implements IHav
 				.forEach(stack -> ItemHandlerHelper.insertItemStacked(outputInv, stack, false));
 
 		lastRecipe = null;
+		advancementBehaviour.awardVintageAdvancement(VintageAdvancements.USE_LATHE);
 
 		sendData();
 		setChanged();

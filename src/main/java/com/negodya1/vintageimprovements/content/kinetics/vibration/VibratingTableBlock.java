@@ -3,6 +3,7 @@ package com.negodya1.vintageimprovements.content.kinetics.vibration;
 import com.negodya1.vintageimprovements.VintageBlockEntity;
 import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.VintageShapes;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
 import com.simibubi.create.content.kinetics.base.HorizontalKineticBlock;
 import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.utility.Iterate;
@@ -16,6 +17,7 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -43,6 +45,12 @@ import java.util.List;
 
 public class VibratingTableBlock extends HorizontalKineticBlock implements IBE<VibratingTableBlockEntity> {
 	public static final VoxelShaper vibrating_table_SHAPE = VintageShapes.shape(0,0,0,16,14,16).forDirectional();
+
+	@Override
+	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+		VintageAdvancementBehaviour.setPlacedBy(level, pos, placer);
+		super.setPlacedBy(level, pos, state, placer, stack);
+	}
 
 	public VibratingTableBlock(Properties properties) {
 		super(properties);

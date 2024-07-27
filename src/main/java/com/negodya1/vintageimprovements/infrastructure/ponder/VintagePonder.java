@@ -41,6 +41,10 @@ public class VintagePonder {
 
         HELPER.forComponents(VintageBlocks.HELVE)
                 .addStoryBoard("helve_hammer/processing", HelveScenes::processing, AllPonderTags.KINETIC_APPLIANCES);
+        HELPER.forComponents(VintageBlocks.HELVE)
+                .addStoryBoard("helve_hammer/slots_blocking", HelveScenes::slots_blocking, AllPonderTags.KINETIC_APPLIANCES);
+
+        HELPER.addStoryBoard(VintageItems.HELVE_HAMMER_SLOT_COVER, "helve_hammer/slots_blocking", HelveScenes::slots_blocking);
 
         HELPER.addStoryBoard(VintageItems.CONVEX_CURVING_HEAD, "curving_press/processing", CurvingPressScenes::processing);
         HELPER.addStoryBoard(VintageItems.CONCAVE_CURVING_HEAD, "curving_press/processing", CurvingPressScenes::processing);

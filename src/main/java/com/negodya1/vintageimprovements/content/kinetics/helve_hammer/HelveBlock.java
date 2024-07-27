@@ -3,7 +3,9 @@ package com.negodya1.vintageimprovements.content.kinetics.helve_hammer;
 import com.negodya1.vintageimprovements.*;
 import com.negodya1.vintageimprovements.content.kinetics.centrifuge.CentrifugeBlockEntity;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.VibratingTableBlockEntity;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
 import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllItems;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.fluids.transfer.GenericItemEmptying;
 import com.simibubi.create.content.fluids.transfer.GenericItemFilling;
@@ -25,6 +27,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -52,10 +55,18 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
+import javax.annotation.Nullable;
+
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.AXIS;
 
 public class HelveBlock extends HorizontalDirectionalBlock implements IBE<HelveBlockEntity> {
 	public static final VoxelShaper HELVE_SHAPE = VintageShapes.shape(4, 4, 4, 12, 12, 16).add(5, 0, 5, 11, 14, 11).forDirectional();
+
+	@Override
+	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+		VintageAdvancementBehaviour.setPlacedBy(level, pos, placer);
+		super.setPlacedBy(level, pos, state, placer, stack);
+	}
 
 	public HelveBlock(Properties properties) {
 		super(properties);
@@ -235,9 +246,30 @@ public class HelveBlock extends HorizontalDirectionalBlock implements IBE<HelveB
 	@Override
 	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn,
 								 BlockHitResult hit) {
-		if (!player.getItemInHand(handIn)
-				.isEmpty())
-			return InteractionResult.PASS;
+		if (!player.getItemInHand(handIn).isEmpty()) {
+			if (!player.getItemInHand(handIn).is(VintageItems.HELVE_HAMMER_SLOT_COVER.get())) {
+				if (!player.getItemInHand(handIn).is(AllItems.WRENCH.asItem()))
+					return InteractionResult.PASS;
+				withBlockEntityDo(worldIn, pos, helve -> {
+					ItemStack stackInSlot = helve.resetBlockedSlots();
+					player.getInventory()
+							.placeItemBackInInventory(stackInSlot);
+
+					helve.setChanged();
+					helve.sendData();
+				});
+				return InteractionResult.SUCCESS;
+			}
+			withBlockEntityDo(worldIn, pos, helve -> {
+				if (helve.addBlockedSlots() && !player.isCreative())
+					player.getItemInHand(handIn).shrink(1);
+
+				helve.setChanged();
+				helve.sendData();
+			});
+
+			return InteractionResult.SUCCESS;
+		}
 		if (worldIn.isClientSide)
 			return InteractionResult.SUCCESS;
 
