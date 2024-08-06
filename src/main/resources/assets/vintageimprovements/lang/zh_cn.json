@@ -474,5 +474,6 @@
 	"trim_material.vintageimprovements.rose_quartz": "玫瑰石英质",
 	"trim_material.vintageimprovements.shadow": "暗影钢质",
 	"trim_material.vintageimprovements.radiance": "光辉石质",
-	"trim_material.vintageimprovements.zinc": "锌质"
+	"trim_material.vintageimprovements.zinc": "锌质",
+	"vintageimprovements.jei.text.fragile": "易碎, 材料将以错误的速度销毁"
 }
