@@ -1,16 +1,14 @@
 {
   "type":"createaddition:rolling",
-  "ingredients": [
+  "input":
     {
       "tag": "forge:plates/knightmetal"
-    }
-  ],
-  "results": [
+    },  
+  "result":
     {
       "item": "vintageimprovements:knightmetal_wire",
 		"count": 2
-    }
-  ],
+    },  
 	"conditions": [ {
 		"type": "forge:mod_loaded",
 		"modid": "createaddition"

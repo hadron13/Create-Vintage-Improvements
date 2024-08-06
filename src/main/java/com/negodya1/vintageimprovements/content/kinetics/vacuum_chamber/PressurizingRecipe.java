@@ -22,6 +22,7 @@ import com.simibubi.create.foundation.utility.Lang;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -59,7 +60,44 @@ public class PressurizingRecipe extends BasinRecipe implements IAssemblyRecipe {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public Component getDescriptionForAssembly() {
-		return VintageLang.translateDirect("recipe.assembly.pressurizing");
+		MutableComponent result = VintageLang.translateDirect("recipe.assembly.pressurizing");
+		if (ingredients.size() > 1 || !fluidIngredients.isEmpty())
+			result.append(" ").append(VintageLang.translateDirect("recipe.assembly.with")).append(" ");
+		else return result;
+		if (ingredients.size() > 1) {
+			if (ingredients.get(1).getItems().length > 0)
+				result.append(ingredients.get(1).getItems()[0].getItem().getDescription());
+		}
+		else if (!fluidIngredients.isEmpty()) {
+			if (!fluidIngredients.get(0).getMatchingFluidStacks().isEmpty())
+				result.append(fluidIngredients.get(0).getMatchingFluidStacks().get(0).getDisplayName());
+		}
+
+		if (ingredients.size() > 2) {
+			for (int i = 2; i < ingredients.size() - 1; i++)
+				if (ingredients.get(i).getItems().length > 0)
+					result.append(", ").append(ingredients.get(i).getItems()[0].getItem().getDescription());
+			if (ingredients.get(ingredients.size() - 1).getItems().length > 0) {
+				if (fluidIngredients.isEmpty())
+					result.append(" ").append(VintageLang.translateDirect("recipe.assembly.and").append(" ").append(ingredients.get(ingredients.size() - 1).getItems()[0].getItem().getDescription()));
+				else
+					result.append(", ").append(ingredients.get(ingredients.size() - 1).getItems()[0].getItem().getDescription());
+			}
+		}
+
+		int startNum = ingredients.size() > 1 ? 0 : 1;
+
+		if (fluidIngredients.size() > startNum) {
+			for (int i = startNum; i < fluidIngredients.size() - 1; i++)
+				if (!fluidIngredients.get(i).getMatchingFluidStacks().isEmpty())
+					result.append(", ").append(fluidIngredients.get(i).getMatchingFluidStacks().get(0).getDisplayName());
+			if (!fluidIngredients.get(fluidIngredients.size() - 1).getMatchingFluidStacks().isEmpty())
+				result.append(" ").append(VintageLang.translateDirect("recipe.assembly.and").append(" ")
+						.append(fluidIngredients.get(fluidIngredients.size() - 1).getMatchingFluidStacks().get(0).getDisplayName()));
+
+		}
+
+		return result;
 	}
 
 	@Override
@@ -244,8 +282,8 @@ public class PressurizingRecipe extends BasinRecipe implements IAssemblyRecipe {
 
 	@Override
 	public void readAdditional(JsonObject json) {
-		if (json.has("secondaryFluidResults")) secondaryFluidResults = json.get("secondaryFluidResults").getAsInt();
-		if (json.has("secondaryFluidInputs")) secondaryFluidInputs = json.get("secondaryFluidInputs").getAsInt();
+		if (json.has("secondaryFluidOutput")) secondaryFluidResults = json.get("secondaryFluidOutput").getAsInt();
+		if (json.has("secondaryFluidInput")) secondaryFluidInputs = json.get("secondaryFluidInput").getAsInt();
 	}
 
 	@Override
@@ -256,8 +294,8 @@ public class PressurizingRecipe extends BasinRecipe implements IAssemblyRecipe {
 
 	@Override
 	public void writeAdditional(JsonObject json) {
-		json.addProperty("secondaryFluidResults", secondaryFluidResults);
-		json.addProperty("secondaryFluidInputs", secondaryFluidInputs);
+		json.addProperty("secondaryFluidOutput", secondaryFluidResults);
+		json.addProperty("secondaryFluidInput", secondaryFluidInputs);
 	}
 
 	@Override

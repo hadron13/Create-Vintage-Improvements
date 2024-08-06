@@ -72,7 +72,6 @@ public class CentrifugeScenes {
 		scene.world.setBlock(centrifuge.above(), AllBlocks.SHAFT.getDefaultState().setValue(AXIS, Direction.Axis.Y), false);
 		scene.world.setKineticSpeed(util.select.position(centrifuge.above()), 100);
 
-
 		scene.world.showSection(cogs, Direction.DOWN);
 		scene.world.showSection(util.select.position(5, 1, 2), Direction.DOWN);
 		scene.idle(10);
@@ -215,8 +214,6 @@ public class CentrifugeScenes {
 				scene.world.createItemEntity(entitySpawn, util.vector.of(0, 0.2, 0), itemStack);
 		scene.idle(18);
 		scene.world.modifyEntity(entity2, Entity::discard);
-		scene.world.modifyBlockEntity(centrifuge, CentrifugeBlockEntity.class,
-				ms -> ms.inputInv.setStackInSlot(0, itemStack));
 
 		scene.world.replaceBlocks(util.select.position(0,1,1), Blocks.COMPARATOR.defaultBlockState().setValue(POWERED, true).setValue(FACING, Direction.EAST), false);
 

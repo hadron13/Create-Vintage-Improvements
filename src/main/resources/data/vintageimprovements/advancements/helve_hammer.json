@@ -1,0 +1,30 @@
+{
+    "parent": "vintageimprovements:iron_spring",
+    "criteria": {
+      "helve_hammer": {
+        "conditions": {},
+        "trigger": "vintageimprovements:use_helve"
+      }
+    },
+    "display": {
+    "announce_to_chat": false,
+    "description": {
+      "color": "#DBA213",
+      "translate": "advancement.vintageimprovements.helve_hammer.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "vintageimprovements:helve_hammer"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.vintageimprovements.helve_hammer"
+    }
+  },
+    "requirements": [
+      [
+        "helve_hammer"
+      ]
+    ]
+  }

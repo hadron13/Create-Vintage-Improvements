@@ -9,12 +9,16 @@ import com.negodya1.vintageimprovements.content.kinetics.curving_press.CurvingRe
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.AutoSmithingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.AutoUpgradeRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.HammeringRecipe;
+import com.negodya1.vintageimprovements.content.kinetics.laser.LaserCuttingRecipe;
+import com.negodya1.vintageimprovements.content.kinetics.lathe.TurningRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.vacuum_chamber.PressurizingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.vacuum_chamber.VacuumizingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.LeavesVibratingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.VibratingRecipe;
 import com.negodya1.vintageimprovements.foundation.utility.VintageLang;
 import com.simibubi.create.AllTags;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.Nullable;
 
 import com.negodya1.vintageimprovements.content.kinetics.grinder.PolishingRecipe;
@@ -26,10 +30,6 @@ import com.simibubi.create.foundation.utility.Lang;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -48,7 +48,10 @@ public enum VintageRecipes implements IRecipeTypeInfo {
     PRESSURIZING(PressurizingRecipe::new),
     HAMMERING(HammeringRecipe::new),
     AUTO_SMITHING(AutoSmithingRecipe::new),
-    AUTO_UPGRADE(AutoUpgradeRecipe::new);
+    AUTO_UPGRADE(AutoUpgradeRecipe::new),
+    TURNING(TurningRecipe::new),
+    LASER_CUTTING(LaserCuttingRecipe::new);
+
     private final ResourceLocation id;
     private final RegistryObject<RecipeSerializer<?>> serializerObject;
     @Nullable

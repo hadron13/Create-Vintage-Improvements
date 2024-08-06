@@ -3,6 +3,8 @@ package com.negodya1.vintageimprovements.content.kinetics.helve_hammer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
+import com.negodya1.vintageimprovements.VintageImprovements;
+import com.negodya1.vintageimprovements.VintageItems;
 import com.negodya1.vintageimprovements.VintagePartialModels;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
@@ -72,6 +74,21 @@ public class HelveItemsRenderer extends SmartBlockEntityRenderer<HelveBlockEntit
 
 				ms.popPose();
 			}
+		}
+
+		for (int i = 0; i < be.getBlockedSlots(); i++) {
+			ItemStack stack = new ItemStack(VintageItems.HELVE_HAMMER_SLOT_COVER.get(), 1);
+			ms.pushPose();
+			ItemRenderer itemRenderer = Minecraft.getInstance()
+					.getItemRenderer();
+			ms.translate(.5, 0, .5);
+			ms.mulPose(Axis.YP.rotationDegrees(j * 60));
+			ms.translate(-.20, 0, 0);
+			ms.scale(.33f, .33f, .33f);
+			ms.mulPose(Axis.XP.rotationDegrees(90));
+			itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, light, overlay, ms, buffer, be.getLevel(), 0);
+			j++;
+			ms.popPose();
 		}
 
 		if (output) {

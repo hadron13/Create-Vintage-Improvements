@@ -49,6 +49,11 @@
 		}
     },
     {
+		"conditions": [
+			{
+				"type": "forge:true"
+			}
+		],
 		"recipe": {
 			"type": "create:crushing",
 			"ingredients": [

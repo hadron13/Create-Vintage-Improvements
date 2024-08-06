@@ -3,6 +3,7 @@ package com.negodya1.vintageimprovements.content.kinetics.coiling;
 import com.negodya1.vintageimprovements.VintageBlockEntity;
 import com.negodya1.vintageimprovements.VintageShapes;
 
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
 import com.simibubi.create.content.kinetics.base.HorizontalKineticBlock;
 import com.simibubi.create.foundation.block.IBE;
 
@@ -11,9 +12,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -21,8 +25,16 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import javax.annotation.Nullable;
+
 public class CoilingBlock extends HorizontalKineticBlock implements IBE<CoilingBlockEntity> {
 	public static final VoxelShaper COILING_MACHINE_SHAPE = VintageShapes.shape(0,0,14,16,16,16).add(0,0,2,16,11,14).forDirectional();
+
+	@Override
+	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+		VintageAdvancementBehaviour.setPlacedBy(level, pos, placer);
+		super.setPlacedBy(level, pos, state, placer, stack);
+	}
 
 	public CoilingBlock(Properties properties) {
 		super(properties);

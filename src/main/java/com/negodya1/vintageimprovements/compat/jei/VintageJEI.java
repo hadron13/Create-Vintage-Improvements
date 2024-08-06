@@ -19,6 +19,8 @@ import com.negodya1.vintageimprovements.content.kinetics.grinder.GrinderBlockEnt
 import com.negodya1.vintageimprovements.content.kinetics.grinder.PolishingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.AutoSmithingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.helve_hammer.HammeringRecipe;
+import com.negodya1.vintageimprovements.content.kinetics.laser.LaserCuttingRecipe;
+import com.negodya1.vintageimprovements.content.kinetics.lathe.TurningRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.LeavesVibratingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.VibratingRecipe;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.VibratingTableBlockEntity;
@@ -126,7 +128,7 @@ public class VintageJEI implements IModPlugin {
 				.addTypedRecipes(VintageRecipes.CURVING::getType)
 				.catalyst(VintageBlocks.CURVING_PRESS::get)
 				.itemIcon(VintageBlocks.CURVING_PRESS.get())
-				.emptyBackground(177, 70)
+				.emptyBackground(177, 85)
 				.build("curving", CurvingCategory::new));
 
 		ALL.add(builder(HammeringRecipe.class)
@@ -193,8 +195,22 @@ public class VintageJEI implements IModPlugin {
 						&& CurvingPressBlockEntity.canCurve(r, 4) && !AllRecipeTypes.shouldIgnoreInAutomation(r))
 				.catalyst(VintageBlocks.CURVING_PRESS::get)
 				.doubleItemIcon(VintageBlocks.CURVING_PRESS.get(), AllItems.IRON_SHEET)
-				.emptyBackground(177, 70)
+				.emptyBackground(177, 85)
 				.build("auto_curving", AutoCurvingCategory::new));
+
+		ALL.add(builder(TurningRecipe.class)
+				.addTypedRecipes(VintageRecipes.TURNING::getType)
+				.catalyst(VintageBlocks.LATHE_ROTATING::get)
+				.itemIcon(VintageBlocks.LATHE_ROTATING.get())
+				.emptyBackground(177, 70)
+				.build("turning", TurningCategory::new));
+
+		ALL.add(builder(LaserCuttingRecipe.class)
+				.addTypedRecipes(VintageRecipes.LASER_CUTTING::getType)
+				.catalyst(VintageBlocks.LASER::get)
+				.itemIcon(VintageBlocks.LASER)
+				.emptyBackground(177, 85)
+				.build("laser_cutting", LaserCuttingCategory::new));
 
 		ALL.forEach(registration::addRecipeCategories);
 	}

@@ -11,6 +11,9 @@
 	"vintageimprovements:sulfur_block",
 	"vintageimprovements:helve_hammer",
 	"vintageimprovements:helve_structure",
-	"vintageimprovements:helve_kinetic"
+	"vintageimprovements:helve_kinetic",
+	"vintageimprovements:lathe",
+	"vintageimprovements:lathe_moving",
+	"vintageimprovements:laser"
   ]
 }

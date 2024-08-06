@@ -7,6 +7,7 @@ public class VCClient extends ConfigBase {
 	public final ConfigGroup client = group(0, "client",
 			Comments.client);
 
+
 	public final ConfigBool forceCompatItemsIntoCreativeTab = b(false, "forceCompatItemsIntoCreativeTab", Comments.forceCompatItemsIntoCreativeTab);
 	public final ConfigBool legacyMaterialsIntoCreativeTab = b(false, "legacyMaterialsIntoCreativeTab", Comments.legacyMaterialsIntoCreativeTab);
 

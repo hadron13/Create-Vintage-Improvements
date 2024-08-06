@@ -1,5 +1,7 @@
 package com.negodya1.vintageimprovements.compat.jei.category;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.compat.jei.category.animations.AnimatedCentrifuge;
 import com.negodya1.vintageimprovements.compat.jei.category.animations.AnimatedHelve;
@@ -23,12 +25,17 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.TagParser;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.SmithingRecipe;
 import net.minecraft.world.item.crafting.SmithingTransformRecipe;
 import net.minecraft.world.item.crafting.SmithingTrimRecipe;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -38,7 +45,7 @@ import java.util.List;
 @ParametersAreNonnullByDefault
 public class HammeringCategory extends CreateRecipeCategory<HammeringRecipe> {
 
-	private final AnimatedHelve centrifuge = new AnimatedHelve();
+	private final AnimatedHelve helve = new AnimatedHelve();
 
 	public HammeringCategory(Info<HammeringRecipe> info) {
 		super(info);
@@ -56,6 +63,11 @@ public class HammeringCategory extends CreateRecipeCategory<HammeringRecipe> {
 					.addIngredients(ingredient);
 			i++;
 		}
+
+		if (!recipe.getAnvilBlock().getDefaultInstance().is(Items.AIR))
+			builder.addSlot(RecipeIngredientRole.INPUT, 4, 14)
+					.setBackground(getRenderedSlot(), -1, -1)
+					.addItemStack(recipe.getAnvilBlock().getDefaultInstance());
 
 		i = 0;
 		List<ProcessingOutput> results = recipe.getRollableResults();
@@ -75,11 +87,15 @@ public class HammeringCategory extends CreateRecipeCategory<HammeringRecipe> {
 		AllGuiTextures.JEI_DOWN_ARROW.render(graphics, 132, 28);
 		AllGuiTextures.JEI_LONG_ARROW.render(graphics, 2, 55);
 
-		centrifuge.draw(graphics, 86, 6, true);
+		if (!recipe.getAnvilBlock().getDefaultInstance().is(Items.AIR)) {
+			helve.draw(graphics, 86, 6,2);
+			helve.renderBlock(graphics, 86, 6, recipe.getAnvilBlock());
+		}
+		else helve.draw(graphics, 86, 6,1);
 
-		graphics.drawString(Minecraft.getInstance().font,
+		graphics.drawCenteredString(Minecraft.getInstance().font,
 				Component.translatable(VintageImprovements.MODID + ".jei.text.hammer_blows").append(" " + recipe.getHammerBlows()),
-				40, 75, 0xFFFFFF);
+				88, 75, 0xFFFFFF);
 	}
 
 }

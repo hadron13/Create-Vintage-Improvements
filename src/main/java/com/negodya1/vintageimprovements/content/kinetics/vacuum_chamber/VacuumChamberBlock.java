@@ -3,6 +3,7 @@ package com.negodya1.vintageimprovements.content.kinetics.vacuum_chamber;
 import com.negodya1.vintageimprovements.VintageBlockEntity;
 import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.VintageShapes;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllSoundEvents;
@@ -18,6 +19,7 @@ import net.minecraft.core.Direction.Axis;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -38,6 +40,12 @@ import java.util.List;
 
 public class VacuumChamberBlock extends KineticBlock implements IBE<VacuumChamberBlockEntity>, ICogWheel {
 	public static final VoxelShaper VACUUM_CHAMBER_SHAPE = VintageShapes.shape(0, 0, 0, 16, 16, 16).forDirectional();
+
+	@Override
+	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+		VintageAdvancementBehaviour.setPlacedBy(level, pos, placer);
+		super.setPlacedBy(level, pos, state, placer, stack);
+	}
 
 	public VacuumChamberBlock(Properties properties) {
 		super(properties);

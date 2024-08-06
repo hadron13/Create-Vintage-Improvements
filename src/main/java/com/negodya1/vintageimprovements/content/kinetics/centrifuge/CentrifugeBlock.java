@@ -2,6 +2,7 @@ package com.negodya1.vintageimprovements.content.kinetics.centrifuge;
 
 import com.negodya1.vintageimprovements.*;
 import com.negodya1.vintageimprovements.content.kinetics.vibration.VibratingTableBlockEntity;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.fluids.transfer.GenericItemEmptying;
@@ -23,6 +24,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -48,10 +50,18 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
+import javax.annotation.Nullable;
+
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.AXIS;
 
 public class CentrifugeBlock extends KineticBlock implements IBE<CentrifugeBlockEntity> {
 	public static final VoxelShaper CENTRIFUGE_SHAPE = VintageShapes.shape(0, 0, 0, 16, 14, 16).forDirectional();
+
+	@Override
+	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+		VintageAdvancementBehaviour.setPlacedBy(level, pos, placer);
+		super.setPlacedBy(level, pos, state, placer, stack);
+	}
 
 	public CentrifugeBlock(Properties properties) {
 		super(properties);

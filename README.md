@@ -1,3 +1,5 @@
+![Title](https://cdn.modrinth.com/data/S27aYArf/images/8ea3db8e08d47ab58df9a7483ec26673f1c2a45f.png)
+
 ## Need hosting?
 
 [![Banner](https://www.bisecthosting.com/partners/custom-banners/25d79f00-76c2-4045-a231-62a85437014f.webp)](https://bisecthosting.com/thebadguy)
@@ -75,6 +77,7 @@ This wires can be used in custom recipes in mod packs.
 
 </details>
 
+![BeltGrinderTitle](https://cdn.modrinth.com/data/S27aYArf/images/c16e888cc187f8800aadc508f773d5e17f352453.png)
 
 <details>
 <summary>Belt Grinder</summary>
@@ -93,6 +96,7 @@ Belt's appearance can be changed via right click with a Sand Paper. [Create Craf
 
 </details>
 
+![SpringCoilingMachineTitle](https://cdn.modrinth.com/data/S27aYArf/images/08fbda93181d500e38c01adcc23c24053f357cf4.png)
 
 <details>
 <summary>Spring Coiling Machine & Springs</summary>
@@ -110,6 +114,7 @@ Grinder provides **coiling** recipes.
 
 </details>
 
+![CompressorTitle](https://cdn.modrinth.com/data/S27aYArf/images/4546a2e5213e43a774c21b3ac2be0fe2c82893b4.png)
 
 <details>
 <summary>Compressor</summary>
@@ -128,6 +133,7 @@ Modes can be switched via right click with Wrench. Recipes may require fluids in
 
 </details>
 
+![VibratingTitle](https://cdn.modrinth.com/data/S27aYArf/images/b46886aaded7dd5b00efdbc1d9da3c83527caf51.png)
 
 <details>
 <summary>Vibrating Table</summary>
@@ -146,6 +152,7 @@ In config you can turn on **unpacking** and **leaves vibrating** recipes (enable
 
 </details>
 
+![CentrifugeTitle](https://cdn.modrinth.com/data/S27aYArf/images/6be4dbaee547ad596479a7c8085e7a39788a008f.png)
 
 <details>
 <summary>Centrifuge</summary>
@@ -160,6 +167,7 @@ Centrifuge needs 4 Basins intsalled to work and provides **centrifugation** reci
 
 </details>
 
+![CurvingPress](https://cdn.modrinth.com/data/S27aYArf/images/36226e9d4b70979796a6c24c9ad949d065faf642.png)
 
 <details>
 <summary>Curving Press</summary>
@@ -170,9 +178,13 @@ Curving Press craft
 
 Curving Press provides **curving** recipes. Before work you must install one of Curving Heads. Different heads provides different recipes
 
-![Curving Head Recipes](https://cdn.modrinth.com/data/S27aYArf/images/485e06e4263531375954f717441ea53073050614.png)
+![Curving Head Recipes](https://cdn.modrinth.com/data/S27aYArf/images/af24541d9c1f7bbdc3a977bc13824d3eec434a13.png)
 
-You also can add custom heads, just add "vintageimprovements:curving_heads" tag to item
+Stonecutter crafts
+
+![Curving Head Recipes 2](https://cdn.modrinth.com/data/S27aYArf/images/faa65cbb3b19d5abc7d00515a1ec752a301bc087.png)
+
+You also can create custom heads, just add "vintageimprovements:curving_heads" tag to item
 
 ![Curving Example](https://cdn.modrinth.com/data/S27aYArf/images/f8d8d26cac5c57886b149fdd7a99adb1eba371cb.png)
 
@@ -180,8 +192,11 @@ In the config you can turn on automatic recognition of bucket-like recipes for C
 
 ![Auto Curving Example](https://cdn.modrinth.com/data/S27aYArf/images/adece40ff73fc4263069df0224b237cac896abde.png)
 
+Some recipes cause damage to the curving heads, auto recipes damage can be customized via config
+
 </details>
 
+![HelveHammerTitle](https://cdn.modrinth.com/data/S27aYArf/images/29b57204ae928f7195dd2d31dfd05b144c852267.png)
 
 <details>
 <summary>Helve Hammer & Netherite Sheet</summary>
@@ -190,7 +205,7 @@ Helve Hammer craft
 
 ![Helve Hammer](https://cdn.modrinth.com/data/S27aYArf/images/33b49c35e1373d36ebdf848c41b3a1c2cb4908d4.png)
 
-Helve Hammer works with Smithing Table or Anvil. With Anvil Helve Hammer provides **hammering** recipes
+Helve Hammer works with Smithing Table or Anvil. With Anvil (or blocks with "vintageimprovements:anvils" tag) Helve Hammer provides **hammering** recipes  
 
 ![Hammering Example](https://cdn.modrinth.com/data/S27aYArf/images/726b2018a7b64a65120c6dfa60e292905da943ab.png)
 
@@ -202,8 +217,49 @@ With Smithing Table Helve Hammer provides **auto smithing** recipes
 
 ![Auto Smithing](https://cdn.modrinth.com/data/S27aYArf/images/0d132c200790c95f5d726860d358a33a35c0d65b.png)
 
+Some recipes may require specific block instead of anvil, this block must have "vintageimprovements:custom_hammering_blocks" tag
+
 </details>
 
+![LatheTitle](https://cdn.modrinth.com/data/S27aYArf/images/e09b1bc895c804265c36d9ef53f0f0f53602fdbb.png)
+
+<details>
+<summary>Lathe & Recipe Card</summary>
+
+Lathe craft
+
+![Lathe craft](https://cdn.modrinth.com/data/S27aYArf/images/dd2ae6f7bd0f202d402deb4e242374fc9289164b.png)
+
+Lathe provides **turning** recipes
+
+![Turning Example](https://cdn.modrinth.com/data/S27aYArf/images/af24541d9c1f7bbdc3a977bc13824d3eec434a13.png)
+
+Usually recipes are selected manually. But you can automate this process with the Recipe Card
+
+![Recipe Card Recipe](https://cdn.modrinth.com/data/S27aYArf/images/f79af1ab9a6e7d19eca4c0b655dccdba7635cde2.png)
+
+![Recipe Card Menu](https://cdn.modrinth.com/data/S27aYArf/images/7c38301fc6859fcb589fafb60885c54cc74d4d1c.png)
+
+</details>
+
+![LaserTitle](https://cdn.modrinth.com/data/S27aYArf/images/607b68885b6f72ba6cbd3c6273c509f9d0f5274c.png)
+
+<details>
+<summary>Laser</summary>
+
+Laser craft
+
+![Laser head craft](https://cdn.modrinth.com/data/S27aYArf/images/0958fe0bfa11781d26c9f530e44de5f35a963f69.png)
+
+![Laser craft](https://cdn.modrinth.com/data/S27aYArf/images/831e8bd35186938943cbe99afe2adf47b148e255.png)
+
+Laser provides **laser cutting** recipes
+
+![Laser Cutting Example](https://cdn.modrinth.com/data/S27aYArf/images/64ba7d227841d359e33405c03643e0af40384f49.png)
+
+Laser consumes energy during works (only if another mod that provides energy is installed). Vintage Improvements doesn't provides any energy sources, but any sources of Forge Energy is supported: [Mekanism](https://modrinth.com/mod/mekanism-generators), [Thermal Expansion](https://modrinth.com/mod/thermal-expansion), [Create Crafts & Additions](https://modrinth.com/mod/createaddition), [Botarium](https://modrinth.com/mod/botarium), [Immersive Engineering](https://modrinth.com/mod/immersiveengineering)
+
+</details>
 
 <details>
 <summary>Sulfur & Sulfuric Acid</summary>
@@ -252,6 +308,16 @@ Copper Sulfate can be crafted by Pressurizing Copper Ingot with Water & Sulfuric
 
 </details>
 
+
+<details>
+<summary>Redstone Module</summary>
+
+![Redstone Module Recipe](https://cdn.modrinth.com/data/S27aYArf/images/96bf8223f5017940ca7cc126355ba40be3a87210.png)
+
+Redstone Module can be attached to Centrifuge or Curving Press to allow generation of a redstone signal by this blocks using a comparator
+
+</details>
+
 # Compats
 
 
@@ -284,10 +350,11 @@ You can fork [GitHub repository](https://github.com/Negodya1/Create-Vintage-Impr
 
 > KubeJS support?
 
-After version 0.2 release (about 2 major updates)
+After version 0.2 release (about 3 major updates)
 
 # Translations
 
 - en_us (edited by **padin**)
 - ru_ru
-- zh_cn by **Catchmons & Junnaturefox**
+- zh_cn by **Catchmons, Junnaturefox & Qi-Month**
+- pt_br by **reds**

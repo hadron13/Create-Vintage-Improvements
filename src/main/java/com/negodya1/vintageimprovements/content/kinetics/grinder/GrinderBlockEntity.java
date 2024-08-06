@@ -12,11 +12,14 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import com.google.common.collect.ImmutableList;
 import com.negodya1.vintageimprovements.VintageImprovements;
 import com.negodya1.vintageimprovements.VintageRecipes;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancementBehaviour;
+import com.negodya1.vintageimprovements.foundation.advancement.VintageAdvancements;
 import com.negodya1.vintageimprovements.foundation.utility.VintageLang;
 import com.negodya1.vintageimprovements.infrastructure.config.VintageConfig;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.AllSoundEvents;
 import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
+import com.simibubi.create.content.equipment.sandPaper.SandPaperItem;
 import com.simibubi.create.content.equipment.sandPaper.SandPaperPolishingRecipe;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.belt.behaviour.DirectBeltInputBehaviour;
@@ -54,15 +57,7 @@ import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.StonecutterRecipe;
-import net.minecraft.world.level.block.BambooStalkBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CactusBlock;
-import net.minecraft.world.level.block.ChorusPlantBlock;
-import net.minecraft.world.level.block.KelpBlock;
-import net.minecraft.world.level.block.KelpPlantBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.StemGrownBlock;
-import net.minecraft.world.level.block.SugarCaneBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -88,6 +83,7 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 	private int recipeIndex;
 	private final LazyOptional<IItemHandler> invProvider;
 	private FilteringBehaviour filtering;
+	private VintageAdvancementBehaviour advancementBehaviour;
 
 	private ItemStack playEvent;
 	private int textureType;
@@ -100,7 +96,7 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 		recipeIndex = 0;
 		invProvider = LazyOptional.of(() -> inventory);
 		playEvent = ItemStack.EMPTY;
-		textureType = 0;
+		textureType = VintageConfig.common().defaultBeltGrinderSkin.get();
 	}
 
 	public boolean canCraft(ItemStack stack) {
@@ -117,6 +113,8 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 		filtering = new FilteringBehaviour(this, new GrinderFilterSlot()).forRecipes();
 		behaviours.add(filtering);
 		behaviours.add(new DirectBeltInputBehaviour(this));
+		advancementBehaviour = new VintageAdvancementBehaviour(this);
+		behaviours.add(advancementBehaviour);
 	}
 
 	@Override
@@ -271,6 +269,7 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 		inventory.clear();
 		level.updateNeighbourForOutputSignal(worldPosition, getBlockState().getBlock());
 		inventory.remainingTime = -1;
+		setChanged();
 		sendData();
 	}
 
@@ -383,8 +382,8 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 			List<ItemStack> list = new ArrayList<>();
 			for (int roll = 0; roll < rolls; roll++) {
 				List<ItemStack> results = new LinkedList<ItemStack>();
-				if (recipe instanceof SandPaperPolishingRecipe)
-					results = ((SandPaperPolishingRecipe) recipe).rollResults();
+				if (recipe instanceof SandPaperPolishingRecipe sandRecipe)
+					results = sandRecipe.rollResults();
 
 				for (int i = 0; i < results.size(); i++) {
 					ItemStack stack = results.get(i);
@@ -394,44 +393,44 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 
 			for (int slot = 0; slot < list.size() && slot + 1 < inventory.getSlots(); slot++)
 				inventory.setStackInSlot(slot + 1, list.get(slot));
-
+			advancementBehaviour.awardVintageAdvancement(VintageAdvancements.USE_BELT_GRINDER);
 			return;
 		}
 
-		PolishingRecipe polishingRecipe = (PolishingRecipe)recipe;
+		if (recipe instanceof PolishingRecipe polishingRecipe) {
+			if (polishingRecipe.speedLimits != 0) {
+				int speed = (int)Math.abs(getSpeed());
+				boolean wrongLimit = false;
 
-		if (polishingRecipe.speedLimits != 0) {
-			int speed = (int)Math.abs(getSpeed());
-			boolean wrongLimit = false;
+				if (polishingRecipe.speedLimits == 1 && speed > VintageConfig.server().recipes.lowSpeedValue.get()) wrongLimit = true;
+				if (polishingRecipe.speedLimits == 2 && (speed > VintageConfig.server().recipes.mediumSpeedValue.get() || speed <= VintageConfig.server().recipes.lowSpeedValue.get())) wrongLimit = true;
+				if (polishingRecipe.speedLimits == 3 && speed <= VintageConfig.server().recipes.mediumSpeedValue.get()) wrongLimit = true;
 
-			if (polishingRecipe.speedLimits == 1 && speed > VintageConfig.server().recipes.lowSpeedValue.get()) wrongLimit = true;
-			if (polishingRecipe.speedLimits == 2 && (speed > VintageConfig.server().recipes.mediumSpeedValue.get() || speed <= VintageConfig.server().recipes.lowSpeedValue.get())) wrongLimit = true;
-			if (polishingRecipe.speedLimits == 3 && speed <= VintageConfig.server().recipes.mediumSpeedValue.get()) wrongLimit = true;
-
-			if (wrongLimit) {
-				if (VintageConfig.server().recipes.destroyOnWrongGrinderSpeed.get()) inventory.clear();
-				return;
+				if (wrongLimit) {
+					if (VintageConfig.server().recipes.destroyOnWrongGrinderSpeed.get()
+							|| polishingRecipe.fragile) inventory.clear();
+					return;
+				}
 			}
-		}
 
-		int rolls = inventory.getStackInSlot(0)
-			.getCount();
-		inventory.clear();
+			int rolls = inventory.getStackInSlot(0)
+					.getCount();
+			inventory.clear();
 
-		List<ItemStack> list = new ArrayList<>();
-		for (int roll = 0; roll < rolls; roll++) {
-			List<ItemStack> results = new LinkedList<ItemStack>();
-			if (recipe instanceof PolishingRecipe)
-				results = ((PolishingRecipe) recipe).rollResults();
+			List<ItemStack> list = new ArrayList<>();
+			for (int roll = 0; roll < rolls; roll++) {
+				List<ItemStack> results = polishingRecipe.rollResults();
 
-			for (int i = 0; i < results.size(); i++) {
-				ItemStack stack = results.get(i);
-				ItemHelper.addToList(stack, list);
+				for (int i = 0; i < results.size(); i++) {
+					ItemStack stack = results.get(i);
+					ItemHelper.addToList(stack, list);
+				}
 			}
+
+			for (int slot = 0; slot < list.size() && slot + 1 < inventory.getSlots(); slot++)
+				inventory.setStackInSlot(slot + 1, list.get(slot));
+			advancementBehaviour.awardVintageAdvancement(VintageAdvancements.USE_BELT_GRINDER);
 		}
-		
-		for (int slot = 0; slot < list.size() && slot + 1 < inventory.getSlots(); slot++) 
-			inventory.setStackInSlot(slot + 1, list.get(slot));
 	}
 
 	private List<? extends Recipe<?>> getRecipes() {
@@ -552,6 +551,8 @@ public class GrinderBlockEntity extends KineticBlockEntity implements IHaveGoggl
 
 	public boolean addTexture(ItemStack items) {
 		if (items.isEmpty()) return false;
+		if (!(items.getItem() instanceof SandPaperItem)) return false;
+		advancementBehaviour.awardVintageAdvancement(VintageAdvancements.BELT_GRINDER_SKIN_CHANGE);
 
 		switch (items.getItem().getDescriptionId()) {
 			case "item.create.sand_paper":

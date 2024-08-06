@@ -1,16 +1,14 @@
 {
   "type":"createaddition:rolling",
-  "ingredients": [
+  "input":
     {
       "tag": "forge:plates/slimesteel"
-    }
-  ],
-  "results": [
+    },  
+  "result":
     {
       "item": "vintageimprovements:slimesteel_wire",
 		"count": 2
-    }
-  ],
+    },  
 	"conditions": [ {
 		"type": "forge:mod_loaded",
 		"modid": "createaddition"

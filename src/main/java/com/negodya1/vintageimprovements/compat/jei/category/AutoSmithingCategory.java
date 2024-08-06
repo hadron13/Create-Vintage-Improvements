@@ -46,7 +46,7 @@ public class AutoSmithingCategory extends CreateRecipeCategory<AutoSmithingRecip
 	public void draw(AutoSmithingRecipe recipe, IRecipeSlotsView iRecipeSlotsView, GuiGraphics graphics, double mouseX, double mouseY) {
 		AllGuiTextures.JEI_ARROW.render(graphics, 12, 55);
 
-		helve.draw(graphics, 68, 6, false);
+		helve.draw(graphics, 68, 6, 0);
 
 		graphics.drawString(Minecraft.getInstance().font,  Component.translatable(VintageImprovements.MODID + ".jei.text.auto_smithing.text1"), 96, 3, 0xFAFAFA);
 		graphics.drawString(Minecraft.getInstance().font,  Component.translatable(VintageImprovements.MODID + ".jei.text.auto_smithing.text2"), 96, 14, 0xFAFAFA);

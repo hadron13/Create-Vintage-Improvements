@@ -62,6 +62,8 @@
 	"item.vintageimprovements.lead_wire": "Свинцовый провод",
 	"item.vintageimprovements.lumium_wire": "Люмиевый провод",
 	"item.vintageimprovements.manyullyn_wire": "Маньюлиновый провод",
+	"item.vintageimprovements.netherite_wire": "Незеритовый провод",
+	"item.vintageimprovements.nethersteel_wire": "Провод из незер-стали",
 	"item.vintageimprovements.nickel_wire": "Никелевый провод",
 	"item.vintageimprovements.osmium_wire": "Осмиевый провод",
 	"item.vintageimprovements.ostrum_wire": "Острумовый провод",
@@ -156,6 +158,8 @@
 	"item.vintageimprovements.small_lead_spring": "Малая свинцовая пружина",
 	"item.vintageimprovements.small_lumium_spring": "Малая люмиевая пружина",
 	"item.vintageimprovements.small_manyullyn_spring": "Малая маньюлиновая пружина",
+	"item.vintageimprovements.small_netherite_spring": "Малая незеритовая пружина",
+	"item.vintageimprovements.small_nethersteel_spring": "Малая пружина из незер-стали",
 	"item.vintageimprovements.small_nickel_spring": "Малая никелевая пружина",
 	"item.vintageimprovements.small_osmium_spring": "Малая осмиевая пружина",
 	"item.vintageimprovements.small_ostrum_spring": "Малая острумовая пружина",
@@ -223,7 +227,7 @@
 	"item.vintageimprovements.zinc_sheet": "Цинковый лист",
 	
 	"item.vintageimprovements.redstone_module": "Редстоун модуль",
-	"item.vintageimprovements.incomplete_redstone_module": "Незаконченный Редстоун Модуль",
+	"item.vintageimprovements.incomplete_redstone_module": "Незаконченный редстоун модуль",
 	
 	"item.vintageimprovements.vanadium_nugget": "Кусочек ванадия",
 	"item.vintageimprovements.vanadium_ingot": "Ванадиевый слиток",
@@ -240,6 +244,10 @@
 	
 	"item.vintageimprovements.copper_sulfate": "Медный купорос",
 	"vintageimprovements.item_description.copper_sulfate": "Может быть использована вместо костной муки",
+	
+	"item.vintageimprovements.recipe_card": "Карточка рецепта",
+	"item.vintageimprovements.incomplete_recipe_card": "Незаконченная карточка рецепта",
+	"vintageimprovements.recipe_card.item_slot": "Слот для ингредиента",
 	
 	"item.vintageimprovements.convex_curving_head": "Выпуклая насадка пресса",
 	"item.vintageimprovements.convex_curving_head.tooltip.summary": "Может быть установлена на гибочный пресс, для автоматизации ведро-подобных рецептов",
@@ -258,11 +266,18 @@
 	"item.vintageimprovements.v_shaped_curving_head.tooltip.condition1": " █░ или ░█",
 	"item.vintageimprovements.v_shaped_curving_head.tooltip.behaviour1": "██      ██",
 	
+	"item.vintageimprovements.helve_hammer_slot_cover": "Заглушка слота рычажного молота",
+	
 	"block.vintageimprovements.belt_grinder": "Ленточный гриндер",
 	"item.vintageimprovements.grinder_belt": "Лента гриндера",
 	"vintageimprovements.recipe.assembly.polishing": "Отполируйте на гриндере",
 	"vintageimprovements.recipe.polishing": "Полирование",
 	"vintageimprovements.recipe.grinder_sandpaper_polishing": "Полирование",
+	"vintageimprovements.recipe.assembly.speed": "скорости",
+	"vintageimprovements.recipe.assembly.low": "низкой",
+	"vintageimprovements.recipe.assembly.medium": "средней",
+	"vintageimprovements.recipe.assembly.high": "высокой",
+	"vintageimprovements.recipe.assembly.any": "любой",
 	
 	"block.vintageimprovements.spring_coiling_machine": "Наматыватель пружин",
 	"item.vintageimprovements.spring_coiling_machine_wheel": "Колесо наматывателя",
@@ -289,11 +304,26 @@
 	"vintageimprovements.recipe.assembly.curving": "Обработайте гибочным прессом",
 	"vintageimprovements.recipe.curving": "Сгибание",
 	"vintageimprovements.recipe.auto_curving": "Сгибание",
+	"vintageimprovements.recipe.assembly.with_head": "с насадкой:",
 	
 	"block.vintageimprovements.helve_hammer": "Рычажный молот",
 	"vintageimprovements.recipe.assembly.hammering": "Обработайте рычажным молотом",
 	"vintageimprovements.recipe.hammering": "Ковка",
 	"vintageimprovements.recipe.auto_smithing": "Автоматический стол кузнеца",
+	
+	"block.vintageimprovements.lathe": "Токарный станок",
+	"vintageimprovements.recipe.assembly.turning": "Обработайте на токарном станке",
+	"vintageimprovements.recipe.turning": "Точение",
+	"vintageimprovements.lathe.item_slot": "Текущий ингредиент",
+	
+	"block.vintageimprovements.laser": "Лазер",
+	"item.vintageimprovements.laser_item": "Лазер",
+	"vintageimprovements.recipe.assembly.laser_cutting": "Обработайте лазером",
+	"vintageimprovements.recipe.laser_cutting": "Лазерная резка",
+	
+	"vintageimprovements.recipe.assembly.with": "вместе с",
+	"vintageimprovements.recipe.assembly.and": "и",
+	"vintageimprovements.recipe.assembly.on": "на",
 	
 	"vintageimprovements.ponder.belt_grinder_processing.header": "Обработкой предметов на ленточном гриндере",
 	"vintageimprovements.ponder.belt_grinder_processing.text_1": "Ленточные гриндеры могут обрабатывать множество предметов",
@@ -346,6 +376,11 @@
 	"vintageimprovements.ponder.curving_press.text_6": "Когда предметы подаются на конвейере...",
 	"vintageimprovements.ponder.curving_press.text_7": "...пресс будет задерживать и сгибать их автоматически",
 	
+	"vintageimprovements.ponder.curving_redstone.header": "Взаимодействии гибочного пресса с компаратором",
+    "vintageimprovements.ponder.curving_redstone.text_1": "Гибочный пресс может вырабатывать сигнал для компаратора",
+    "vintageimprovements.ponder.curving_redstone.text_2": "Вам нужно установить на гибочный пресс редстоун модуль",
+    "vintageimprovements.ponder.curving_redstone.text_3": "Пока у пресса есть насадка он будет вырабатывать сигнал силой 15",
+	
 	"vintageimprovements.ponder.helve_hammer.header": "Обработкой предметов рычажным молотом",
 	"vintageimprovements.ponder.helve_hammer.text_1": "Рычажный молот имеет два режима работы",
 	"vintageimprovements.ponder.helve_hammer.text_2": "Режим зависит от блока под молотом",
@@ -357,11 +392,41 @@
 	"vintageimprovements.ponder.helve_hammer.text_8": "После необходимого количества ударов молотом, результат можно забрать кликнув ПКМ",
 	"vintageimprovements.ponder.helve_hammer.text_9": "Предметы также можно ввести/вывести автоматически",
 	
+	"vintageimprovements.ponder.slots_blocking.header": "Блокирование слотов рычажного молота",
+	"vintageimprovements.ponder.slots_blocking.text_1": "Некоторые рецептны могут требовать меньше 3 ингредиентов",
+	"vintageimprovements.ponder.slots_blocking.text_2": "Вы можете заблокировать лишние слоты при помощи заглушки слота рычажного молота",
+	"vintageimprovements.ponder.slots_blocking.text_3": "Вы можете убрать заглушки при помощи гаечного ключа",
+	
+	"vintageimprovements.ponder.lathe.header": "Обработкой предметов на токарном станке",
+    "vintageimprovements.ponder.lathe.text_1": "Токарный станок может обрабатывать множество предметов",
+    "vintageimprovements.ponder.lathe.text_2": "Токарный станок должен принимать вращение от валов сбоку...",
+    "vintageimprovements.ponder.lathe.text_3": "...и спереди",
+    "vintageimprovements.ponder.lathe.text_4": "Ингредиенты можно поместить в передний блок кликнув ПКМ",
+    "vintageimprovements.ponder.lathe.text_5": "Для выбора рецепта необходимо кликнуть ПКМ на задний блок",
+	"vintageimprovements.ponder.lathe.text_6": "Это необходимо делать для каждого отдельного рецепта",
+    "vintageimprovements.ponder.lathe.text_7": "Результат можно забрать кликнув ПКМ",
+    "vintageimprovements.ponder.lathe.text_8": "Предметы также можно ввести/вывести автоматически",
+	
+	"vintageimprovements.ponder.lathe_automation.header": "Автоматизацией токарного станка",
+    "vintageimprovements.ponder.lathe_automation.text_1": "Токарный станок может быть автоматизирован при помощи карточки рецепта",
+    "vintageimprovements.ponder.lathe_automation.text_2": "Используйте карточку рецепта кликнув ПКМ, для того чтобы выбрать рецепт",
+    "vintageimprovements.ponder.lathe_automation.text_3": "Затем поместите карточку в тыльный блок токарного станка",
+    "vintageimprovements.ponder.lathe_automation.text_4": "Теперь токарный станок будет автоматически обрабатывать выбранный рецепт",
+	
+	"vintageimprovements.ponder.laser.header": "Обработкой предметов лазером",
+    "vintageimprovements.ponder.laser.text_1": "Лазер потребляет энергию во время работы (только если установлен какой-либо мод предоставляющий энергию)",
+    "vintageimprovements.ponder.laser.text_2": "Поддерживаются любые источники FE",
+    "vintageimprovements.ponder.laser.text_3": "Лазер может обрабатывать предметы под собой",
+    "vintageimprovements.ponder.laser.text_4": "Подаваемые предметы должны быть брошены или помещены на депо под лазер",
+    "vintageimprovements.ponder.laser.text_5": "Когда предметы подаются на конвейере...",
+    "vintageimprovements.ponder.laser.text_6": "...лазер будет задерживать и резать их автоматически",
+	
 	"vintageimprovements.jei.text.required_speed": "Треб. Скорость:",
 	"vintageimprovements.jei.text.low": "Низкая",
 	"vintageimprovements.jei.text.medium": "Средняя",
 	"vintageimprovements.jei.text.high": "Высокая",
 	"vintageimprovements.jei.text.any": "Любая",
+	"vintageimprovements.jei.text.fragile": "Хрупкое. Ингредиент будет ничтожен при обработке на неправильной скорости",
 	
 	"vintageimprovements.jei.text.leaves_vibrating.text1": "Любые листья",
 	"vintageimprovements.jei.text.leaves_vibrating.text2": "могут быть",
@@ -384,6 +449,10 @@
 	
 	"vintageimprovements.jei.text.hammer_blows": "Ударов молотом:",
 	
+	"vintageimprovements.jei.text.curving_head_damage": "Урон насадке",
+	
+	"vintageimprovements.jei.text.energy": "Затраты энергии:",
+	
 	"vintageimprovements.gui.goggles.low": "Низкая",
 	"vintageimprovements.gui.goggles.medium": "Средняя",
 	"vintageimprovements.gui.goggles.high": "Высокая",
@@ -398,13 +467,61 @@
 	"vintageimprovements.gui.goggles.pressurizing_mode": "Нагнетание",
 	"vintageimprovements.gui.goggles.hammering_mode": "Ковка",
 	"vintageimprovements.gui.goggles.smithing_mode": "Автоматический стол кузнеца",
+	"vintageimprovements.gui.goggles.manual_mode": "Ручной",
+	"vintageimprovements.gui.goggles.automatic_mode": "Автоматический",
+	"vintageimprovements.gui.goggles.current_recipe": "Текущий рецепт:",
+	"vintageimprovements.gui.goggles.no_recipe": "Нет рецепта",
 	
 	"vintageimprovements.gui.goggles.no_operating_block": "Для работы установите под молот наковальню или стол кузнеца",
 	"vintageimprovements.gui.goggles.hammer_blows": "Осталось ударов молотом:",
+	"vintageimprovements.gui.goggles.blocked_slots": "Заблокировано слотов:",
 	
 	"vintageimprovements.gui.goggles.curving_head": "Насадка: ",
+	"vintageimprovements.gui.goggles.durability": "Прочность насадки",
+	
+	"vintageimprovements.gui.goggles.energy": "Энергия:",
+	
+	"vintageimprovements.gui.lathe.title": "Токарный станок",
 	
 	"vintageimprovements.item_description.machine_rpm_requirements": "Эта машина имеет требования к минимальным об/мин:",
+	"vintageimprovements.item_description.additional_machine_rpm_requirements": "Другая часть этой машины имеет другие требования к минимальным об/мин:",
+	"vintageimprovements.item_description.recipe_index": "Индекс рецепта:",
+	"vintageimprovements.item_description.ingredient": "Ингредиент:",
+	"vintageimprovements.item_description.result": "Результат:",
+	"vintageimprovements.item_description.spring_stiffness": "Жёсткость:",
+	
+	"advancement.vintageimprovements.root": "Добро пожаловать в Vintage Improvements!",
+	"advancement.vintageimprovements.root.desc": "Тут есть пружины",
+	"advancement.vintageimprovements.belt_grinder": "До блеска",
+	"advancement.vintageimprovements.belt_grinder.desc": "Используйте ленточный гриндер для обработки материалов",
+	"advancement.vintageimprovements.coiling_machine": "Один маленький шаг",
+	"advancement.vintageimprovements.coiling_machine.desc": "Используйте наматыватель пружин для получения пружины",
+	"advancement.vintageimprovements.iron_spring": "Подпружиненный",
+	"advancement.vintageimprovements.iron_spring.desc": "Получите самый важный материал Vintage Improvements — железную пружину",
+	"advancement.vintageimprovements.compressor": "Герметично",
+	"advancement.vintageimprovements.compressor.desc": "Используйте компрессор для обработки материалов",
+	"advancement.vintageimprovements.copper_sulfate": "Медная закуска",
+	"advancement.vintageimprovements.copper_sulfate.desc": "Получите медный купорос - удобрение на основе меди",
+	"advancement.vintageimprovements.centrifuge": "Кругом голова",
+	"advancement.vintageimprovements.centrifuge.desc": "Используйте центрифугу для обработки материалов",
+	"advancement.vintageimprovements.helve_hammer": "Тяжёлый бонк!",
+	"advancement.vintageimprovements.helve_hammer.desc": "Используйте рычажный молот для обработки материалов",
+	"advancement.vintageimprovements.lathe": "О вращении",
+	"advancement.vintageimprovements.lathe.desc": "Используйте токарный станок для обработки материалов",
+	"advancement.vintageimprovements.laser": "Световой меч",
+	"advancement.vintageimprovements.laser.desc": "Используйте лазер для обработки материалов",
+	"advancement.vintageimprovements.vibrating": "Взболтать, но не смешивать",
+	"advancement.vintageimprovements.vibrating.desc": "Используйте вибрационный стол для обработки материалов",
+	"advancement.vintageimprovements.curving": "Бендер Родригес",
+	"advancement.vintageimprovements.curving.desc": "Используйте гибочный пресс для обработки материалов",
+	"advancement.vintageimprovements.recipe_card": "Перфокарта",
+	"advancement.vintageimprovements.recipe_card.desc": "Получите карточку рецепта - предмет для автоматизации токарного станка",
+	"advancement.vintageimprovements.belt_grinder_skin_change": "Показ мод",
+	"advancement.vintageimprovements.belt_grinder_skin_change.desc": "Смените внешний вид ленточного гриндера, кликнув ПКМ с наждачной бумагой в руках",
+	"advancement.vintageimprovements.vanadium_block": "Серебристо-серый",
+	"advancement.vintageimprovements.vanadium_block.desc": "Получите ванадиевый блок",
+	"advancement.vintageimprovements.redstone_module": "Редстоунофикация",
+	"advancement.vintageimprovements.redstone_module.desc": "Соберите редстоун модуль",
 	
 	"trim_material.vintageimprovements.vanadium": "Ванадиевая",
 	"trim_material.vintageimprovements.brass": "Латунная",

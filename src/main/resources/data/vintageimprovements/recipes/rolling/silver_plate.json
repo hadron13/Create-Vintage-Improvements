@@ -1,16 +1,14 @@
 {
   "type":"createaddition:rolling",
-  "ingredients": [
+  "input":
     {
       "tag": "forge:plates/silver"
-    }
-  ],
-  "results": [
+    },  
+  "result":
     {
       "item": "vintageimprovements:silver_wire",
 		"count": 2
-    }
-  ],
+    },  
   "conditions": [ {
 		"type": "forge:mod_loaded",
 		"modid": "createaddition"

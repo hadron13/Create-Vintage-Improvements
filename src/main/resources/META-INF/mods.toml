@@ -10,9 +10,10 @@ license="${mod_license}"
     #updateJSONURL="https://change.me.example.invalid/updates.json"
     displayURL="https://github.com/Negodya1/Create-Vintage-Improvements"
     issueTrackerURL="https://github.com/Negodya1/Create-Vintage-Improvements/issues"
-    #logoFile="examplemod.png"
-    credits='''Catchmons & Junnaturefox - zh_cn localization
-padin - en_us localization editing'''
+    logoFile="logo.png"
+    credits='''Catchmons, Junnaturefox & Qi-Month - zh_cn localization
+padin - en_us localization editing
+reds - pt_br localization'''
     authors="${mod_authors}"
     #displayTest="MATCH_VERSION"
 
